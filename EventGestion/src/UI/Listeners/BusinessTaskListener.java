@@ -1,23 +1,46 @@
 package UI.Listeners;
 
-import javax.swing.event.MenuEvent;
-import javax.swing.event.MenuListener;
+import UI.Panels.BusinessTaskPanel;
+import UI.Windows.MainWindow;
+
+import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 
-public class BusinessTaskListener implements MenuListener {
+public class BusinessTaskListener implements MouseListener {
 
+    private MainWindow mainWindow;
+
+    public BusinessTaskListener(MainWindow mainWindow) {
+        this.mainWindow = mainWindow;
+    }
     @Override
-    public void menuSelected(MenuEvent e) {
-        System.out.println("BusinessTaskListener");
+    public void mouseClicked(MouseEvent e) {
+        mainWindow.getFrameContainer().removeAll();
+        mainWindow.getFrameContainer().setLayout(new BorderLayout());
+        mainWindow.getFrameContainer().add(new BusinessTaskPanel(), BorderLayout.CENTER);
+        mainWindow.repaint();
+        mainWindow.printAll(mainWindow.getGraphics());
     }
 
     @Override
-    public void menuDeselected(MenuEvent e) {
+    public void mousePressed(MouseEvent e) {
 
     }
 
     @Override
-    public void menuCanceled(MenuEvent e) {
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
 
     }
 }

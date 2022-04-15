@@ -4,8 +4,10 @@ import UI.Listeners.BusinessTaskListener;
 import UI.Listeners.EventCreateListener;
 import UI.Listeners.EventReadListener;
 import UI.Listeners.HomeListener;
+import UI.Panels.HomePanel;
 
 import javax.swing.*;
+import javax.swing.event.MenuListener;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -40,7 +42,12 @@ public class MainWindow extends JFrame {
         setMenu();
         setListeners();
 
+
         frameContainer = this.getContentPane();
+        frameContainer.setLayout(new BorderLayout());
+        frameContainer.add(new HomePanel(), BorderLayout.CENTER);
+
+
         setVisible(true);
     }
 
@@ -70,15 +77,16 @@ public class MainWindow extends JFrame {
     }
 
     private void setListeners() {
-        homeListener = new HomeListener();
-        btListener = new BusinessTaskListener();
-        eventCreateListener = new EventCreateListener();
-        eventReadListener = new EventReadListener();
+        homeListener = new HomeListener(this);
+        btListener = new BusinessTaskListener(this);
+        eventCreateListener = new EventCreateListener(this);
+        eventReadListener = new EventReadListener(this);
 
-        home.addMenuListener(homeListener);
+        home.addMouseListener(homeListener);
+        businessTask.addMouseListener(btListener);
         eventCreate.addActionListener(eventCreateListener);
         eventRead.addActionListener(eventReadListener);
-        businessTask.addMenuListener(btListener);
+
 
     }
 
