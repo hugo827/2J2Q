@@ -69,8 +69,10 @@ public class MainWindow extends JFrame {
         jMenuBar.add(event);
         jMenuBar.add(search);
         jMenuBar.add(businessTask);
+
         event.add(eventRead);
         event.add(eventCreate);
+
         search.add(search1);
         search.add(search2);
         search.add(search3);
@@ -81,9 +83,9 @@ public class MainWindow extends JFrame {
         btListener = new BusinessTaskListener(this);
         eventCreateListener = new EventCreateListener(this);
         eventReadListener = new EventReadListener(this);
-        searchDatesListener = new SearchDatesListener();
-        searchPromotionListener = new SearchPromotionListener();
-        searchEventTypeListener = new SearchEventTypeListener();
+        searchDatesListener = new SearchDatesListener(this);
+        searchPromotionListener = new SearchPromotionListener(this);
+        searchEventTypeListener = new SearchEventTypeListener(this);
 
         home.addMouseListener(homeListener);
         businessTask.addMouseListener(btListener);
