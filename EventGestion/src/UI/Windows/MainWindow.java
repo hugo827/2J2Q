@@ -1,12 +1,13 @@
 package UI.Windows;
 
 import UI.Listeners.*;
-import UI.Panels.HomePanel;
+import UI.animation.ScrollingDate;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import Thread.AnimationThread;
 
 public class MainWindow extends JFrame {
 
@@ -22,6 +23,8 @@ public class MainWindow extends JFrame {
     private SearchDatesListener searchDatesListener;
     private SearchEventTypeListener searchEventTypeListener;
     private SearchPromotionListener searchPromotionListener;
+
+    private ScrollingDate scrollingDate;
 
 
     public MainWindow() {
@@ -42,10 +45,13 @@ public class MainWindow extends JFrame {
         setMenu();
         setListeners();
 
+        scrollingDate  = new ScrollingDate();
 
         frameContainer = this.getContentPane();
         frameContainer.setLayout(new BorderLayout());
-        frameContainer.add(new HomePanel(), BorderLayout.CENTER);
+        //frameContainer.add(new HomePanel(), BorderLayout.CENTER);
+        frameContainer.add(scrollingDate, BorderLayout.CENTER);
+
 
 
         setVisible(true);

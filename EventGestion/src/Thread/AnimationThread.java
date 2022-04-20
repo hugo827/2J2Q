@@ -1,22 +1,25 @@
 package Thread;
 
+import UI.animation.ChangeDate;
+import UI.animation.ScrollingDate;
+
 public class AnimationThread extends Thread {
 
-    private String[] months = {"January", "Ferbruary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
-
-
-    public AnimationThread() {
-
+    private ScrollingDate changeDate;
+    public AnimationThread(ScrollingDate changeDate) {
+        this.changeDate = changeDate;
     }
 
     public void run() {
         while(true) {
             try{
                 Thread.sleep(1000);
-
+                changeDate.getChangeDate().changeDate();
+                changeDate.removeAll();
+                changeDate.repaint();
 
             } catch(Exception e) {
-
+                System.out.println(e);
             }
         }
     }
