@@ -2,6 +2,7 @@ package UI.Listeners;
 
 import UI.Panels.SearchEventTypePanel;
 import UI.Windows.MainWindow;
+import UI.animation.AnimationPanel;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -13,6 +14,7 @@ public class SearchEventTypeListener implements ActionListener {
 
     public SearchEventTypeListener(MainWindow mainWindow) {
         this.mainWindow = mainWindow;
+
     }
 
     @Override

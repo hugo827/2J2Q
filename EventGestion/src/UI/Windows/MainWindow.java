@@ -1,17 +1,19 @@
 package UI.Windows;
 
 import UI.Listeners.*;
+import UI.Panels.HomePanel;
 import UI.animation.ScrollingDate;
+import UI.animation.AnimationPanel;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import Thread.AnimationThread;
+
 
 public class MainWindow extends JFrame {
 
-    private Container frameContainer;
+    private Container mainContainer, frameContainer;
     private JMenuBar jMenuBar;
     private JMenu event, search, home, businessTask;
     private JMenuItem eventCreate, eventRead, search1, search2, search3;
@@ -25,12 +27,12 @@ public class MainWindow extends JFrame {
     private SearchPromotionListener searchPromotionListener;
 
     private ScrollingDate scrollingDate;
+    private AnimationPanel animationPanel;
 
 
     public MainWindow() {
         super("Gestion d'événement");
-
-        setBounds(10,10,1300,800);
+        setBounds(100,100,1300,800);
 
         // a voir si il n'existe pas des element par defaut pour fermer le programme ...
         //f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -45,14 +47,17 @@ public class MainWindow extends JFrame {
         setMenu();
         setListeners();
 
-        scrollingDate  = new ScrollingDate();
+        animationPanel = new AnimationPanel();
 
-        frameContainer = this.getContentPane();
+        mainContainer = this.getContentPane();
+        frameContainer = new Container();
+
+        mainContainer.setLayout(new BorderLayout());
         frameContainer.setLayout(new BorderLayout());
-        //frameContainer.add(new HomePanel(), BorderLayout.CENTER);
-        frameContainer.add(scrollingDate, BorderLayout.CENTER);
 
-
+        mainContainer.add(animationPanel, BorderLayout.WEST);
+        mainContainer.add(frameContainer, BorderLayout.CENTER);
+        frameContainer.add(new HomePanel(), BorderLayout.CENTER);
 
         setVisible(true);
     }

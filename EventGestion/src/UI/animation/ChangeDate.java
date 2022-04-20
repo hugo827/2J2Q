@@ -17,15 +17,15 @@ public class ChangeDate {
     public void changeDate() {
         switch(indMonth) {
             case 0,2,4,6,8,10,12 :
-                if(numberOfDayMonth <= 31) numberOfDayMonth++;
+                if(numberOfDayMonth < 31) numberOfDayMonth++;
                 else changeMonth();
                 break;
             case 3,5,7,9,11 :
-                if(numberOfDayMonth <= 30) numberOfDayMonth++;
+                if(numberOfDayMonth < 30) numberOfDayMonth++;
                 else changeMonth();
                 break;
             case 1 :
-                if(numberOfDayMonth <= 28) numberOfDayMonth++;
+                if(numberOfDayMonth < 28) numberOfDayMonth++;
                 else changeMonth();
                 break;
         }
@@ -40,10 +40,12 @@ public class ChangeDate {
     }
 
     public void draw(Graphics g) {
-        g.setColor(Color.BLACK);
+        g.setColor(Color.BLUE);
         g.drawString("" + months[indMonth], 25,22);
         g.drawString("" + daysNames[indDay], 15,50);
+        g.setColor(Color.RED);
         g.setFont(new Font("TimesRoman", Font.PLAIN, 35));
-        g.drawString("" + numberOfDayMonth + "", 35, 85 );
+        if(numberOfDayMonth >= 10)  g.drawString("" + numberOfDayMonth + "", 25, 85 );
+        else g.drawString("" + numberOfDayMonth + "", 35, 85 );
     }
 }

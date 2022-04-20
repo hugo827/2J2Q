@@ -11,7 +11,7 @@ public class Wall {
     }
 
     public void draw(Graphics g) {
-        g.setColor(Color.RED);
+        g.setColor(Color.BLACK);
         g.fillRect(rectangle.x,rectangle.y, rectangle.width, rectangle.height);
     }
 
