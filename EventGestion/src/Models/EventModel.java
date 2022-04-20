@@ -1,5 +1,6 @@
 package Models;
 
+import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class EventModel {
@@ -9,13 +10,13 @@ public class EventModel {
     private String description;
     private String additionnalInformation;
     private Boolean isImportant;
-    private GregorianCalendar startDate;
-    private GregorianCalendar endDate;
-    private int price;
+    private Date startDate;
+    private Date endDate;
+    private double price;
     private int participantNbMax;
     private Boolean isPrivate;
 
-    public EventModel(int idEvent, String title, String description, String additionnalInformation, Boolean isImportant, GregorianCalendar startDate, GregorianCalendar endDate, int price, int participantNbMax, Boolean isPrivate) {
+    public EventModel(int idEvent, String title, String description, String additionnalInformation, Boolean isImportant, Date startDate, Date endDate, double price, int participantNbMax, Boolean isPrivate) {
         setIdEvent(idEvent);
         setTitle(title);
         setDescription(description);
@@ -68,27 +69,27 @@ public class EventModel {
         isImportant = important;
     }
 
-    public GregorianCalendar getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(GregorianCalendar startDate) {
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
-    public GregorianCalendar getEndDate() {
+    public Date getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(GregorianCalendar endDate) {
+    public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
