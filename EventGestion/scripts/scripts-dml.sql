@@ -1,12 +1,13 @@
-USE evengestiondb;
+USE eventgestiondb;
 
-TRUNCATE TABLE eventgestiondb.promotion;
-TRUNCATE TABLE eventgestiondb.event;
-TRUNCATE TABLE eventgestiondb.address;
-TRUNCATE TABLE eventgestiondb.user;
-TRUNCATE TABLE eventgestiondb.usertype;
-TRUNCATE TABLE eventgestiondb.eventtype;
-TRUNCATE TABLE eventgestiondb.locality;
+-- TRUNCATE TABLE eventgestiondb.participation;
+-- TRUNCATE TABLE eventgestiondb.promotion;
+-- TRUNCATE TABLE eventgestiondb.event;
+-- TRUNCATE TABLE eventgestiondb.address;
+-- TRUNCATE TABLE eventgestiondb.user;
+-- TRUNCATE TABLE eventgestiondb.usertype;
+-- TRUNCATE TABLE eventgestiondb.eventtype;
+-- TRUNCATE TABLE eventgestiondb.locality;
 
 
 INSERT INTO eventgestiondb.eventtype(name) VALUES ("festival");
@@ -38,44 +39,32 @@ INSERT INTO eventgestiondb.user(firstname, lastname, fk_userType) VALUES ("Alexa
 INSERT INTO eventgestiondb.user(firstname, lastname, fk_userType) VALUES ("Lucas", "Pignataro", 2);
 INSERT INTO eventgestiondb.user(firstname, lastname, fk_userType) VALUES ("Remy", "Lecrond", 1);
 
-INSERT INTO eventgestiondb.event(title, description, additonalInformation, isImportant, startDate, endDate,
-                                 price, particpantNbMax, isPrivate, fk_creator, fk_participe, fk_eventType, fk_address)
-VALUES();
-INSERT INTO eventgestiondb.event(title, description, additonalInformation, isImportant, startDate, endDate,
-                                 price, particpantNbMax, isPrivate, fk_creator, fk_participe, fk_eventType, fk_address)
-VALUES();
-INSERT INTO eventgestiondb.event(title, description, additonalInformation, isImportant, startDate, endDate,
-                                 price, particpantNbMax, isPrivate, fk_creator, fk_participe, fk_eventType, fk_address)
-VALUES();
-INSERT INTO eventgestiondb.event(title, description, additonalInformation, isImportant, startDate, endDate,
-                                 price, particpantNbMax, isPrivate, fk_creator, fk_participe, fk_eventType, fk_address)
-VALUES();
-INSERT INTO eventgestiondb.event(title, description, additonalInformation, isImportant, startDate, endDate,
-                                 price, particpantNbMax, isPrivate, fk_creator, fk_participe, fk_eventType, fk_address)
-VALUES();
-INSERT INTO eventgestiondb.event(title, description, additonalInformation, isImportant, startDate, endDate,
-                                 price, particpantNbMax, isPrivate, fk_creator, fk_participe, fk_eventType, fk_address)
-VALUES();
-INSERT INTO eventgestiondb.event(title, description, additonalInformation, isImportant, startDate, endDate,
-                                 price, particpantNbMax, isPrivate, fk_creator, fk_participe, fk_eventType, fk_address)
-VALUES();
-INSERT INTO eventgestiondb.event(title, description, additonalInformation, isImportant, startDate, endDate,
-                                 price, particpantNbMax, isPrivate, fk_creator, fk_participe, fk_eventType, fk_address)
-VALUES();
-INSERT INTO eventgestiondb.event(title, description, additonalInformation, isImportant, startDate, endDate,
-                                 price, particpantNbMax, isPrivate, fk_creator, fk_participe, fk_eventType, fk_address)
-VALUES();
-INSERT INTO eventgestiondb.event(title, description, additonalInformation, isImportant, startDate, endDate,
-                                 price, particpantNbMax, isPrivate, fk_creator, fk_participe, fk_eventType, fk_address)
-VALUES();
+INSERT INTO eventgestiondb.event(title, description, additionalInformation, isImportant, startDate, endDate,
+                                 price, participantNbMax, isPrivate, fk_creator, fk_eventType, fk_address)
+VALUES("Namur festival", "Festival hard rock", "Liste concerts : - ...", false, '2022-04-19', '2022-04-21', 7.5, 1000, false, 1, 1, 1);
+INSERT INTO eventgestiondb.event(title, description, additionalInformation, isImportant, startDate, endDate,
+                                 price, participantNbMax, isPrivate, fk_creator, fk_eventType, fk_address)
+VALUES("Arch enemy en concert", "Concert de Arch enemy a Louvain la neuve ", "", false, '2022-05-19', '2022-05-19', 7.5, 1000, false, 1, 3, 5);
+
+-- event 1
+INSERT INTO eventgestiondb.participation(fk_user, fk_event) VALUES (1,1);
+INSERT INTO eventgestiondb.participation(fk_user, fk_event) VALUES (2,1);
+INSERT INTO eventgestiondb.participation(fk_user, fk_event) VALUES (3,1);
+INSERT INTO eventgestiondb.participation(fk_user, fk_event) VALUES (4,1);
+INSERT INTO eventgestiondb.participation(fk_user, fk_event) VALUES (5,1);
+
+-- event 2
+INSERT INTO eventgestiondb.participation(fk_user, fk_event) VALUES (5,2);
+INSERT INTO eventgestiondb.participation(fk_user, fk_event) VALUES (4,2);
+INSERT INTO eventgestiondb.participation(fk_user, fk_event) VALUES (3,2);
+INSERT INTO eventgestiondb.participation(fk_user, fk_event) VALUES (2,2);
 
 
 
-INSERT INTO eventgestiondb.promotion(reductionPourcent, fk_userType, fk_event) VALUES();
-INSERT INTO eventgestiondb.promotion(reductionPourcent, fk_userType, fk_event) VALUES();
-INSERT INTO eventgestiondb.promotion(reductionPourcent, fk_userType, fk_event) VALUES();
-INSERT INTO eventgestiondb.promotion(reductionPourcent, fk_userType, fk_event) VALUES();
-INSERT INTO eventgestiondb.promotion(reductionPourcent, fk_userType, fk_event) VALUES();
-INSERT INTO eventgestiondb.promotion(reductionPourcent, fk_userType, fk_event) VALUES();
-INSERT INTO eventgestiondb.promotion(reductionPourcent, fk_userType, fk_event) VALUES();
+INSERT INTO eventgestiondb.promotion(reductionPourcent, fk_userType, fk_event) VALUES(0.50, 1,1);
+INSERT INTO eventgestiondb.promotion(reductionPourcent, fk_userType, fk_event) VALUES(0.25,3,1);
+INSERT INTO eventgestiondb.promotion(reductionPourcent, fk_userType, fk_event) VALUES(1.00,4,1);
+INSERT INTO eventgestiondb.promotion(reductionPourcent, fk_userType, fk_event) VALUES(0.10, 3,2);
+INSERT INTO eventgestiondb.promotion(reductionPourcent, fk_userType, fk_event) VALUES(0.80,4,2);
+INSERT INTO eventgestiondb.promotion(reductionPourcent, fk_userType, fk_event) VALUES(0.25,1,2);
 
