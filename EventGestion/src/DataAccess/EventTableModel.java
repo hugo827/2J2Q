@@ -1,12 +1,16 @@
 package DataAccess;
 
 import Models.EventModel;
-import org.w3c.dom.events.Event;
 
 import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
 
 public class EventTableModel extends AbstractTableModel {
+
+    private String[] columns = {
+            "Id", "Title", "Description", "additional information", "Important",
+            "start date", "start date","end date", "Price", "max participant", "private"
+    };
     private ArrayList<String> columnNames;
     private ArrayList<EventModel> contents;
 
@@ -39,8 +43,6 @@ public class EventTableModel extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-
         return null;
-
     }
 }

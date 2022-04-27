@@ -18,17 +18,14 @@ public class EventListingPanel extends JPanel {
     private JButton btnDEL, btnUPD;
 
     private String[] columns = {
-            "Id",
-       "Title",
-        "Description",
-      "additional information",
-       "Important",
+            "Id", "Title", "Description", "additional information", "Important",
         "start date", "start date","end date", "Price", "max participant", "private"
     };
 
     public EventListingPanel() {
         this.setLayout(new BorderLayout());
         label = new JLabel("Event listing panel");
+        label.setHorizontalAlignment(JLabel.CENTER);
 
 
         tableModel = new DefaultTableModel();

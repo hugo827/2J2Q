@@ -12,9 +12,11 @@ import java.util.Date;
 public class EventListingDataAccess {
 
     public ArrayList<EventModel> getAllEvent() {
+
         ArrayList<EventModel> eventList = new ArrayList<EventModel>();
-        Connection connectionDB = ConnectionDB.getInstance();
+
         try {
+            Connection connectionDB = ConnectionDB.getInstance();
             String query = ("SELECT * FROM event");
             PreparedStatement statement = connectionDB.prepareStatement(query);
             ResultSet data = statement.executeQuery(query);
