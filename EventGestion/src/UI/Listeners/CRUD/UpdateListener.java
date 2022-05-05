@@ -7,25 +7,21 @@ import UI.Windows.MainWindow;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 
-public class deleteListener implements ActionListener {
+public class UpdateListener implements ActionListener {
 
     private EventListingPanel eventListingPanel;
 
-    public deleteListener(EventListingPanel eventListingPanel) {
+    public UpdateListener(EventListingPanel eventListingPanel) {
         this.eventListingPanel = eventListingPanel;
     }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
         JTable jTable = eventListingPanel.getEventsTable();
-        int idEvent = (int)jTable.getValueAt(jTable.getSelectedRow(),0);
-
-        System.out.println(idEvent);
-
-
-        MainWindow.getController().deleteEvent(idEvent);
+        int idEvent = (int)jTable.getValueAt(jTable.getSelectedRow(), 0);
+        EventModel eventModel = (EventModel) MainWindow.getController().getEvent(idEvent);
 
 
         MainWindow.getMainWindow().repaint();

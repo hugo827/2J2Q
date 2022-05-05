@@ -34,7 +34,7 @@ public class ChangeDate {
     }
 
     private void changeMonth() {
-        if(indDay >= months.length - 1) indMonth = 0;
+        if(indMonth >= months.length - 1) indMonth = 0;
         else indMonth++;
         numberOfDayMonth = 1;
     }
