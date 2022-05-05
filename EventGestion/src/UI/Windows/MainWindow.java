@@ -1,5 +1,6 @@
 package UI.Windows;
 
+import Controllers.EventController;
 import UI.Listeners.*;
 import UI.Panels.HomePanel;
 import UI.animation.ScrollingDate;
@@ -29,6 +30,8 @@ public class MainWindow extends JFrame {
     private ScrollingDate scrollingDate;
     private AnimationPanel animationPanel;
 
+    private static EventController eventController;
+
 
     public MainWindow() {
         super("Gestion d'événement");
@@ -43,6 +46,8 @@ public class MainWindow extends JFrame {
                     }
                 }
         );
+
+        eventController = new EventController();
 
         setMenu();
         setListeners();
@@ -110,5 +115,9 @@ public class MainWindow extends JFrame {
 
     public Container getFrameContainer() {
         return frameContainer;
+    }
+
+    public static EventController getController() {
+        return eventController;
     }
 }

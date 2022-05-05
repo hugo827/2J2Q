@@ -1,4 +1,4 @@
-package DataAccess;
+package UI.Panels.TableModels;
 
 import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
@@ -34,4 +34,5 @@ public class GenerationTableModel extends AbstractTableModel {
     public Class getColumnClass (int column) {
         return (objectsType.get(column)).getClass();
     }
+
 }

@@ -14,6 +14,6 @@ public class EventController {
     }
 
     public ArrayList<EventModel> getEventList() {
-        return EventBusiness.getEvents();
+        return eventBusiness.getEvents();
     }
 }

@@ -1,4 +1,4 @@
-package Thread;
+package UI.animation;
 
 import UI.animation.ChangeDate;
 import UI.animation.ScrollingDate;

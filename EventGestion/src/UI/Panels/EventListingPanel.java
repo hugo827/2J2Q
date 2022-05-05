@@ -1,20 +1,17 @@
 package UI.Panels;
 
-import DataAccess.EventListingDataAccess;
-import DataAccess.TableModels.EventTableModel;
-import Models.EventModel;
+import UI.Panels.TableModels.EventTableModel;
+import UI.Windows.MainWindow;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Date;
 
 public class EventListingPanel extends JPanel {
 
     private JLabel label;
-    private JTable eventsList;
-    private DefaultTableModel tableModel;
+    private JTable eventsTable;
+    private EventTableModel eventTableModel;
+
 
     private JScrollPane jScrollPane;
 
@@ -34,5 +31,13 @@ public class EventListingPanel extends JPanel {
         this.add(label, BorderLayout.NORTH);
         this.add(panelSouth, BorderLayout.SOUTH);
 
+        eventTableModel = new EventTableModel(MainWindow.getController().getEventList());
+        eventsTable = new JTable(eventTableModel);
+        jScrollPane = new JScrollPane(eventsTable);
+
+        eventsTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        eventsTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+        this.add(jScrollPane, BorderLayout.CENTER);
     }
 }
