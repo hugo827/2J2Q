@@ -1,11 +1,13 @@
 package UI.Listeners.CRUD;
 
+import Models.EventModel;
 import UI.Panels.EventListingPanel;
 import UI.Windows.MainWindow;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 public class deleteListener implements ActionListener {
 
@@ -22,11 +24,10 @@ public class deleteListener implements ActionListener {
 
         System.out.println(idEvent);
 
-//        try {
-//       MainWindow.getController().deleteEvent();
-//        } catch (DeleteDetailLineException deleteDetailLineException) {
-//            JOptionPane.showMessageDialog(null, "An error has occurred while deleting detail lines", "Error", JOptionPane.ERROR_MESSAGE);
-//        }
+
+        MainWindow.getController().deleteEvent(idEvent);
+
+
         MainWindow.getMainWindow().repaint();
         MainWindow.getMainWindow().printAll(MainWindow.getMainWindow().getGraphics());
     }

@@ -8,5 +8,5 @@ public interface IEvent {
      void addEvent(); // CREATE
      ArrayList<EventModel> getAllEvent(); // READ
      void updateEvent(); // UPDATE
-     void deleteEvent(String idEvent); // DELETE
+     void deleteEvent(int idEvent); // DELETE
 }

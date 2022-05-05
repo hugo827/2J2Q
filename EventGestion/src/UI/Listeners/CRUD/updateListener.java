@@ -1,5 +1,6 @@
 package UI.Listeners.CRUD;
 
+import Models.EventModel;
 import UI.Panels.EventListingPanel;
 import UI.Windows.MainWindow;
 
@@ -20,8 +21,8 @@ public class updateListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         JTable jTable = eventListingPanel.getEventsTable();
         int idEvent = (int)jTable.getValueAt(jTable.getSelectedRow(), 0);
+        EventModel eventModel = (EventModel) MainWindow.getController().getEvent(idEvent);
 
-        System.out.println(idEvent);
 
         MainWindow.getMainWindow().repaint();
         MainWindow.getMainWindow().printAll(MainWindow.getMainWindow().getGraphics());
