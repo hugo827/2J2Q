@@ -18,6 +18,7 @@ public class EventCreateListener implements ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
+        mainWindow.setTitle("Event Gestion - Add new event");
         mainWindow.getFrameContainer().removeAll();
         mainWindow.getFrameContainer().setLayout(new BorderLayout());
         mainWindow.getFrameContainer().add(new EventAddPanel(), BorderLayout.CENTER);

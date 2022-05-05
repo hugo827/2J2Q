@@ -89,6 +89,7 @@ public class EventDataAccess implements IEvent {
     public void deleteEvent(int idEvent) {
         try {
             Connection connectionDB = ConnectionDB.getInstance();
+            // TODO : Voir si on peut le faire en une requete ! des gas disent que non mais bon ca me semble bizarre !
             String query1 = "DELETE FROM `promotion` WHERE `fk_event` = ?";
             String query2 = "DELETE FROM `participation` WHERE `fk_event` = ?";
             String query3 = "DELETE FROM `event` WHERE `idEvent` = ?";

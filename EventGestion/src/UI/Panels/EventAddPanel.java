@@ -2,6 +2,7 @@ package UI.Panels;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Date;
 
 import UI.Listeners.CRUD.AddListener;
 import UI.Listeners.CRUD.CancelListener;
@@ -20,6 +21,7 @@ public class EventAddPanel extends JPanel {
 
     private JButton  cancel, add;
 
+    private JPanel form;
 
     public EventAddPanel() {
         this.setLayout(new BorderLayout());
@@ -28,7 +30,7 @@ public class EventAddPanel extends JPanel {
 
         this.add(label, BorderLayout.NORTH);
         JPanel listButton = new JPanel();
-        JPanel form = new JPanel();
+        form = new JPanel();
         form.setBounds(50,50,150,150);
         form.setLayout(new GridLayout(12,2,5,5));
         listButton.setLayout(new GridLayout(1,2,5,5));
@@ -92,6 +94,7 @@ public class EventAddPanel extends JPanel {
         creatorLabel.setHorizontalAlignment(SwingConstants.RIGHT);
         form.add(creatorLabel);
         //TODO : remplir les combo box, faire appelle a une arraylist dans le controller.
+        // avec hashmap pour recuper l'id et pas le text !
         creator = new JComboBox();
         form.add(creator);
 
@@ -113,12 +116,60 @@ public class EventAddPanel extends JPanel {
         cancel = new JButton("Cancel");
         add = new JButton("Add new event");
         cancel.addActionListener(new CancelListener());
-        add.addActionListener(new AddListener());
+        add.addActionListener(new AddListener(this));
 
         listButton.add(add);
         listButton.add(cancel);
 
         this.add(listButton, BorderLayout.SOUTH);
 
+    }
+
+    public Boolean getIsImportant() {
+        return isImportant.getState();
+    }
+
+    public Boolean getIsPrivate() {
+        return isPrivate.getState();
+    }
+
+    public String getTitleTF() {
+        return titleTF.getText();
+    }
+
+    public String getDescriptionTF() {
+        return descriptionTF.getText();
+    }
+
+    public String getAiTF() {
+        return aiTF.getText();
+    }
+
+    public String getPriceTF() {
+        return priceTF.getText().trim();
+    }
+
+    public String getNbParticipantTF() {
+        return nbParticipantTF.getText().trim();
+    }
+
+    public Date getStartDate() {
+        return startDate.getDate();
+    }
+
+    public Date getEndDate() {
+        return endDate.getDate();
+    }
+
+    public JComboBox getCreator() {
+        return creator;
+    }
+
+    public JComboBox getEventType() {
+        return eventType;
+    }
+
+    public JComboBox getAddress() {
+        return address;
     }
 }

@@ -19,6 +19,7 @@ public class EventReadListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        mainWindow.setTitle("Event Gestion - Listing Event");
         mainWindow.getFrameContainer().removeAll();
         mainWindow.getFrameContainer().setLayout(new BorderLayout());
         mainWindow.getFrameContainer().add(new EventListingPanel(), BorderLayout.CENTER);

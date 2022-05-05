@@ -16,8 +16,7 @@ public class EventModel {
     private int participantNbMax;
     private Boolean isPrivate;
 
-    public EventModel(int idEvent, String title, String description, String additionnalInformation, Boolean isImportant, Date startDate, Date endDate, double price, int participantNbMax, Boolean isPrivate) {
-        setIdEvent(idEvent);
+    public EventModel(String title, String description, String additionnalInformation, Boolean isImportant, Date startDate, Date endDate, double price, int participantNbMax, Boolean isPrivate) {
         setTitle(title);
         setDescription(description);
         setAdditionnalInformation(additionnalInformation);
@@ -27,6 +26,11 @@ public class EventModel {
         setPrice(price);
         setParticipantNbMax(participantNbMax);
         setPrivate(isPrivate);
+    }
+
+    public EventModel(int idEvent, String title, String description, String additionnalInformation, Boolean isImportant, Date startDate, Date endDate, double price, int participantNbMax, Boolean isPrivate) {
+        this(title, description, additionnalInformation, isImportant, startDate, endDate, price, participantNbMax, isPrivate);
+        setIdEvent(idEvent);
     }
 
     public int getIdEvent() {

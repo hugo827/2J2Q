@@ -17,6 +17,7 @@ public class SearchPromotionListener implements ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
+        mainWindow.setTitle("Event Gestion - Search promotions");
         mainWindow.getFrameContainer().removeAll();
         mainWindow.getFrameContainer().setLayout(new BorderLayout());
         mainWindow.getFrameContainer().add(new SearchPromotionPanel(), BorderLayout.CENTER);

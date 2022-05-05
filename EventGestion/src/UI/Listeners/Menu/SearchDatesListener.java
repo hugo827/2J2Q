@@ -15,6 +15,7 @@ public class SearchDatesListener implements ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
+        mainWindow.setTitle("Event Gestion - Search Event by dates");
         mainWindow.getFrameContainer().removeAll();
         mainWindow.getFrameContainer().setLayout(new BorderLayout());
         mainWindow.getFrameContainer().add(new SearchDatesPanel(), BorderLayout.CENTER);
