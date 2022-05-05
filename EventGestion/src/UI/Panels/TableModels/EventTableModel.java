@@ -10,7 +10,7 @@ public class EventTableModel extends AbstractTableModel {
 
     private final String[] columnsName = {
             "Id", "Title", "Description", "additional information", "Important",
-            "start date", "start date","end date", "Price", "max participant", "private"
+             "start date","end date", "Price", "max participant", "private"
     };
     private ArrayList<EventModel> contents;
 

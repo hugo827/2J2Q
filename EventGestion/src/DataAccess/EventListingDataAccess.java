@@ -1,5 +1,6 @@
 package DataAccess;
 
+import DataAccess.Interfaces.IEvent;
 import Models.EventModel;
 
 import java.sql.Connection;
@@ -9,7 +10,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class EventListingDataAccess {
+public class EventListingDataAccess implements IEvent {
+
+    @Override
+    public void addEvent() {
+
+    }
 
     public ArrayList<EventModel> getAllEvent() {
 
@@ -40,6 +46,26 @@ public class EventListingDataAccess {
 
         }
         return eventList;
+    }
+
+    @Override
+    public void updateEvent() {
+
+    }
+
+    @Override
+    public void deleteEvent(String idEvent) {
+        try {
+
+            Connection connectionDB = ConnectionDB.getInstance();
+            String query = "DELETE FROM `event` WHERE idEvent = ?";
+            PreparedStatement statement = connectionDB.prepareStatement(query);
+            statement.setString(1, idEvent);
+            statement.executeUpdate();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
 
