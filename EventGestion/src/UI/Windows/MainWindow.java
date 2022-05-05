@@ -3,7 +3,6 @@ package UI.Windows;
 import Controllers.EventController;
 import UI.Listeners.Menu.*;
 import UI.Panels.HomePanel;
-import UI.animation.ScrollingDate;
 import UI.animation.AnimationPanel;
 
 import javax.swing.*;
@@ -13,6 +12,7 @@ import java.awt.event.WindowEvent;
 
 
 public class MainWindow extends JFrame {
+
 
     private Container mainContainer, frameContainer;
     private JMenuBar jMenuBar;
@@ -27,11 +27,10 @@ public class MainWindow extends JFrame {
     private SearchEventTypeListener searchEventTypeListener;
     private SearchPromotionListener searchPromotionListener;
 
-    private ScrollingDate scrollingDate;
     private AnimationPanel animationPanel;
 
     private static EventController eventController;
-
+    private static MainWindow mainWindow;
 
     public MainWindow() {
         super("Gestion d'événement");
@@ -65,6 +64,7 @@ public class MainWindow extends JFrame {
         frameContainer.add(new HomePanel(), BorderLayout.CENTER);
 
         setVisible(true);
+        mainWindow = this;
     }
 
     private void setMenu() {
@@ -120,4 +120,5 @@ public class MainWindow extends JFrame {
     public static EventController getController() {
         return eventController;
     }
+    public static MainWindow getMainWindow() { return mainWindow; }
 }
