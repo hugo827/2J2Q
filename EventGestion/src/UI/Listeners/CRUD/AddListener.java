@@ -5,6 +5,7 @@ import Models.EventModel;
 import Models.EventTypeModel;
 import Models.UserModel;
 import UI.Panels.EventAddPanel;
+import UI.Windows.MainWindow;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -44,5 +45,6 @@ public class AddListener implements ActionListener {
 
         eventModel = new EventModel(title, description, additionnalInformation, isImportant, startDate, endDate, price, nbParticipant, isPrivate, creator.getIduser(), eventType.getIdEventType(), address.getIdaddress());
 
+        MainWindow.getController().addEvent(eventModel);
     }
 }

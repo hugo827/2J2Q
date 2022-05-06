@@ -10,7 +10,7 @@ public class EventTableModel extends AbstractTableModel {
 
     private final String[] columnsName = {
             "Id", "Title", "Description", "additional information", "Important",
-             "start date","end date", "Price", "max participant", "private"
+             "start date","end date", "Price", "max participant", "private", "fk_creator", "fk_eventtype", "fk_address"
     };
     private ArrayList<EventModel> contents;
 
@@ -52,6 +52,9 @@ public class EventTableModel extends AbstractTableModel {
             case 7 -> contents.get(rowIndex).getPrice();
             case 8 -> contents.get(rowIndex).getParticipantNbMax();
             case 9 -> contents.get(rowIndex).getPrivate();
+            case 10 -> contents.get(rowIndex).getFk_creator();
+            case 11 -> contents.get(rowIndex).getFk_eventType();
+            case 12 -> contents.get(rowIndex).getFk_address();
             default -> null;
         };
     }
@@ -59,7 +62,7 @@ public class EventTableModel extends AbstractTableModel {
     public Class getColumnClass (int column)
     { Class c;
         switch (column)
-        {   case 0, 8: c = Integer.class;
+        {   case 0, 8,10,11,12: c = Integer.class;
                 break;
             case 1, 2, 3: c = String.class;
                 break;

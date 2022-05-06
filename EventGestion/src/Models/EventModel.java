@@ -1,7 +1,6 @@
 package Models;
 
 import java.util.Date;
-import java.util.GregorianCalendar;
 
 public class EventModel {
 
@@ -18,17 +17,11 @@ public class EventModel {
 
     private int fk_creator, fk_eventType, fk_address;
 
+    private String creator, eventtype, address;
+
 
     public EventModel(String title, String description, String additionnalInformation, Boolean isImportant, Date startDate, Date endDate, double price, int participantNbMax, Boolean isPrivate, int fk_creator, int fk_eventType, int fk_address) {
-        setTitle(title);
-        setDescription(description);
-        setAdditionnalInformation(additionnalInformation);
-        setImportant(isImportant);
-        setStartDate(startDate);
-        setEndDate(endDate);
-        setPrice(price);
-        setParticipantNbMax(participantNbMax);
-        setPrivate(isPrivate);
+        this(title, description, additionnalInformation, isImportant, startDate, endDate, price, participantNbMax, isPrivate);
         setFk_creator(fk_creator);
         setFk_eventType(fk_eventType);
         setFk_address(fk_address);
@@ -46,8 +39,8 @@ public class EventModel {
         setPrivate(isPrivate);
     }
 
-    public EventModel(int idEvent, String title, String description, String additionnalInformation, Boolean isImportant, Date startDate, Date endDate, double price, int participantNbMax, Boolean isPrivate) {
-        this(title, description, additionnalInformation, isImportant, startDate, endDate, price, participantNbMax, isPrivate);
+    public EventModel(int idEvent, String title, String description, String additionnalInformation, Boolean isImportant, Date startDate, Date endDate, double price, int participantNbMax, Boolean isPrivate, int fk_creator, int fk_eventType, int fk_address) {
+        this(title, description, additionnalInformation, isImportant, startDate, endDate, price, participantNbMax, isPrivate, fk_creator, fk_eventType, fk_address);
         setIdEvent(idEvent);
     }
 
@@ -154,4 +147,6 @@ public class EventModel {
     public void setFk_address(int fk_address) {
         this.fk_address = fk_address;
     }
+
+
 }

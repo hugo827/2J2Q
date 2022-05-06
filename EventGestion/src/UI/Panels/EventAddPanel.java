@@ -102,8 +102,7 @@ public class EventAddPanel extends JPanel {
         creatorLabel = new JLabel("Creator of Event ? ");
         creatorLabel.setHorizontalAlignment(SwingConstants.RIGHT);
         form.add(creatorLabel);
-        //TODO : remplir les combo box, faire appelle a une arraylist dans le controller.
-        // avec hashmap pour recuper l'id et pas le text !
+
         userModelArrayList = MainWindow.getController().getUserList();
         creator = new JComboBox(userModelArrayList.toArray());
         form.add(creator);
