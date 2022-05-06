@@ -1,5 +1,6 @@
 package UI.Panels;
 
+import UI.Listeners.SelectUserListener;
 import UI.Panels.TableModels.UserNameTableModel;
 import UI.Windows.MainWindow;
 
@@ -34,6 +35,7 @@ public class BusinessTaskPanel extends JPanel {
         userNameTableModel = new UserNameTableModel(MainWindow.getController().getUserList());
         userJTable = new JTable(userNameTableModel);
         userJscrollpane = new JScrollPane(userJTable);
+        userJTable.addMouseListener(new SelectUserListener(this));
         listUserPanel.setLayout(new BorderLayout());
         listUserPanel.add(userJscrollpane, BorderLayout.CENTER);
 
@@ -47,4 +49,6 @@ public class BusinessTaskPanel extends JPanel {
 
         this.add(searchEventPanel, BorderLayout.CENTER);
     }
+
+
 }
