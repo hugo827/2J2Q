@@ -57,4 +57,14 @@ public class EventController {
     }
 
     /* ---------------------------------------------------------*/
+
+    /* SEARCH promotion */
+
+    public ArrayList<UserTypeModel> getUserTypeList() {
+        return eventBusiness.getUserType();
+    }
+
+    public ArrayList<SearchPromotionModel> getSearchByUserType(int idUserType) {
+        return eventBusiness.getSearchByUserType(idUserType);
+    }
 }

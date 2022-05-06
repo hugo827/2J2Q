@@ -17,11 +17,14 @@ public class EventBusiness {
 
     private SearchEventTypeDataAcces searchEventTypeDataAcces;
     private SearchByDatesDataAccess searchByDatesDataAccess;
+    private UserTypeDataAccess userTypeDataAccess;
+    private SearchByUserTypeDataAccess searchByUserTypeDataAccess;
 
 
     private ArrayList<EventModel> events;
     private ArrayList<EventTypeModel> eventType;
     private ArrayList<UserModel> users;
+    private ArrayList<UserTypeModel> userType;
 
     private ArrayList<AddressModel> addressModels;
 
@@ -32,11 +35,14 @@ public class EventBusiness {
         addressDataAccess = new AddressDataAccess();
         searchEventTypeDataAcces = new SearchEventTypeDataAcces();
         searchByDatesDataAccess = new SearchByDatesDataAccess();
+        userTypeDataAccess = new UserTypeDataAccess();
+        searchByUserTypeDataAccess = new SearchByUserTypeDataAccess();
 
         loadEventList();
         loadUserList();
         loadEventTypeList();
         loadAddressList();
+        loadUserTypeList();
     }
 
     /* ---------------------- CRUD ----------------------*/
@@ -94,4 +100,16 @@ public class EventBusiness {
     /*-------------------------------------------------*/
 
 
+    /* SEARCH promotiion */
+
+    public ArrayList<UserTypeModel> getUserType() {
+        return userType;
+    }
+    public void loadUserTypeList() {
+        userType = userTypeDataAccess.getUserTypeList();
+    }
+
+    public ArrayList<SearchPromotionModel> getSearchByUserType(int idUserType) {
+        return searchByUserTypeDataAccess.getSearchUsertype(idUserType);
+    }
 }

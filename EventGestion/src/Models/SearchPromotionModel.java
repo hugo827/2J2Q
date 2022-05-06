@@ -1,70 +1,49 @@
 package Models;
 
-import java.util.GregorianCalendar;
+import java.util.Date;
+
 
 public class SearchPromotionModel {
 
     private double reduction;
     private String title;
-    private GregorianCalendar startDate;
-    private GregorianCalendar endDate;
+    private Date startDate;
+    private Date endDate;
     private double finalPrice;
-    private String name;
+    private String eventTypeName;
 
-    public SearchPromotionModel(double reduction, String title, GregorianCalendar startDate, GregorianCalendar endDate, double finalPrice, String name) {
+    public SearchPromotionModel(double reduction, String title, Date startDate, Date endDate, double finalPrice, String eventTypeName) {
         this.reduction = reduction;
         this.title = title;
         this.startDate = startDate;
         this.endDate = endDate;
         this.finalPrice = finalPrice;
-        this.name = name;
+        this.eventTypeName = eventTypeName;
     }
 
     public double getReduction() {
         return reduction;
     }
 
-    public void setReduction(double reduction) {
-        this.reduction = reduction;
-    }
-
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public GregorianCalendar getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(GregorianCalendar startDate) {
-        this.startDate = startDate;
-    }
 
-    public GregorianCalendar getEndDate() {
+    public Date getEndDate() {
         return endDate;
-    }
-
-    public void setEndDate(GregorianCalendar endDate) {
-        this.endDate = endDate;
     }
 
     public double getFinalPrice() {
         return finalPrice;
     }
 
-    public void setFinalPrice(double finalPrice) {
-        this.finalPrice = finalPrice;
+    public String getEventTypeName() {
+        return eventTypeName;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }

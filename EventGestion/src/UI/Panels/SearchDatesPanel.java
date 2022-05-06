@@ -42,9 +42,6 @@ public class SearchDatesPanel extends JPanel {
 
         jTable = new JTable();
         jScrollPane = new JScrollPane(jTable);
-        jTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        jTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        jTable.getTableHeader().setReorderingAllowed(false);
         searchPanel.add(jScrollPane, BorderLayout.CENTER);
 
 
@@ -60,6 +57,8 @@ public class SearchDatesPanel extends JPanel {
 
     public void setTable(SearchDatesTableModel searchDatesTableModel) {
         jTable = new JTable(searchDatesTableModel);
+        jTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        jTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane.setViewportView(jTable);
     }
 }
