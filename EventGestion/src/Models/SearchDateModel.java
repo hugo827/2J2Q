@@ -1,19 +1,18 @@
 package Models;
 
-import java.util.GregorianCalendar;
+
+import java.util.Date;
 
 public class SearchDateModel {
 
     private String title;
-    private GregorianCalendar startDate;
-    private GregorianCalendar endDate;
+    private Date startDate;
     private Boolean isPrivate;
     private String addressComplet;
 
-    public SearchDateModel(String title, GregorianCalendar startDate, GregorianCalendar endDate, Boolean isPrivate, String addressComplet) {
+    public SearchDateModel(String title, Date startDate, Boolean isPrivate, String addressComplet) {
         this.title = title;
         this.startDate = startDate;
-        this.endDate = endDate;
         this.isPrivate = isPrivate;
         this.addressComplet = addressComplet;
     }
@@ -26,20 +25,12 @@ public class SearchDateModel {
         this.title = title;
     }
 
-    public GregorianCalendar getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(GregorianCalendar startDate) {
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
-    }
-
-    public GregorianCalendar getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(GregorianCalendar endDate) {
-        this.endDate = endDate;
     }
 
     public Boolean getPrivate() {

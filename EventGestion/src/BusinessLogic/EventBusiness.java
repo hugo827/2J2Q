@@ -3,7 +3,9 @@ package BusinessLogic;
 import DataAccess.*;
 import Models.*;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 
 public class EventBusiness {
@@ -14,6 +16,7 @@ public class EventBusiness {
     private AddressDataAccess addressDataAccess;
 
     private SearchEventTypeDataAcces searchEventTypeDataAcces;
+    private SearchByDatesDataAccess searchByDatesDataAccess;
 
 
     private ArrayList<EventModel> events;
@@ -28,7 +31,7 @@ public class EventBusiness {
         eventTypeDataAccess = new EventTypeDataAccess();
         addressDataAccess = new AddressDataAccess();
         searchEventTypeDataAcces = new SearchEventTypeDataAcces();
-
+        searchByDatesDataAccess = new SearchByDatesDataAccess();
 
         loadEventList();
         loadUserList();
@@ -75,5 +78,20 @@ public class EventBusiness {
     }
 
     /*-------------------------------------------------*/
+
+    /*-------------------------- SEARCH by dates -------------*/
+
+    public ArrayList<SearchDateModel> getSearchByDates(Date startDate, Date endDate) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String formattedStartDate = simpleDateFormat.format(startDate);
+        String formattedEndDate = simpleDateFormat.format(endDate);
+        java.sql.Date startDateConvert = java.sql.Date.valueOf(formattedStartDate);
+        java.sql.Date endDateConvert = java.sql.Date.valueOf(formattedEndDate);
+
+        return  searchByDatesDataAccess.getSearchDates(startDateConvert, endDateConvert);
+    }
+
+    /*-------------------------------------------------*/
+
 
 }

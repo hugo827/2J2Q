@@ -4,6 +4,7 @@ import BusinessLogic.EventBusiness;
 import Models.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class EventController {
 
@@ -48,4 +49,12 @@ public class EventController {
     }
 
     /*-------------------------------------------------*/
+
+    /*------------------------- SEARCH By Dates --------------*/
+
+    public ArrayList<SearchDateModel> getSearchByDates(Date startDate, Date endDate) {
+        return eventBusiness.getSearchByDates(startDate, endDate);
+    }
+
+    /* ---------------------------------------------------------*/
 }
