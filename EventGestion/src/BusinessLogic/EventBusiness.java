@@ -61,6 +61,7 @@ public class EventBusiness {
     }
     public EventModel getEvent(int idEvent) { return eventDataAccess.getEvent(idEvent);}
     public void addEvent(EventModel event) {
+
         eventDataAccess.addEvent(event);
     }
 
