@@ -1,17 +1,18 @@
 package Models;
 
-import java.util.GregorianCalendar;
+import java.util.Date;
+
 
 public class SearchEventTypeModel {
 
     private String title;
-    private GregorianCalendar startDate;
-    private GregorianCalendar endDate;
+    private Date startDate;
+    private Date endDate;
     private String firstName;
     private String lastName;
     private String name;
 
-    public SearchEventTypeModel(String title, GregorianCalendar startDate, GregorianCalendar endDate, String firstName, String lastName, String name) {
+    public SearchEventTypeModel(String title, Date startDate, Date endDate, String firstName, String lastName, String name) {
         this.title = title;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -28,19 +29,19 @@ public class SearchEventTypeModel {
         this.title = title;
     }
 
-    public GregorianCalendar getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(GregorianCalendar startDate) {
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
-    public GregorianCalendar getEndDate() {
+    public Date getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(GregorianCalendar endDate) {
+    public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
 

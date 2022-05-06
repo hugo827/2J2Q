@@ -1,13 +1,7 @@
 package BusinessLogic;
 
-import DataAccess.AddressDataAccess;
-import DataAccess.EventDataAccess;
-import DataAccess.EventTypeDataAccess;
-import DataAccess.UserDataAccess;
-import Models.AddressModel;
-import Models.UserModel;
-import Models.EventTypeModel;
-import Models.EventModel;
+import DataAccess.*;
+import Models.*;
 
 import java.util.ArrayList;
 
@@ -18,6 +12,9 @@ public class EventBusiness {
     private UserDataAccess userDataAccess;
     private EventTypeDataAccess eventTypeDataAccess;
     private AddressDataAccess addressDataAccess;
+
+    private SearchEventTypeDataAcces searchEventTypeDataAcces;
+
 
     private ArrayList<EventModel> events;
     private ArrayList<EventTypeModel> eventType;
@@ -30,6 +27,7 @@ public class EventBusiness {
         userDataAccess = new UserDataAccess();
         eventTypeDataAccess = new EventTypeDataAccess();
         addressDataAccess = new AddressDataAccess();
+        searchEventTypeDataAcces = new SearchEventTypeDataAcces();
 
 
         loadEventList();
@@ -67,5 +65,14 @@ public class EventBusiness {
     }
 
     /*----------------------------------------------------*/
+
+
+    /*-------------------------- SEARCH EVENT TYPE -------------*/
+
+    public ArrayList<SearchEventTypeModel> getSearchByEventType(int idEventType) {
+        return  searchEventTypeDataAcces.getSearchByEventType(idEventType);
+    }
+
+    /*-------------------------------------------------*/
 
 }

@@ -57,6 +57,10 @@ public class EventDataAccess implements IEvent {
         try {
             Connection connectionDB = ConnectionDB.getInstance();
             String query = ("SELECT * FROM event");
+            String query2 = ("SELECT e.idEvent, e.title, e.description, e.additionalInformation, e.isImportant, e.startDate, e.endDate, e.price, e.participantNbMax," +
+                    " e.isPrivate, et.name as `Event Type`, CONCAT(l.name,`(`,l.zipCode,`) - `, a.numberStreet) as `Address`, CONCAT(u.firstName,` `, u.lastName) as `Creator Name`" +
+                    " FROM eventgestiondb.event e INNER JOIN eventtype et ON e.fk_eventType = et.idEventType INNER JOIN address a ON e.fk_address = a.idaddress INNER" +
+                    "JOIN locality l ON a.fk_locality = l.idlocality INNER JOIN user u ON e.fk_creator = u.iduser");
             PreparedStatement statement = connectionDB.prepareStatement(query);
             ResultSet data = statement.executeQuery();
 

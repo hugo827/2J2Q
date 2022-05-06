@@ -1,10 +1,7 @@
 package Controllers;
 
 import BusinessLogic.EventBusiness;
-import Models.AddressModel;
-import Models.EventModel;
-import Models.EventTypeModel;
-import Models.UserModel;
+import Models.*;
 
 import java.util.ArrayList;
 
@@ -39,6 +36,15 @@ public class EventController {
 
     public EventModel getEvent(int idEvent) {
         return eventBusiness.getEvent(idEvent);
+    }
+
+    /*-------------------------------------------------*/
+
+
+    /*-------------------------- SEARCH EVENT TYPE -------------*/
+
+    public ArrayList<SearchEventTypeModel> getSearchByEventType(int idEventType) {
+        return  eventBusiness.getSearchByEventType(idEventType);
     }
 
     /*-------------------------------------------------*/
