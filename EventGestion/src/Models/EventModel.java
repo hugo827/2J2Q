@@ -16,6 +16,24 @@ public class EventModel {
     private int participantNbMax;
     private Boolean isPrivate;
 
+    private int fk_creator, fk_eventType, fk_address;
+
+
+    public EventModel(String title, String description, String additionnalInformation, Boolean isImportant, Date startDate, Date endDate, double price, int participantNbMax, Boolean isPrivate, int fk_creator, int fk_eventType, int fk_address) {
+        setTitle(title);
+        setDescription(description);
+        setAdditionnalInformation(additionnalInformation);
+        setImportant(isImportant);
+        setStartDate(startDate);
+        setEndDate(endDate);
+        setPrice(price);
+        setParticipantNbMax(participantNbMax);
+        setPrivate(isPrivate);
+        setFk_creator(fk_creator);
+        setFk_eventType(fk_eventType);
+        setFk_address(fk_address);
+    }
+
     public EventModel(String title, String description, String additionnalInformation, Boolean isImportant, Date startDate, Date endDate, double price, int participantNbMax, Boolean isPrivate) {
         setTitle(title);
         setDescription(description);
@@ -111,5 +129,29 @@ public class EventModel {
 
     public void setPrivate(Boolean aPrivate) {
         isPrivate = aPrivate;
+    }
+
+    public int getFk_creator() {
+        return fk_creator;
+    }
+
+    public void setFk_creator(int fk_creator) {
+        this.fk_creator = fk_creator;
+    }
+
+    public int getFk_eventType() {
+        return fk_eventType;
+    }
+
+    public void setFk_eventType(int fk_eventType) {
+        this.fk_eventType = fk_eventType;
+    }
+
+    public int getFk_address() {
+        return fk_address;
+    }
+
+    public void setFk_address(int fk_address) {
+        this.fk_address = fk_address;
     }
 }

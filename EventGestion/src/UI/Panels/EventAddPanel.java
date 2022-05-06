@@ -2,15 +2,20 @@ package UI.Panels;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Date;
 
+import Models.AddressModel;
+import Models.EventTypeModel;
+import Models.UserModel;
 import UI.Listeners.CRUD.AddListener;
 import UI.Listeners.CRUD.CancelListener;
+import UI.Windows.MainWindow;
 import org.jdesktop.swingx.JXDatePicker;
 
 public class EventAddPanel extends JPanel {
 
-    private JLabel label; // Name panel NORTH
+    private JLabel label;
 
     private JLabel titleLabel, descriptionLabel, AILabel, importantLabel, startDateLabel, endDateLabel, priceLabel, nbParticipantLabel, privateLabel, creatorLabel, typeLabel, addressLabel;
     private Checkbox isImportant, isPrivate;
@@ -22,6 +27,10 @@ public class EventAddPanel extends JPanel {
     private JButton  cancel, add;
 
     private JPanel form;
+
+    private  ArrayList<UserModel> userModelArrayList;
+    private ArrayList<EventTypeModel> eventTypeModelArrayList;
+    private ArrayList<AddressModel> addressModelArrayList;
 
     public EventAddPanel() {
         this.setLayout(new BorderLayout());
@@ -95,19 +104,22 @@ public class EventAddPanel extends JPanel {
         form.add(creatorLabel);
         //TODO : remplir les combo box, faire appelle a une arraylist dans le controller.
         // avec hashmap pour recuper l'id et pas le text !
-        creator = new JComboBox();
+        userModelArrayList = MainWindow.getController().getUserList();
+        creator = new JComboBox(userModelArrayList.toArray());
         form.add(creator);
 
         typeLabel = new JLabel("Type of Event ? ");
         typeLabel.setHorizontalAlignment(SwingConstants.RIGHT);
         form.add(typeLabel);
-        eventType = new JComboBox();
+        eventTypeModelArrayList = MainWindow.getController().getEventTypeList();
+        eventType = new JComboBox(eventTypeModelArrayList.toArray());
         form.add(eventType);
 
         addressLabel = new JLabel("Address of Event ? ");
         addressLabel.setHorizontalAlignment(SwingConstants.RIGHT);
         form.add(addressLabel);
-        address = new JComboBox();
+        addressModelArrayList = MainWindow.getController().getAddressList();
+        address = new JComboBox(addressModelArrayList.toArray());
         form.add(address);
 
 
@@ -161,15 +173,14 @@ public class EventAddPanel extends JPanel {
         return endDate.getDate();
     }
 
-    public JComboBox getCreator() {
-        return creator;
+    public UserModel getCreator() {
+        return userModelArrayList.get(creator.getSelectedIndex());
+    }
+    public EventTypeModel getEventType() {
+        return eventTypeModelArrayList.get(eventType.getSelectedIndex());
     }
 
-    public JComboBox getEventType() {
-        return eventType;
-    }
-
-    public JComboBox getAddress() {
-        return address;
+    public AddressModel getAddress() {
+        return addressModelArrayList.get(address.getSelectedIndex());
     }
 }
