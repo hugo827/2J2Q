@@ -67,4 +67,11 @@ public class EventController {
     public ArrayList<SearchPromotionModel> getSearchByUserType(int idUserType) {
         return eventBusiness.getSearchByUserType(idUserType);
     }
+
+
+    /* Business task */
+
+    public ArrayList<EventModel> getUserEventList(int idUser) {
+        return eventBusiness.getUserEventsList(idUser);
+    }
 }

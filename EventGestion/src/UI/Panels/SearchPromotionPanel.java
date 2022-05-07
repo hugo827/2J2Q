@@ -1,10 +1,9 @@
 package UI.Panels;
 
-import Models.EventTypeModel;
+
 import Models.SearchPromotionModel;
 import Models.UserTypeModel;
 import UI.Listeners.Search.SearchPromotionListener;
-import UI.Panels.TableModels.SearchEventTypeTableModel;
 import UI.Panels.TableModels.SearchPromotionTableModel;
 import UI.Windows.MainWindow;
 

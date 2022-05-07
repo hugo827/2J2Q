@@ -4,11 +4,13 @@ import Models.UserModel;
 
 import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class UserNameTableModel extends AbstractTableModel {
 
+    //TODO trouver une facons de ne pas afficher l'id ( idee : hashmap)
     private final String[] columnsName = {
-            "User Name"
+            "User Name", "Id"
     };
     private ArrayList<UserModel> contents;
 
@@ -35,14 +37,24 @@ public class UserNameTableModel extends AbstractTableModel {
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         return switch (columnIndex) {
-            case 0 -> contents.get(rowIndex).getFirstName() + " " + contents.get(rowIndex).getLastName();
+            case 0 -> contents.get(rowIndex);
+            case 1 -> contents.get(rowIndex).getIduser();
             default -> null;
         };
     }
 
     public Class getColumnClass (int column)
     {
-        return String.class;
+        Class c;
+        switch (column)
+        {
+            case 0 : c = String.class;
+                break;
+            case 1 : c = Integer.class;
+                break;
+            default: c = String.class;
+        }
+        return c;
     }
 
 }

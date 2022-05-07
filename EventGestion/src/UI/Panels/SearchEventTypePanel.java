@@ -53,7 +53,6 @@ public class SearchEventTypePanel extends JPanel {
     public JComboBox getEventTypes() { return eventTypes; }
     public void setJTable(SearchEventTypeTableModel searchEventTypeTableModel) {
         jTable = new JTable(searchEventTypeTableModel);
-        //jTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         jTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         jTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane.setViewportView(jTable);

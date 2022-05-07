@@ -112,4 +112,14 @@ public class EventBusiness {
     public ArrayList<SearchPromotionModel> getSearchByUserType(int idUserType) {
         return searchByUserTypeDataAccess.getSearchUsertype(idUserType);
     }
+
+    public ArrayList<EventModel> getUserEventsList(int idUser) {
+        ArrayList<EventModel> eventModelArrayList = new ArrayList<>();
+
+        for(EventModel eventModel : events) {
+            if(idUser == eventModel.getFk_creator()) eventModelArrayList.add(eventModel);
+        }
+
+        return eventModelArrayList;
+    }
 }

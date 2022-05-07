@@ -1,15 +1,15 @@
-package UI.Listeners;
+package UI.Listeners.Search;
 
 import UI.Panels.BusinessTaskPanel;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class SelectUserListener implements MouseListener {
+public class SelectEventListener implements MouseListener {
 
     private BusinessTaskPanel businessTaskPanel;
 
-    public SelectUserListener(BusinessTaskPanel businessTaskPanel) {
+    public SelectEventListener(BusinessTaskPanel businessTaskPanel) {
         this.businessTaskPanel = businessTaskPanel;
     }
 
@@ -25,7 +25,7 @@ public class SelectUserListener implements MouseListener {
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        System.out.println("select");
+            businessTaskPanel.viewButton();
     }
 
     @Override
