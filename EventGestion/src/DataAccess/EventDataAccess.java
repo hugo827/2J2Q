@@ -95,7 +95,7 @@ public class EventDataAccess implements IEvent {
 
     public EventModel getEvent(int idEvent) {
         EventModel event = null;
-        System.out.println(idEvent);
+
         try {
             Connection connectionDB = ConnectionDB.getInstance();
             String query = "SELECT * FROM `event` WHERE `idEvent` = ?";
