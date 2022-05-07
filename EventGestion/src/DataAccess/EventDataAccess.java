@@ -89,8 +89,40 @@ public class EventDataAccess implements IEvent {
     }
 
     @Override
-    public void updateEvent() {
+    public void updateEvent(EventModel event) {
+        try {
+            Connection connectionDB = ConnectionDB.getInstance();
+            String query = ("UPDATE `event` SET `title` = ? , `description` = ? , `additionalInformation` = ? , `isImportant` = ? , `startDate` = ? , `endDate` = ? , `price` = ? ," +
+                    "`participantNbMax` = ? , `isPrivate` = ? , `fk_creator` = ? , `fk_eventType` = ? , `fk_address` = ? " +
+                    " WHERE `idEvent` = ? ");
+            PreparedStatement statement = connectionDB.prepareStatement(query);
 
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            String formattedDate = simpleDateFormat.format(event.getStartDate());
+            java.sql.Date startDate = java.sql.Date.valueOf(formattedDate);
+
+
+            statement.setString(1, event.getTitle());
+            statement.setString(2, event.getDescription());
+            statement.setString(3, event.getAdditionnalInformation());
+            statement.setBoolean(4, event.getImportant());
+            statement.setDate(5, startDate);
+            formattedDate = simpleDateFormat.format(event.getEndDate());
+            java.sql.Date endDate = java.sql.Date.valueOf(formattedDate);
+            statement.setDate(6, endDate);
+            statement.setDouble(7, event.getPrice());
+            statement.setInt(8, event.getParticipantNbMax());
+            statement.setBoolean(9, event.getPrivate());
+            statement.setInt(10, event.getFk_creator());
+            statement.setInt(11, event.getFk_eventType());
+            statement.setInt(12, event.getFk_address());
+            statement.setInt(13, event.getIdEvent());
+
+            statement.executeUpdate();
+
+        } catch(SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     public EventModel getEvent(int idEvent) {

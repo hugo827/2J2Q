@@ -135,7 +135,7 @@ public class EventFormPanel extends JPanel {
 
         if(isUpdate) {
             cancel.addActionListener(new EventReadListener(MainWindow.getMainWindow()));
-            add.addActionListener(new UpdateListener());
+            add.addActionListener(new UpdateListener(this, eventUpdate));
             // TODO :  modifier ce truc de -1
             address.setSelectedIndex(eventUpdate.getFk_address()-1);
             creator.setSelectedIndex(eventUpdate.getFk_creator()-1);

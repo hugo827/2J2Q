@@ -68,7 +68,8 @@ public class EventBusiness {
         events.removeIf(event -> event.getIdEvent() == idEvent);
     }
     public void updateEvent(EventModel event) {
-        eventDataAccess.updateEvent();
+        eventDataAccess.updateEvent(event);
+        loadEventList();
     }
     public EventModel getEvent(int idEvent) { return eventDataAccess.getEvent(idEvent);}
     public void addEvent(EventModel event) {

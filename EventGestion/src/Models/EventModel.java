@@ -48,7 +48,7 @@ public class EventModel {
         return idEvent;
     }
 
-    public void setIdEvent(int idEvent) {
+    private void setIdEvent(int idEvent) {
         this.idEvent = idEvent;
     }
 
