@@ -74,4 +74,8 @@ public class EventController {
     public ArrayList<EventModel> getUserEventList(int idUser) {
         return eventBusiness.getUserEventsList(idUser);
     }
+
+    public String getInformationEvent(int idEvent) {
+        return eventBusiness.getInformationEvent( idEvent);
+    }
 }

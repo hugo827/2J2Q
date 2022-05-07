@@ -19,6 +19,7 @@ public class EventBusiness {
     private SearchByDatesDataAccess searchByDatesDataAccess;
     private UserTypeDataAccess userTypeDataAccess;
     private SearchByUserTypeDataAccess searchByUserTypeDataAccess;
+    private BusinessTaskDataAccess businessTaskDataAccess;
 
 
     private ArrayList<EventModel> events;
@@ -37,6 +38,7 @@ public class EventBusiness {
         searchByDatesDataAccess = new SearchByDatesDataAccess();
         userTypeDataAccess = new UserTypeDataAccess();
         searchByUserTypeDataAccess = new SearchByUserTypeDataAccess();
+        businessTaskDataAccess = new BusinessTaskDataAccess();
 
         loadEventList();
         loadUserList();
@@ -116,10 +118,24 @@ public class EventBusiness {
     public ArrayList<EventModel> getUserEventsList(int idUser) {
         ArrayList<EventModel> eventModelArrayList = new ArrayList<>();
 
+        // TODO : je crois qu'on peut utiliser un -> avec un filter ...
         for(EventModel eventModel : events) {
             if(idUser == eventModel.getFk_creator()) eventModelArrayList.add(eventModel);
         }
 
         return eventModelArrayList;
+    }
+
+    public String getInformationEvent(int idEvent) {
+        BusinessTaskModel businessTaskModel = businessTaskDataAccess.getDataEvent(idEvent);
+        if(businessTaskModel == null ) businessTaskModel = new BusinessTaskModel(0,0,0,0);
+        String data = "";
+
+        data += " - Nombre de participant : " + businessTaskModel.getNbParticpant() + "\n" ;
+        data += " - Somme total : " + businessTaskModel.getSumTotalWithOutPromotion() + "\n" ;
+        data += " - Somme total prommotion : "+ businessTaskModel.getSumTotalPromotion() +  "\n" ;
+        data += " - Somme final : "+ businessTaskModel.getSumFinal() + "\n" ;
+
+        return data;
     }
 }

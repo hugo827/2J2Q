@@ -3,13 +3,13 @@ package Models;
 public class BusinessTaskModel {
 
     private int nbParticpant;
-    private double sumTotal;
+    private double sumFinal;
     private double sumTotalWithOutPromotion;
     private double sumTotalPromotion;
 
-    public BusinessTaskModel(int nbParticpant, double sumTotal, double sumTotalWithOutPromotion, double sumTotalPromotion) {
+    public BusinessTaskModel(int nbParticpant, double sumFinal, double sumTotalWithOutPromotion, double sumTotalPromotion) {
         this.nbParticpant = nbParticpant;
-        this.sumTotal = sumTotal;
+        this.sumFinal = sumFinal;
         this.sumTotalWithOutPromotion = sumTotalWithOutPromotion;
         this.sumTotalPromotion = sumTotalPromotion;
     }
@@ -22,12 +22,12 @@ public class BusinessTaskModel {
         this.nbParticpant = nbParticpant;
     }
 
-    public double getSumTotal() {
-        return sumTotal;
+    public double getSumFinal() {
+        return sumFinal;
     }
 
-    public void setSumTotal(double sumTotal) {
-        this.sumTotal = sumTotal;
+    public void setSumTotal(double sumFinal) {
+        this.sumFinal = sumFinal;
     }
 
     public double getSumTotalWithOutPromotion() {

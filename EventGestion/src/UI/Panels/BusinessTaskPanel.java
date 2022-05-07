@@ -87,12 +87,8 @@ public class BusinessTaskPanel extends JPanel {
     }
 
     public void showInformation() {
-        EventModel event = MainWindow.getController().getEvent((Integer) eventJTable.getValueAt(eventJTable.getSelectedRow(), 0));
-
+        String msg = MainWindow.getController().getInformationEvent((Integer) eventJTable.getValueAt(eventJTable.getSelectedRow(), 0));
         JOptionPane jOptionPane = new JOptionPane();
-        String msg = event.getTitle();
-
-
         jOptionPane.showMessageDialog(this, msg, "Information Event", JOptionPane.PLAIN_MESSAGE);
     }
 }
