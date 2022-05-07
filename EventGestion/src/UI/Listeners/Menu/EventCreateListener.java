@@ -1,7 +1,7 @@
 package UI.Listeners.Menu;
 
 
-import UI.Panels.EventAddPanel;
+import UI.Panels.EventFormPanel;
 import UI.Windows.MainWindow;
 
 
@@ -21,7 +21,7 @@ public class EventCreateListener implements ActionListener {
         mainWindow.setTitle("Event Gestion - Add new event");
         mainWindow.getFrameContainer().removeAll();
         mainWindow.getFrameContainer().setLayout(new BorderLayout());
-        mainWindow.getFrameContainer().add(new EventAddPanel(), BorderLayout.CENTER);
+        mainWindow.getFrameContainer().add(new EventFormPanel(), BorderLayout.CENTER);
         mainWindow.repaint();
         mainWindow.printAll(mainWindow.getGraphics());
     }

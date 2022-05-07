@@ -127,15 +127,13 @@ public class EventBusiness {
     }
 
     public String getInformationEvent(int idEvent) {
+
         BusinessTaskModel businessTaskModel = businessTaskDataAccess.getDataEvent(idEvent);
         if(businessTaskModel == null ) businessTaskModel = new BusinessTaskModel(0,0,0,0);
-        String data = "";
 
-        data += " - Nombre de participant : " + businessTaskModel.getNbParticpant() + "\n" ;
-        data += " - Somme total : " + businessTaskModel.getSumTotalWithOutPromotion() + "\n" ;
-        data += " - Somme total prommotion : "+ businessTaskModel.getSumTotalPromotion() +  "\n" ;
-        data += " - Somme final : "+ businessTaskModel.getSumFinal() + "\n" ;
-
-        return data;
+        return  " - Nombre de participant : " + businessTaskModel.getNbParticpant() + "\n"
+        + " - Somme total : " + businessTaskModel.getSumTotalWithOutPromotion() + "\n"
+        + " - Somme total prommotion : "+ businessTaskModel.getSumTotalPromotion() +  "\n"
+        + " - Somme final : "+ businessTaskModel.getSumFinal() + "\n";
     }
 }

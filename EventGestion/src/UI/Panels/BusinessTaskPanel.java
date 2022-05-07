@@ -1,11 +1,8 @@
 package UI.Panels;
 
-import Models.EventModel;
-import Models.UserModel;
-import UI.Listeners.CRUD.CancelListener;
 import UI.Listeners.Search.CalculateListener;
-import UI.Listeners.Search.SelectEventListener;
-import UI.Listeners.Search.SelectUserListener;
+import UI.Listeners.Business.SelectEventListener;
+import UI.Listeners.Business.SelectUserListener;
 import UI.Panels.TableModels.EventTableModel;
 import UI.Panels.TableModels.UserNameTableModel;
 import UI.Windows.MainWindow;

@@ -6,14 +6,17 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import Models.AddressModel;
+import Models.EventModel;
 import Models.EventTypeModel;
 import Models.UserModel;
 import UI.Listeners.CRUD.AddListener;
 import UI.Listeners.CRUD.CancelListener;
+import UI.Listeners.CRUD.UpdateListener;
+import UI.Listeners.Menu.EventReadListener;
 import UI.Windows.MainWindow;
 import org.jdesktop.swingx.JXDatePicker;
 
-public class EventAddPanel extends JPanel {
+public class EventFormPanel extends JPanel {
 
     private JLabel label;
 
@@ -32,15 +35,16 @@ public class EventAddPanel extends JPanel {
     private ArrayList<EventTypeModel> eventTypeModelArrayList;
     private ArrayList<AddressModel> addressModelArrayList;
 
-    public EventAddPanel() {
+    private EventModel eventUpdate;
+
+    private EventFormPanel(Boolean isUpdate, EventModel eventUpdate) {
         this.setLayout(new BorderLayout());
-        label = new JLabel("Event add panel");
+        label = new JLabel( isUpdate ? "Event update panel" : "Event add panel");
         label.setHorizontalAlignment(JLabel.CENTER);
 
         this.add(label, BorderLayout.NORTH);
         JPanel listButton = new JPanel();
         form = new JPanel();
-        form.setBounds(50,50,150,150);
         form.setLayout(new GridLayout(12,2,5,5));
         listButton.setLayout(new GridLayout(1,2,5,5));
 
@@ -48,19 +52,19 @@ public class EventAddPanel extends JPanel {
         titleLabel = new JLabel("Title : ");
         titleLabel.setHorizontalAlignment(SwingConstants.RIGHT);
         form.add(titleLabel);
-        titleTF = new JTextField();
+        titleTF = new JTextField(isUpdate ? eventUpdate.getTitle() : "");
         form.add(titleTF);
 
         descriptionLabel = new JLabel("Description : ");
         descriptionLabel.setHorizontalAlignment(SwingConstants.RIGHT);
         form.add(descriptionLabel);
-        descriptionTF = new JTextField();
+        descriptionTF = new JTextField(isUpdate ? eventUpdate.getDescription() : "");
         form.add(descriptionTF);
 
         AILabel = new JLabel("Additionnal information : ");
         AILabel.setHorizontalAlignment(SwingConstants.RIGHT);
         form.add(AILabel);
-        aiTF = new JTextField();
+        aiTF = new JTextField(isUpdate ? eventUpdate.getAdditionnalInformation() : "");
         form.add(aiTF);
 
         importantLabel = new JLabel("Is Important : ");
@@ -84,13 +88,13 @@ public class EventAddPanel extends JPanel {
         priceLabel = new JLabel("Price : ");
         priceLabel.setHorizontalAlignment(SwingConstants.RIGHT);
         form.add(priceLabel);
-        priceTF = new JTextField();
+        priceTF = new JTextField(isUpdate ? Double.toString(eventUpdate.getPrice()) : "");
         form.add(priceTF);
 
         nbParticipantLabel = new JLabel("Number of participant : ");
         nbParticipantLabel.setHorizontalAlignment(SwingConstants.RIGHT);
         form.add(nbParticipantLabel);
-        nbParticipantTF = new JTextField();
+        nbParticipantTF = new JTextField(isUpdate ? Integer.toString(eventUpdate.getParticipantNbMax()) : "");
         form.add(nbParticipantTF);
 
         privateLabel = new JLabel("Is Private Event ? ");
@@ -125,15 +129,28 @@ public class EventAddPanel extends JPanel {
         this.add(form, BorderLayout.CENTER);
 
         cancel = new JButton("Cancel");
-        add = new JButton("Add new event");
-        cancel.addActionListener(new CancelListener());
-        add.addActionListener(new AddListener(this));
+        add = new JButton(isUpdate ? "Update event" : "Add new event");
+
+        if(isUpdate) {
+            cancel.addActionListener(new EventReadListener(MainWindow.getMainWindow()));
+            add.addActionListener(new UpdateListener());
+        } else {
+            cancel.addActionListener(new CancelListener());
+            add.addActionListener(new AddListener(this));
+        }
 
         listButton.add(add);
         listButton.add(cancel);
 
         this.add(listButton, BorderLayout.SOUTH);
 
+    }
+
+    public EventFormPanel() {
+        this(false, null);
+    }
+    public EventFormPanel(EventModel eventUpdate) {
+        this(true, eventUpdate);
     }
 
     public Boolean getIsImportant() {

@@ -1,6 +1,7 @@
 package UI.Panels;
 
 import UI.Listeners.CRUD.DeleteListener;
+import UI.Listeners.CRUD.SelectUpdateListener;
 import UI.Listeners.CRUD.UpdateListener;
 import UI.Panels.TableModels.EventTableModel;
 import UI.Windows.MainWindow;
@@ -29,7 +30,7 @@ public class EventListingPanel extends JPanel {
         btnDEL = new JButton("Delete");
         btnUPD = new JButton("Update");
         btnDEL.addActionListener(new DeleteListener(this));
-        btnUPD.addActionListener(new UpdateListener(this));
+        btnUPD.addActionListener(new SelectUpdateListener(this));
 
         panelSouth.add(btnUPD);
         panelSouth.add(btnDEL);

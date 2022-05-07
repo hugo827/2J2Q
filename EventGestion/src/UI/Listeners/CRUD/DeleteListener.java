@@ -20,11 +20,7 @@ public class DeleteListener implements ActionListener {
         JTable jTable = eventListingPanel.getEventsTable();
         int idEvent = (int)jTable.getValueAt(jTable.getSelectedRow(),0);
 
-        System.out.println(idEvent);
-
-
         MainWindow.getController().deleteEvent(idEvent);
-
 
         MainWindow.getMainWindow().repaint();
         MainWindow.getMainWindow().printAll(MainWindow.getMainWindow().getGraphics());
