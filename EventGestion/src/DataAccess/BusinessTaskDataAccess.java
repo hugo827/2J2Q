@@ -11,23 +11,37 @@ public class BusinessTaskDataAccess {
 
     public BusinessTaskModel getDataEvent(int idEvent) {
 
+        int nbParticipant = 0;
+        double sumTotal = 0, sumTotalPromotion = 0, sumFinal =0, price =0;
         BusinessTaskModel res = null;
+
         try {
             Connection connectionDB = ConnectionDB.getInstance();
-            String query = ("SELECT COUNT(*) , SUM(e.price) , SUM(e.price * pr.reductionPourcent) , SUM(e.price * (1-pr.reductionPourcent))" +
-                    " FROM event e INNER JOIN participation p ON e.idEvent = p.fk_event INNER JOIN user u ON p.fk_user = u.idUser" +
-                    " INNER JOIN usertype ut ON u.fk_usertype = ut.idUserType INNER JOIN promotion pr ON ut.idusertype = pr.fk_userType WHERE e.idEvent = ?");
+            String query = ("SELECT  COUNT(*), price, SUM(price) " +
+                    "FROM event e INNER JOIN participation p ON e.idEvent = p.fk_event INNER JOIN user u ON p.fk_user = u.idUser " +
+                    "INNER JOIN usertype ut ON u.fk_usertype = ut.idUserType " +
+                    "WHERE e.idEvent = ? ;");
+
             PreparedStatement statement = connectionDB.prepareStatement(query);
             statement.setInt(1, idEvent);
             ResultSet data = statement.executeQuery();
-
             while (data.next()){
-                int nbParticipant = data.getInt(1);
-                double sumTotal = data.getDouble(2);
-                double sumTotalPromotion = data.getDouble(3);
-                Double sumFinal = data.getDouble(4);
-                res = new BusinessTaskModel(nbParticipant, sumFinal,sumTotal,sumTotalPromotion);
+                 nbParticipant = data.getInt(1);
+                 price = data.getDouble(2);
+                 sumTotal = data.getDouble(3);
             }
+
+            query = (" SELECT SUM(? * pr.reductionPourcent) FROM promotion pr WHERE pr.fk_event = ?;");
+            statement = connectionDB.prepareStatement(query);
+            statement.setDouble(1, price);
+            statement.setInt(2, idEvent);
+            data = statement.executeQuery();
+            while (data.next()){
+                sumTotalPromotion = data.getDouble(1);
+            }
+            sumFinal = sumTotal - sumTotalPromotion;
+
+            res = new BusinessTaskModel(nbParticipant, sumFinal,sumTotal,sumTotalPromotion);
 
         } catch(SQLException throwables) {
             throwables.printStackTrace();
