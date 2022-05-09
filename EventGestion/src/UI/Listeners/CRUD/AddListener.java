@@ -24,27 +24,46 @@ public class AddListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        // TODO : soit faire qu'il y a une erreur ....
-        // soit faire en sorte que le boutton s'affiche uniqument quand tout est completer.
-        if(eventFormPanel.getTitleTF().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Title is required", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-
+        String message = "";
         Boolean isImportant = eventFormPanel.getIsImportant();
         Boolean isPrivate = eventFormPanel.getIsPrivate();
         String title = eventFormPanel.getTitleTF();
         String description = eventFormPanel.getDescriptionTF();
         String additionnalInformation = eventFormPanel.getAiTF();
-        double price = Double.parseDouble(eventFormPanel.getPriceTF());
-        int nbParticipant = Integer.parseInt(eventFormPanel.getNbParticipantTF());
+        String priceSTR = eventFormPanel.getPriceTF();
+        String nbParticipantSTR = eventFormPanel.getNbParticipantTF();
         Date startDate = eventFormPanel.getStartDate();
         Date endDate = eventFormPanel.getEndDate();
         UserModel creator = eventFormPanel.getCreator();
         EventTypeModel eventType = eventFormPanel.getEventType();
         AddressModel address = eventFormPanel.getAddress();
 
-        eventModel = new EventModel(title, description, additionnalInformation, isImportant, startDate, endDate, price, nbParticipant, isPrivate, creator.getIduser(), eventType.getIdEventType(), address.getIdaddress());
 
-        MainWindow.getController().addEvent(eventModel);
+
+        if(title.trim().isEmpty()) {
+            message += " - Title is required\n";
+        }
+        if(description.trim().isEmpty()) {
+            message += " - Description is required \n";
+        }
+        if(priceSTR.trim().isEmpty()) {
+            message += " - Price is required \n";
+        }
+        if(nbParticipantSTR.trim().isEmpty()) {
+            message += " - Number max of participant is required \n";
+        }
+        if(startDate == null || endDate == null) {
+            message += " - Start Date and End Date is required \n";
+        }
+        if(creator == null || eventType == null || address == null) {
+            message += " - All combobox is required \n";
+        } else {
+            double price = Double.parseDouble(priceSTR);
+            int nbParticipant = Integer.parseInt(nbParticipantSTR);
+            eventModel = new EventModel(title, description, additionnalInformation, isImportant, startDate, endDate, price, nbParticipant, isPrivate, creator.getIduser(), eventType.getIdEventType(), address.getIdaddress());
+            MainWindow.getController().addEvent(eventModel);
+        }
+
+        if(!message.trim().isEmpty() )  JOptionPane.showMessageDialog(eventFormPanel, message, "Error", JOptionPane.ERROR_MESSAGE);
     }
 }

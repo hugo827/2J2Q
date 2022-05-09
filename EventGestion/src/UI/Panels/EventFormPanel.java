@@ -1,7 +1,11 @@
 package UI.Panels;
 
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -9,9 +13,7 @@ import Models.AddressModel;
 import Models.EventModel;
 import Models.EventTypeModel;
 import Models.UserModel;
-import UI.Listeners.CRUD.AddListener;
-import UI.Listeners.CRUD.CancelListener;
-import UI.Listeners.CRUD.UpdateListener;
+import UI.Listeners.CRUD.*;
 import UI.Listeners.Menu.EventReadListener;
 import UI.Windows.MainWindow;
 import org.jdesktop.swingx.JXDatePicker;
@@ -92,12 +94,14 @@ public class EventFormPanel extends JPanel {
         form.add(priceLabel);
         priceTF = new JTextField(isUpdate ? Double.toString(eventUpdate.getPrice()) : "");
         form.add(priceTF);
+        priceTF.addKeyListener(new VerificationPriceListener(priceTF));
 
         nbParticipantLabel = new JLabel("Number of participant : ");
         nbParticipantLabel.setHorizontalAlignment(SwingConstants.RIGHT);
         form.add(nbParticipantLabel);
         nbParticipantTF = new JTextField(isUpdate ? Integer.toString(eventUpdate.getParticipantNbMax()) : "");
         form.add(nbParticipantTF);
+        nbParticipantTF.addKeyListener(new VerificationNbParticipantsListener(nbParticipantTF));
 
         privateLabel = new JLabel("Is Private Event ? ");
         privateLabel.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -111,12 +115,13 @@ public class EventFormPanel extends JPanel {
 
         userModelArrayList = MainWindow.getController().getUserList();
         creator = new JComboBox(userModelArrayList.toArray());
-
+        creator.setSelectedIndex(-1);
 
         typeLabel = new JLabel("Type of Event ? ");
         typeLabel.setHorizontalAlignment(SwingConstants.RIGHT);
         eventTypeModelArrayList = MainWindow.getController().getEventTypeList();
         eventType = new JComboBox(eventTypeModelArrayList.toArray());
+        eventType.setSelectedIndex(-1);
 
 
         addressLabel = new JLabel("Address of Event ? ");
@@ -124,6 +129,7 @@ public class EventFormPanel extends JPanel {
 
         addressModelArrayList = MainWindow.getController().getAddressList();
         address = new JComboBox(addressModelArrayList.toArray());
+        address.setSelectedIndex(-1);
 
 
 
@@ -136,7 +142,7 @@ public class EventFormPanel extends JPanel {
         if(isUpdate) {
             cancel.addActionListener(new EventReadListener(MainWindow.getMainWindow()));
             add.addActionListener(new UpdateListener(this, eventUpdate));
-            // TODO :  modifier ce truc de -1
+            //TODO :  modifier ce truc de -1
             address.setSelectedIndex(eventUpdate.getFk_address()-1);
             creator.setSelectedIndex(eventUpdate.getFk_creator()-1);
             eventType.setSelectedIndex(eventUpdate.getFk_eventType()-1);
@@ -201,13 +207,18 @@ public class EventFormPanel extends JPanel {
     }
 
     public UserModel getCreator() {
-        return userModelArrayList.get(creator.getSelectedIndex());
+        if(creator.getSelectedIndex() == -1) return null;
+        else return userModelArrayList.get(creator.getSelectedIndex());
     }
     public EventTypeModel getEventType() {
-        return eventTypeModelArrayList.get(eventType.getSelectedIndex());
+        if(eventType.getSelectedIndex() == -1) return null;
+        else return eventTypeModelArrayList.get(eventType.getSelectedIndex());
     }
 
     public AddressModel getAddress() {
-        return addressModelArrayList.get(address.getSelectedIndex());
+        if(address.getSelectedIndex() == -1) return null;
+        else return addressModelArrayList.get(address.getSelectedIndex());
     }
+
+
 }

@@ -10,7 +10,7 @@ public class SearchPromotionTableModel extends AbstractTableModel {
 
     private final String[] columnsName = {
             "Title", "Start date","End date",
-            "Reduction", "Final price", "Event type"
+            "Reduction (%)", "Final price", "Event type"
     };
 
     private ArrayList<SearchPromotionModel> contents;

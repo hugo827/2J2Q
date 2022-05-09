@@ -21,16 +21,22 @@ public class SelectUpdateListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         JTable jTable = eventListingPanel.getEventsTable();
-        int idEvent = (int)jTable.getValueAt(jTable.getSelectedRow(),0);
 
-        EventModel eventUpdate =  MainWindow.getController().getEvent(idEvent);
+        if (jTable.getSelectedRow() == -1) {
+            JOptionPane jOptionPane = new JOptionPane();
+            jOptionPane.showMessageDialog(eventListingPanel, "To update an event, you need to select him !", "Information Update", JOptionPane.ERROR_MESSAGE);
+        } else {
+            int idEvent = (int) jTable.getValueAt(jTable.getSelectedRow(), 0);
 
-        MainWindow.getMainWindow().setTitle("Event Gestion - Update event");
-        MainWindow.getMainWindow().getFrameContainer().removeAll();
-        MainWindow.getMainWindow().getFrameContainer().setLayout(new BorderLayout());
-        MainWindow.getMainWindow().getFrameContainer().add(new EventFormPanel(eventUpdate), BorderLayout.CENTER);
-        MainWindow.getMainWindow().repaint();
-        MainWindow.getMainWindow().printAll( MainWindow.getMainWindow().getGraphics());
+            EventModel eventUpdate = MainWindow.getController().getEvent(idEvent);
+
+            MainWindow.getMainWindow().setTitle("Event Gestion - Update event");
+            MainWindow.getMainWindow().getFrameContainer().removeAll();
+            MainWindow.getMainWindow().getFrameContainer().setLayout(new BorderLayout());
+            MainWindow.getMainWindow().getFrameContainer().add(new EventFormPanel(eventUpdate), BorderLayout.CENTER);
+            MainWindow.getMainWindow().repaint();
+            MainWindow.getMainWindow().printAll(MainWindow.getMainWindow().getGraphics());
+        }
     }
 
 

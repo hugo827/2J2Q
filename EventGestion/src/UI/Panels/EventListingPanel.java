@@ -2,7 +2,6 @@ package UI.Panels;
 
 import UI.Listeners.CRUD.DeleteListener;
 import UI.Listeners.CRUD.SelectUpdateListener;
-import UI.Listeners.CRUD.UpdateListener;
 import UI.Panels.TableModels.EventTableModel;
 import UI.Windows.MainWindow;
 
@@ -41,7 +40,7 @@ public class EventListingPanel extends JPanel {
         eventsTable = new JTable(eventTableModel);
         jScrollPane = new JScrollPane(eventsTable);
 
-        eventsTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
         eventsTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         eventsTable.getTableHeader().setReorderingAllowed(false);
 

@@ -17,7 +17,7 @@ public class SearchByUserTypeDataAccess {
         ArrayList<SearchPromotionModel> searchPromotionList = new ArrayList<>();
         try {
             Connection connectionDB = ConnectionDB.getInstance();
-            String query = ("SELECT e.title, e.startDate, e.endDate, p.reductionPourcent, e.price*(1-p.reductionPourcent) ,et.name FROM promotion p INNER JOIN event e " +
+            String query = ("SELECT e.title, e.startDate, e.endDate, p.reductionPourcent * 100, e.price*(1-p.reductionPourcent) ,et.name FROM promotion p INNER JOIN event e " +
                     "ON p.fk_event = e.idEvent INNER JOIN usertype ut ON p.fk_userType = ut.idUserType INNER JOIN eventtype et ON e.fk_eventType = et.idEventType" +
                     " WHERE p.fk_userType = ?");
             PreparedStatement statement = connectionDB.prepareStatement(query);
