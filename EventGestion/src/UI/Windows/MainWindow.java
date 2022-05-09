@@ -36,8 +36,8 @@ public class MainWindow extends JFrame {
         super("Gestion d'événement");
         setBounds(100,100,1300,800);
 
-        // a voir si il n'existe pas des element par defaut pour fermer le programme ...
-        //f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //TODO : a voir si il n'existe pas des element par defaut pour fermer le programme ...
+        //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         addWindowListener(
                 new WindowAdapter() {
                     public void windowClosing(WindowEvent e){
@@ -52,6 +52,7 @@ public class MainWindow extends JFrame {
         setListeners();
 
         animationPanel = new AnimationPanel();
+        animationPanel.setPreferredSize(new Dimension(150, 800));
 
         mainContainer = this.getContentPane();
         frameContainer = new Container();
@@ -63,6 +64,7 @@ public class MainWindow extends JFrame {
         mainContainer.add(frameContainer, BorderLayout.CENTER);
         frameContainer.add(new HomePanel(), BorderLayout.CENTER);
 
+        setResizable(false);
         setVisible(true);
         mainWindow = this;
     }
