@@ -48,18 +48,13 @@ public class SearchPromotionTableModel extends AbstractTableModel {
     }
 
 
-    public Class getColumnClass (int column)
-    { Class c;
-        switch (column)
-        {
-            case 0, 5: c = String.class;
-                break;
-            case 1, 2: c = Date.class;
-                break;
-            case 3, 4: c = Double.class;
-                break;
-            default: c = String.class;
-        }
+    public Class getColumnClass (int column) {
+        Class c = switch (column) {
+            case 0, 5 -> String.class;
+            case 1, 2 -> Date.class;
+            case 3, 4 -> Double.class;
+            default -> String.class;
+        };
         return c;
     }
 }

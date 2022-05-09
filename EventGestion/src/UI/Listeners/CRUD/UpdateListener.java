@@ -8,11 +8,10 @@ import UI.Panels.EventFormPanel;
 import UI.Panels.EventListingPanel;
 import UI.Windows.MainWindow;
 
-import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Date;
 
 public class UpdateListener implements ActionListener {
 

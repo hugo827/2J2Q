@@ -51,16 +51,12 @@ public class SearchEventTypeTableModel extends AbstractTableModel  {
     }
 
 
-    public Class getColumnClass (int column)
-    { Class c;
-        switch (column)
-        {
-            case 0, 3, 4, 5: c = String.class;
-                break;
-            case 1, 2: c = Date.class;
-                break;
-            default: c = String.class;
-        }
+    public Class getColumnClass (int column) {
+        Class c = switch (column) {
+            case 0, 3, 4, 5 -> String.class;
+            case 1, 2 -> Date.class;
+            default -> String.class;
+        };
         return c;
     }
 }

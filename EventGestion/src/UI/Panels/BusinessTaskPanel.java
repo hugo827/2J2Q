@@ -33,9 +33,9 @@ public class BusinessTaskPanel extends JPanel {
         listUserPanel = new JPanel();
         listEventPanel = new JPanel();
 
-        listUserPanel.setBounds(50,50,150,550);
-        listEventPanel.setBounds(250,50,700,550);
-        calculateButton.setBounds(1000,350,100,25);
+        listUserPanel.setBounds(0,50,150,550);
+        listEventPanel.setBounds(200,50,900,550);
+        calculateButton.setBounds(600,625,100,25);
 
         userNameTableModel = new UserNameTableModel(MainWindow.getController().getUserList());
         userJTable = new JTable(userNameTableModel);
@@ -85,7 +85,6 @@ public class BusinessTaskPanel extends JPanel {
 
     public void showInformation() {
         String msg = MainWindow.getController().getInformationEvent((Integer) eventJTable.getValueAt(eventJTable.getSelectedRow(), 0));
-        JOptionPane jOptionPane = new JOptionPane();
-        jOptionPane.showMessageDialog(this, msg, "Information Event", JOptionPane.PLAIN_MESSAGE);
+        JOptionPane.showMessageDialog(this, msg, "Information Event", JOptionPane.PLAIN_MESSAGE);
     }
 }

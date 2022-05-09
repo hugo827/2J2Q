@@ -2,7 +2,6 @@ package UI.Listeners.Search;
 
 import UI.Panels.SearchDatesPanel;
 import UI.Panels.TableModels.SearchDatesTableModel;
-import UI.Panels.TableModels.SearchEventTypeTableModel;
 import UI.Windows.MainWindow;
 
 import java.awt.event.ActionEvent;

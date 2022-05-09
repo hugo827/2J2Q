@@ -23,8 +23,7 @@ public class SelectUpdateListener implements ActionListener {
         JTable jTable = eventListingPanel.getEventsTable();
 
         if (jTable.getSelectedRow() == -1) {
-            JOptionPane jOptionPane = new JOptionPane();
-            jOptionPane.showMessageDialog(eventListingPanel, "To update an event, you need to select him !", "Information Update", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(eventListingPanel, "To update an event, you need to select him !", "Information Update", JOptionPane.ERROR_MESSAGE);
         } else {
             int idEvent = (int) jTable.getValueAt(jTable.getSelectedRow(), 0);
 

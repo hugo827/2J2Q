@@ -1,7 +1,6 @@
 package DataAccess;
 
 import Models.SearchDateModel;
-import Models.SearchEventTypeModel;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

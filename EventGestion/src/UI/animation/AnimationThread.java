@@ -1,8 +1,5 @@
 package UI.animation;
 
-import UI.animation.ChangeDate;
-import UI.animation.ScrollingDate;
-
 public class AnimationThread extends Thread {
 
     private ScrollingDate changeDate;
@@ -17,7 +14,6 @@ public class AnimationThread extends Thread {
                 changeDate.getChangeDate().changeDate();
                 changeDate.removeAll();
                 changeDate.repaint();
-
             } catch(Exception e) {
                 System.out.println(e);
             }

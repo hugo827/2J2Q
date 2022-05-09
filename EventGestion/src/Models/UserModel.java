@@ -23,7 +23,7 @@ public class UserModel {
     }
 
     public String toString() {
-        return firstName + " " + lastName;
+        return getFirstName() + " " + getLastName();
     }
 
 }

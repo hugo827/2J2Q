@@ -60,20 +60,15 @@ public class EventTableModel extends AbstractTableModel {
     }
 
     public Class getColumnClass (int column)
-    { Class c;
-        switch (column)
-        {   case 0, 8: c = Integer.class;
-                break;
-            case 1, 2, 3,10,11,12: c = String.class;
-                break;
-            case 4, 9: c = Boolean.class;
-                break;
-            case 7: c = Float.class;
-                break;
-            case 5, 6: c = Date.class;
-                break;
-            default: c = String.class;
-        }
+    {
+        Class c = switch (column) {
+            case 0, 8 -> Integer.class;
+            case 1, 2, 3, 10, 11, 12 -> String.class;
+            case 4, 9 -> Boolean.class;
+            case 7 -> Float.class;
+            case 5, 6 -> Date.class;
+            default -> String.class;
+        };
         return c;
     }
 

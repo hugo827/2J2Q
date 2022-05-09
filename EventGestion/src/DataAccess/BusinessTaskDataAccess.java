@@ -12,13 +12,14 @@ public class BusinessTaskDataAccess {
     public BusinessTaskModel getDataEvent(int idEvent) {
 
         int nbParticipant = 0;
-        double sumTotal = 0, sumTotalPromotion = 0, sumFinal =0, price =0;
+        double sumTotal = 0, sumTotalPromotion = 0, price =0;
         BusinessTaskModel res = null;
 
         try {
             Connection connectionDB = ConnectionDB.getInstance();
-            String query = ("SELECT  COUNT(*), price, SUM(price) " +
-                    "FROM event e INNER JOIN participation p ON e.idEvent = p.fk_event INNER JOIN user u ON p.fk_user = u.idUser " +
+            String query = ("SELECT  COUNT(*), price, SUM(price) FROM event e " +
+                    "INNER JOIN participation p ON e.idEvent = p.fk_event " +
+                    "INNER JOIN user u ON p.fk_user = u.idUser " +
                     "INNER JOIN usertype ut ON u.fk_usertype = ut.idUserType " +
                     "WHERE e.idEvent = ? ;");
 
@@ -39,9 +40,8 @@ public class BusinessTaskDataAccess {
             while (data.next()){
                 sumTotalPromotion = data.getDouble(1);
             }
-            sumFinal = sumTotal - sumTotalPromotion;
 
-            res = new BusinessTaskModel(nbParticipant, sumFinal,sumTotal,sumTotalPromotion);
+            res = new BusinessTaskModel(nbParticipant, sumTotal - sumTotalPromotion,sumTotal,sumTotalPromotion);
 
         } catch(SQLException throwables) {
             throwables.printStackTrace();

@@ -47,17 +47,13 @@ public class SearchDatesTableModel extends AbstractTableModel {
     }
 
     public Class getColumnClass (int column)
-    { Class c;
-        switch (column)
-        {
-            case 0, 3: c = String.class;
-                break;
-            case 1 : c = Date.class;
-                break;
-            case 2 : c = Boolean.class;
-                break;
-            default: c = String.class;
-        }
+    {
+        Class c = switch (column) {
+            case 0, 3 -> String.class;
+            case 1 -> Date.class;
+            case 2 -> Boolean.class;
+            default -> String.class;
+        };
         return c;
     }
 }

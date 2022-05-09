@@ -1,6 +1,5 @@
 package DataAccess;
 
-import Models.UserModel;
 import Models.UserTypeModel;
 
 import java.sql.Connection;

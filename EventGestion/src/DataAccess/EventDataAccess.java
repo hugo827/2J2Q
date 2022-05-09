@@ -52,11 +52,10 @@ public class EventDataAccess implements IEvent {
 
     public ArrayList<EventModel> getAllEvent() {
 
-        ArrayList<EventModel> eventList = new ArrayList<EventModel>();
+        ArrayList<EventModel> eventList = new ArrayList<>();
 
         try {
             Connection connectionDB = ConnectionDB.getInstance();
-            //String query = ("SELECT * FROM event");
             String query = ("SELECT e.idEvent, e.title, e.description, e.additionalInformation, e.isImportant, e.startDate, e.endDate, e.price, e.participantNbMax, " +
                     "e.isPrivate,e.fk_creator, e.fk_eventtype, e.fk_address, et.name as `Event Type`, CONCAT(l.name,'(',l.zipCode,') - ', a.numberStreet) as `Address`," +
                     " CONCAT(u.firstName,' ', u.lastName) as `Creator Name` " +
@@ -73,7 +72,7 @@ public class EventDataAccess implements IEvent {
                 Boolean  isImportant = data.getBoolean(5);
                 Date startDate = data.getDate(6);
                 Date endDate = data.getDate(7);
-                Double price = data.getDouble(8);
+                double price = data.getDouble(8);
                 int participantNbMax = data.getInt(9);
                 Boolean isPrivate = data.getBoolean(10);
                 int fk_creator = data.getInt(11);
@@ -149,7 +148,7 @@ public class EventDataAccess implements IEvent {
                 Boolean isImportant = data.getBoolean(5);
                 Date startDate = data.getDate(6);
                 Date endDate = data.getDate(7);
-                Double price = data.getDouble(8);
+                double price = data.getDouble(8);
                 int participantNbMax = data.getInt(9);
                 Boolean isPrivate = data.getBoolean(10);
                 int fk_creator = data.getInt(11);

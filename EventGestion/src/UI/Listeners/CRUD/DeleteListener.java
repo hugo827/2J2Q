@@ -19,20 +19,23 @@ public class DeleteListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         JTable jTable = eventListingPanel.getEventsTable();
+
+
         if (jTable.getSelectedRow() == -1) {
-            JOptionPane jOptionPane = new JOptionPane();
-            jOptionPane.showMessageDialog(eventListingPanel, "To deleted an event, you need to select him !", "Information Delete", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(eventListingPanel, "To deleted an event, you need to select him !", "Information Delete", JOptionPane.ERROR_MESSAGE);
         } else {
             int idEvent = (int) jTable.getValueAt(jTable.getSelectedRow(), 0);
+            int reply = JOptionPane.showConfirmDialog(eventListingPanel, "Confirm deleting event", "Delete confirmation", JOptionPane.OK_CANCEL_OPTION);
+            if(reply == 0) {
+                try {
+                    MainWindow.getController().deleteEvent(idEvent);
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
 
-            try {
-                MainWindow.getController().deleteEvent(idEvent);
-            } catch (SQLException ex) {
-                throw new RuntimeException(ex);
+                MainWindow.getMainWindow().repaint();
+                MainWindow.getMainWindow().printAll(MainWindow.getMainWindow().getGraphics());
             }
-
-            MainWindow.getMainWindow().repaint();
-            MainWindow.getMainWindow().printAll(MainWindow.getMainWindow().getGraphics());
         }
     }
 }

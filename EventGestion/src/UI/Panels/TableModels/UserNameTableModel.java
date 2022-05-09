@@ -4,7 +4,6 @@ import Models.UserModel;
 
 import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class UserNameTableModel extends AbstractTableModel {
 

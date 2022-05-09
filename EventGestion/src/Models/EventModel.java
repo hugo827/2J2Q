@@ -19,14 +19,6 @@ public class EventModel {
 
     private String creator, eventtype, address;
 
-
-    public EventModel(String title, String description, String additionnalInformation, Boolean isImportant, Date startDate, Date endDate, double price, int participantNbMax, Boolean isPrivate, int fk_creator, int fk_eventType, int fk_address) {
-        this(title, description, additionnalInformation, isImportant, startDate, endDate, price, participantNbMax, isPrivate);
-        setFk_creator(fk_creator);
-        setFk_eventType(fk_eventType);
-        setFk_address(fk_address);
-    }
-
     public EventModel(String title, String description, String additionnalInformation, Boolean isImportant, Date startDate, Date endDate, double price, int participantNbMax, Boolean isPrivate) {
         setTitle(title);
         setDescription(description);
@@ -37,6 +29,12 @@ public class EventModel {
         setPrice(price);
         setParticipantNbMax(participantNbMax);
         setPrivate(isPrivate);
+    }
+    public EventModel(String title, String description, String additionnalInformation, Boolean isImportant, Date startDate, Date endDate, double price, int participantNbMax, Boolean isPrivate, int fk_creator, int fk_eventType, int fk_address) {
+        this(title, description, additionnalInformation, isImportant, startDate, endDate, price, participantNbMax, isPrivate);
+        setFk_creator(fk_creator);
+        setFk_eventType(fk_eventType);
+        setFk_address(fk_address);
     }
 
     public EventModel(int idEvent, String title, String description, String additionnalInformation, Boolean isImportant, Date startDate, Date endDate, double price, int participantNbMax, Boolean isPrivate, int fk_creator, int fk_eventType, int fk_address) {

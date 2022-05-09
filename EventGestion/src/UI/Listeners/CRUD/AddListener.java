@@ -5,9 +5,11 @@ import Models.EventModel;
 import Models.EventTypeModel;
 import Models.UserModel;
 import UI.Panels.EventFormPanel;
+import UI.Panels.EventListingPanel;
 import UI.Windows.MainWindow;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
@@ -62,8 +64,16 @@ public class AddListener implements ActionListener {
             int nbParticipant = Integer.parseInt(nbParticipantSTR);
             eventModel = new EventModel(title, description, additionnalInformation, isImportant, startDate, endDate, price, nbParticipant, isPrivate, creator.getIduser(), eventType.getIdEventType(), address.getIdaddress());
             MainWindow.getController().addEvent(eventModel);
+
+            //TODO voir si on peut pas faire autrement le retour !
+            MainWindow.getMainWindow().getFrameContainer().removeAll();
+            MainWindow.getMainWindow().getFrameContainer().setLayout(new BorderLayout());
+            MainWindow.getMainWindow().getFrameContainer().add(new EventListingPanel(), BorderLayout.CENTER);
+            MainWindow.getMainWindow().repaint();
+            MainWindow.getMainWindow().printAll(MainWindow.getMainWindow().getGraphics());
+
         }
 
-        if(!message.trim().isEmpty() )  JOptionPane.showMessageDialog(eventFormPanel, message, "Error", JOptionPane.ERROR_MESSAGE);
+        if(!message.trim().isEmpty() )  JOptionPane.showMessageDialog(eventFormPanel, message, "Error", JOptionPane.WARNING_MESSAGE);
     }
 }

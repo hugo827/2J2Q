@@ -74,8 +74,8 @@ public class EventBusiness {
     }
     public EventModel getEvent(int idEvent) { return eventDataAccess.getEvent(idEvent);}
     public void addEvent(EventModel event) {
-
         eventDataAccess.addEvent(event);
+        loadEventList();
     }
 
     /*----------------------------------------------------*/
@@ -120,7 +120,7 @@ public class EventBusiness {
     public ArrayList<EventModel> getUserEventsList(int idUser) {
         ArrayList<EventModel> eventModelArrayList = new ArrayList<>();
 
-        // TODO : je crois qu'on peut utiliser un -> avec un filter ...
+        //TODO : je crois qu'on peut utiliser un -> avec un filter ...
         for(EventModel eventModel : events) {
             if(idUser == eventModel.getFk_creator()) eventModelArrayList.add(eventModel);
         }
