@@ -3,6 +3,7 @@ package Controllers;
 import BusinessLogic.EventBusiness;
 import Models.*;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -27,7 +28,7 @@ public class EventController {
     public ArrayList<AddressModel> getAddressList() { return eventBusiness.getAddressList(); }
 
 
-    public void deleteEvent(int idEvent) {
+    public void deleteEvent(int idEvent) throws SQLException {
         eventBusiness.deleteEvent(idEvent);
     }
 

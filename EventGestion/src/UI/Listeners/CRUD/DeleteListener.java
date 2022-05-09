@@ -6,6 +6,7 @@ import UI.Windows.MainWindow;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 public class DeleteListener implements ActionListener {
 
@@ -20,7 +21,11 @@ public class DeleteListener implements ActionListener {
         JTable jTable = eventListingPanel.getEventsTable();
         int idEvent = (int)jTable.getValueAt(jTable.getSelectedRow(),0);
 
-        MainWindow.getController().deleteEvent(idEvent);
+        try {
+            MainWindow.getController().deleteEvent(idEvent);
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
 
         MainWindow.getMainWindow().repaint();
         MainWindow.getMainWindow().printAll(MainWindow.getMainWindow().getGraphics());

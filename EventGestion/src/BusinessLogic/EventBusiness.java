@@ -3,6 +3,7 @@ package BusinessLogic;
 import DataAccess.*;
 import Models.*;
 
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -63,7 +64,7 @@ public class EventBusiness {
 
     public void loadAddressList() { addressModels = addressDataAccess.getAddressList(); }
 
-    public void deleteEvent(int idEvent) {
+    public void deleteEvent(int idEvent) throws SQLException {
         eventDataAccess.deleteEvent(idEvent);
         events.removeIf(event -> event.getIdEvent() == idEvent);
     }

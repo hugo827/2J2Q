@@ -27,7 +27,6 @@ public class UpdateListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-         System.out.println("Update event");
 
         event.setImportant(eventFormPanel.getIsImportant());
         event.setPrivate(eventFormPanel.getIsPrivate());

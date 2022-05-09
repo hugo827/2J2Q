@@ -161,16 +161,19 @@ public class EventDataAccess implements IEvent {
     }
 
     @Override
-    public void deleteEvent(int idEvent) {
+    public void deleteEvent(int idEvent) throws SQLException {
+        Connection connectionDB = ConnectionDB.getInstance();
         try {
-            Connection connectionDB = ConnectionDB.getInstance();
-            // TODO : Voir si on peut le faire en une requete ! des gas disent que non mais bon ca me semble bizarre !
+            connectionDB.setAutoCommit(false);
+
             String query1 = "DELETE FROM `promotion` WHERE `fk_event` = ?";
             String query2 = "DELETE FROM `participation` WHERE `fk_event` = ?";
             String query3 = "DELETE FROM `event` WHERE `idEvent` = ?";
+
             PreparedStatement statement1 = connectionDB.prepareStatement(query1);
             PreparedStatement statement2 = connectionDB.prepareStatement(query2);
             PreparedStatement statement3 = connectionDB.prepareStatement(query3);
+
             statement1.setInt(1, idEvent);
             statement2.setInt(1, idEvent);
             statement3.setInt(1, idEvent);
@@ -179,8 +182,11 @@ public class EventDataAccess implements IEvent {
             statement2.executeUpdate();
             statement3.executeUpdate();
 
+            connectionDB.commit();
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+            connectionDB.rollback();
         }
     }
 
