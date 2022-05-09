@@ -56,11 +56,12 @@ public class EventDataAccess implements IEvent {
 
         try {
             Connection connectionDB = ConnectionDB.getInstance();
-            String query = ("SELECT * FROM event");
-            String query2 = ("SELECT e.idEvent, e.title, e.description, e.additionalInformation, e.isImportant, e.startDate, e.endDate, e.price, e.participantNbMax," +
-                    " e.isPrivate, et.name as `Event Type`, CONCAT(l.name,`(`,l.zipCode,`) - `, a.numberStreet) as `Address`, CONCAT(u.firstName,` `, u.lastName) as `Creator Name`" +
-                    " FROM eventgestiondb.event e INNER JOIN eventtype et ON e.fk_eventType = et.idEventType INNER JOIN address a ON e.fk_address = a.idaddress INNER" +
-                    "JOIN locality l ON a.fk_locality = l.idlocality INNER JOIN user u ON e.fk_creator = u.iduser");
+            //String query = ("SELECT * FROM event");
+            String query = ("SELECT e.idEvent, e.title, e.description, e.additionalInformation, e.isImportant, e.startDate, e.endDate, e.price, e.participantNbMax, " +
+                    "e.isPrivate,e.fk_creator, e.fk_eventtype, e.fk_address, et.name as `Event Type`, CONCAT(l.name,'(',l.zipCode,') - ', a.numberStreet) as `Address`," +
+                    " CONCAT(u.firstName,' ', u.lastName) as `Creator Name` " +
+                    "FROM eventgestiondb.event e INNER JOIN eventtype et ON e.fk_eventType = et.idEventType INNER JOIN address a ON e.fk_address = a.idaddress INNER " +
+                    "JOIN locality l ON a.fk_locality = l.idlocality INNER JOIN user u ON e.fk_creator = u.iduser ");
             PreparedStatement statement = connectionDB.prepareStatement(query);
             ResultSet data = statement.executeQuery();
 
@@ -68,7 +69,7 @@ public class EventDataAccess implements IEvent {
                 int id = data.getInt(1);
                 String title = data.getString(2);
                 String description = data.getString(3);
-                String additionnalInformation = data.getString(4);
+                String additionalInformation = data.getString(4);
                 Boolean  isImportant = data.getBoolean(5);
                 Date startDate = data.getDate(6);
                 Date endDate = data.getDate(7);
@@ -78,7 +79,11 @@ public class EventDataAccess implements IEvent {
                 int fk_creator = data.getInt(11);
                 int fk_eventtype = data.getInt(12);
                 int fk_address = data.getInt(13);
-                eventList.add(new EventModel(id, title, description, additionnalInformation, isImportant, startDate, endDate, price, participantNbMax, isPrivate, fk_creator, fk_eventtype, fk_address));
+                String eventType = data.getString(14);
+                String address = data.getString(15);
+                String creator = data.getString(16);
+
+                eventList.add(new EventModel(id, title, description, additionalInformation, isImportant, startDate, endDate, price, participantNbMax, isPrivate, fk_creator, fk_eventtype, fk_address, creator, address, eventType));
             }
 
         } catch(SQLException throwables) {
