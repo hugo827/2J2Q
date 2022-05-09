@@ -1,11 +1,7 @@
 package UI.Panels;
 
 import javax.swing.*;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -37,7 +33,6 @@ public class EventFormPanel extends JPanel {
     private ArrayList<EventTypeModel> eventTypeModelArrayList;
     private ArrayList<AddressModel> addressModelArrayList;
 
-    private EventModel eventUpdate;
 
     private EventFormPanel(Boolean isUpdate, EventModel eventUpdate) {
         this.setLayout(new BorderLayout());
@@ -63,7 +58,7 @@ public class EventFormPanel extends JPanel {
         descriptionTF = new JTextField(isUpdate ? eventUpdate.getDescription() : "");
         form.add(descriptionTF);
 
-        AILabel = new JLabel("Additionnal information : ");
+        AILabel = new JLabel("Additional information : ");
         AILabel.setHorizontalAlignment(SwingConstants.RIGHT);
         form.add(AILabel);
         aiTF = new JTextField(isUpdate ? eventUpdate.getAdditionnalInformation() : "");
