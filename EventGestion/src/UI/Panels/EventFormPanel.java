@@ -1,6 +1,7 @@
 package UI.Panels;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -156,6 +157,24 @@ public class EventFormPanel extends JPanel {
 
         this.add(listButton, BorderLayout.SOUTH);
 
+    }
+
+    public void setBorderObject(char c) {
+        LineBorder lineBorder = new LineBorder(Color.RED, 1);
+
+        switch(c) {
+            case 't' : titleTF.setBorder(lineBorder); break;
+            case 'd' : descriptionTF.setBorder(lineBorder);  break;
+            case 'p' : priceTF.setBorder(lineBorder);  break;
+            case 'n' : nbParticipantTF.setBorder(lineBorder); break;
+            case 's' : startDate.setBorder(lineBorder); break;
+            case 'e' : endDate.setBorder(lineBorder); break;
+            case 'b' :
+                creator.setBorder(lineBorder);
+                address.setBorder(lineBorder);
+                eventType.setBorder(lineBorder);
+                break;
+        }
     }
 
     public EventFormPanel() {

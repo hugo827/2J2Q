@@ -44,21 +44,29 @@ public class AddListener implements ActionListener {
 
         if(title.trim().isEmpty()) {
             message += " - Title is required\n";
+            eventFormPanel.setBorderObject('t');
         }
         if(description.trim().isEmpty()) {
             message += " - Description is required \n";
+            eventFormPanel.setBorderObject('d');
         }
         if(priceSTR.trim().isEmpty()) {
             message += " - Price is required \n";
+            eventFormPanel.setBorderObject('p');
         }
         if(nbParticipantSTR.trim().isEmpty()) {
             message += " - Number max of participant is required \n";
+            eventFormPanel.setBorderObject('n');
         }
         if(startDate == null || endDate == null) {
             message += " - Start Date and End Date is required \n";
+            if(startDate == null) eventFormPanel.setBorderObject('s');
+            if(endDate == null) eventFormPanel.setBorderObject('e');
         }
         if(creator == null || eventType == null || address == null) {
             message += " - All combobox is required \n";
+            eventFormPanel.setBorderObject('b');
+
         } else {
             double price = Double.parseDouble(priceSTR);
             int nbParticipant = Integer.parseInt(nbParticipantSTR);
@@ -66,6 +74,7 @@ public class AddListener implements ActionListener {
             MainWindow.getController().addEvent(eventModel);
 
             //TODO voir si on peut pas faire autrement le retour !
+            //class callPanel(JPanel panel) => on appelle cette class qui removeall...)
             MainWindow.getMainWindow().getFrameContainer().removeAll();
             MainWindow.getMainWindow().getFrameContainer().setLayout(new BorderLayout());
             MainWindow.getMainWindow().getFrameContainer().add(new EventListingPanel(), BorderLayout.CENTER);
@@ -74,6 +83,6 @@ public class AddListener implements ActionListener {
 
         }
 
-        if(!message.trim().isEmpty() )  JOptionPane.showMessageDialog(eventFormPanel, message, "Error", JOptionPane.WARNING_MESSAGE);
+        if(!message.trim().isEmpty() )  JOptionPane.showMessageDialog(eventFormPanel, message, "Error", JOptionPane.ERROR_MESSAGE);
     }
 }
