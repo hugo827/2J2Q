@@ -1,6 +1,7 @@
 package DataAccess;
 
 
+import DataAccess.Interfaces.ISearchEventType;
 import Models.SearchEventTypeModel;
 
 import java.sql.Connection;
@@ -10,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class SearchEventTypeDataAcces {
+public class SearchEventTypeDataAcces implements ISearchEventType {
 
     public ArrayList<SearchEventTypeModel> getSearchByEventType(int idEventType) {
 

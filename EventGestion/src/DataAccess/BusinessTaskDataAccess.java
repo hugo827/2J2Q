@@ -1,5 +1,6 @@
 package DataAccess;
 
+import DataAccess.Interfaces.IBusinessTask;
 import Models.BusinessTaskModel;
 
 import java.sql.Connection;
@@ -7,7 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class BusinessTaskDataAccess {
+public class BusinessTaskDataAccess implements IBusinessTask {
 
     public BusinessTaskModel getDataEvent(int idEvent) {
 

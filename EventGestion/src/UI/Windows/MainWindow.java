@@ -1,6 +1,6 @@
 package UI.Windows;
 
-import Controllers.EventController;
+import Controllers.EventsManagementController;
 import UI.Listeners.Menu.*;
 import UI.Panels.HomePanel;
 import UI.animation.AnimationPanel;
@@ -29,11 +29,11 @@ public class MainWindow extends JFrame {
 
     private AnimationPanel animationPanel;
 
-    private static EventController eventController;
+    private static EventsManagementController eventsManagementController;
     private static MainWindow mainWindow;
 
     public MainWindow() {
-        super("Gestion d'événement");
+        super("Events Management");
         setBounds(100,100,1300,800);
 
         //TODO : a voir si il n'existe pas des element par defaut pour fermer le programme ...
@@ -46,7 +46,7 @@ public class MainWindow extends JFrame {
                 }
         );
 
-        eventController = new EventController();
+        eventsManagementController = new EventsManagementController();
 
         setMenu();
         setListeners();
@@ -119,8 +119,8 @@ public class MainWindow extends JFrame {
         return frameContainer;
     }
 
-    public static EventController getController() {
-        return eventController;
+    public static EventsManagementController getController() {
+        return eventsManagementController;
     }
     public static MainWindow getMainWindow() { return mainWindow; }
 }

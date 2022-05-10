@@ -1,5 +1,6 @@
 package DataAccess;
 
+import DataAccess.Interfaces.ISearchDates;
 import Models.SearchDateModel;
 
 import java.sql.Connection;
@@ -9,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class SearchByDatesDataAccess {
+public class SearchByDatesDataAccess implements ISearchDates {
 
     public ArrayList<SearchDateModel> getSearchDates(java.sql.Date startDate,java.sql.Date endDate)  {
 

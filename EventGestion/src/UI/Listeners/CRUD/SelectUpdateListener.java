@@ -29,7 +29,7 @@ public class SelectUpdateListener implements ActionListener {
 
             EventModel eventUpdate = MainWindow.getController().getEvent(idEvent);
 
-            MainWindow.getMainWindow().setTitle("Event Gestion - Update event");
+            MainWindow.getMainWindow().setTitle("Events Management - Update event");
             MainWindow.getMainWindow().getFrameContainer().removeAll();
             MainWindow.getMainWindow().getFrameContainer().setLayout(new BorderLayout());
             MainWindow.getMainWindow().getFrameContainer().add(new EventFormPanel(eventUpdate), BorderLayout.CENTER);

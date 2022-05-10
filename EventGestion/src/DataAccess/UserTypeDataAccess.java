@@ -1,5 +1,6 @@
 package DataAccess;
 
+import DataAccess.Interfaces.IUserType;
 import Models.UserTypeModel;
 
 import java.sql.Connection;
@@ -8,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class UserTypeDataAccess {
+public class UserTypeDataAccess implements IUserType {
 
     public ArrayList<UserTypeModel> getUserTypeList() {
 

@@ -10,7 +10,7 @@ public class ConnectionDB {
 
     private ConnectionDB() {
         try{
-            connection =  DriverManager.getConnection("jdbc:mysql://localhost:3306/eventgestiondb", "hugo", "java");
+            connection =  DriverManager.getConnection("jdbc:mysql://localhost:3306/eventgestiondb", "WWHJ", "wWhJ5000+");
         } catch (SQLException exception) {
             exception.printStackTrace();
         }

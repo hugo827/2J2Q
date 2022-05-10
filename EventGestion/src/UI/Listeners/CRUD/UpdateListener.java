@@ -47,7 +47,7 @@ public class UpdateListener implements ActionListener {
         MainWindow.getController().updateEvent(event);
 
         //TODO voir si on peut pas faire autrement le retour !
-        MainWindow.getMainWindow().setTitle("Event Gestion - Listing Event");
+        MainWindow.getMainWindow().setTitle("Events Management - Listing Event");
         MainWindow.getMainWindow().getFrameContainer().removeAll();
         MainWindow.getMainWindow().getFrameContainer().setLayout(new BorderLayout());
         MainWindow.getMainWindow().getFrameContainer().add(new EventListingPanel(), BorderLayout.CENTER);

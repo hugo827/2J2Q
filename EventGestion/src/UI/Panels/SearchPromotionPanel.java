@@ -40,6 +40,7 @@ public class SearchPromotionPanel extends JPanel {
 
         userTypeModelArrayList = MainWindow.getController().getUserTypeList();
         userType = new JComboBox(userTypeModelArrayList.toArray());
+        userType.setSelectedIndex(-1);
         userType.addActionListener(new SearchPromotionListener(this));
         promotionPanel.add(userType);
         searchPanel.add(promotionPanel, BorderLayout.NORTH);
