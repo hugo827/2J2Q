@@ -14,9 +14,11 @@ public class VerificationPriceListener implements KeyListener {
 
     @Override
     public void keyTyped(KeyEvent e) {
-        jTextField.setEditable((e.getKeyChar() >= '0' && e.getKeyChar() <= '9')
+        jTextField.setEditable(
+                (e.getKeyChar() >= '0' && e.getKeyChar() <= '9')
                 || (e.getKeyChar() == '.' && !jTextField.getText().trim().contains(".") && !jTextField.getText().trim().isEmpty())
-                || e.getKeyChar() == KeyEvent.VK_BACK_SPACE || e.getKeyChar() == KeyEvent.VK_DELETE);
+                || e.getKeyChar() == KeyEvent.VK_BACK_SPACE
+                || e.getKeyChar() == KeyEvent.VK_DELETE);
     }
 
     @Override
