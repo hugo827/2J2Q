@@ -123,4 +123,5 @@ public class MainWindow extends JFrame {
         return eventsManagementController;
     }
     public static MainWindow getMainWindow() { return mainWindow; }
+
 }

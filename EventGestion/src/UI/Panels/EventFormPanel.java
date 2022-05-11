@@ -155,37 +155,38 @@ public class EventFormPanel extends JPanel {
         form.add(addressLabel);
         form.add(address);
         form.add(requiredLabel);
+
         listButton.add(add);
         listButton.add(cancel);
 
         this.add(listButton, BorderLayout.SOUTH);
 
     }
-
-    public void setBorderObject(char c) {
-        LineBorder lineBorder = new LineBorder(Color.RED, 1);
-
-        switch(c) {
-            case 't' : titleTF.setBorder(lineBorder); break;
-            case 'd' : descriptionTF.setBorder(lineBorder);  break;
-            case 'p' : priceTF.setBorder(lineBorder);  break;
-            case 'n' : nbParticipantTF.setBorder(lineBorder); break;
-            case 's' : startDate.setBorder(lineBorder); break;
-            case 'e' : endDate.setBorder(lineBorder); break;
-            case 'b' :
-                creator.setBorder(lineBorder);
-                address.setBorder(lineBorder);
-                eventType.setBorder(lineBorder);
-                break;
-        }
-    }
-
     public EventFormPanel() {
         this(false, null);
     }
     public EventFormPanel(EventModel eventUpdate) {
         this(true, eventUpdate);
     }
+    public void setBorderObject(char c) {
+        LineBorder lineBorder = new LineBorder(Color.RED, 1);
+
+        switch (c) {
+            case 't' -> titleTF.setBorder(lineBorder);
+            case 'd' -> descriptionTF.setBorder(lineBorder);
+            case 'p' -> priceTF.setBorder(lineBorder);
+            case 'n' -> nbParticipantTF.setBorder(lineBorder);
+            case 's' -> startDate.setBorder(lineBorder);
+            case 'e' -> endDate.setBorder(lineBorder);
+            case 'b' -> {
+                creator.setBorder(lineBorder);
+                address.setBorder(lineBorder);
+                eventType.setBorder(lineBorder);
+            }
+        }
+    }
+
+
 
     public Boolean getIsImportant() {
         return isImportant.getState();
