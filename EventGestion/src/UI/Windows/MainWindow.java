@@ -17,7 +17,7 @@ public class MainWindow extends JFrame {
     private Container mainContainer, frameContainer;
     private JMenuBar jMenuBar;
     private JMenu event, search, home, businessTask;
-    private JMenuItem eventCreate, eventRead, search1, search2, search3;
+    private JMenuItem  eventCreate, eventRead, search1, search2, search3;
     private HomeListener homeListener;
     private BusinessTaskListener btListener;
     private EventCreateListener eventCreateListener;
@@ -78,7 +78,7 @@ public class MainWindow extends JFrame {
         home = new JMenu("Home");
         businessTask = new JMenu("Business task");
         eventRead = new JMenuItem("Listing");
-        eventCreate = new JMenuItem("Add");
+        eventCreate = new JMenuItem("Add Event");
         search1 = new JMenuItem("Search by dates");
         search2 = new JMenuItem("Search promotion");
         search3 = new JMenuItem("Search by event types");

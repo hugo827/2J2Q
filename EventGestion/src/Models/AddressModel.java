@@ -2,10 +2,10 @@ package Models;
 
 public class AddressModel {
 
-    private int idaddress, zipCode;
+    private Integer idaddress, zipCode;
     private String  numberStreet, name;
 
-    public AddressModel(int idaddress, int zipCode, String numberStreet, String name) {
+    public AddressModel(Integer idaddress, Integer zipCode, String numberStreet, String name) {
         this.idaddress = idaddress;
         this.zipCode = zipCode;
         this.numberStreet = numberStreet;

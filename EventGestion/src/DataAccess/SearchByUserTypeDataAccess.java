@@ -20,7 +20,7 @@ public class SearchByUserTypeDataAccess implements ISearchUserType {
             Connection connectionDB = ConnectionDB.getInstance();
             String query = ("SELECT e.title, e.startDate, e.endDate, p.reductionPourcent * 100, e.price*(1-p.reductionPourcent) ,et.name FROM promotion p INNER JOIN event e " +
                     "ON p.fk_event = e.idEvent INNER JOIN usertype ut ON p.fk_userType = ut.idUserType INNER JOIN eventtype et ON e.fk_eventType = et.idEventType" +
-                    " WHERE p.fk_userType = ?  ORDER BY e.startDate");
+                    " WHERE p.fk_userType = ?  ORDER BY e.title");
             PreparedStatement statement = connectionDB.prepareStatement(query);
             statement.setInt(1, idUserType);
             ResultSet data = statement.executeQuery();

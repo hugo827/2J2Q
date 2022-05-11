@@ -19,7 +19,7 @@ public class EventFormPanel extends JPanel {
 
     private JLabel label;
 
-    private JLabel titleLabel, descriptionLabel, AILabel, importantLabel, startDateLabel, endDateLabel, priceLabel, nbParticipantLabel, privateLabel, creatorLabel, typeLabel, addressLabel;
+    private JLabel requiredLabel,titleLabel, descriptionLabel, AILabel, importantLabel, startDateLabel, endDateLabel, priceLabel, nbParticipantLabel, privateLabel, creatorLabel, typeLabel, addressLabel;
     private Checkbox isImportant, isPrivate;
     private JTextField titleTF, descriptionTF, aiTF, priceTF, nbParticipantTF;
     private JXDatePicker startDate, endDate;
@@ -43,17 +43,17 @@ public class EventFormPanel extends JPanel {
         this.add(label, BorderLayout.NORTH);
         JPanel listButton = new JPanel();
         form = new JPanel();
-        form.setLayout(new GridLayout(12,2,5,5));
+        form.setLayout(new GridLayout(13,2,5,5));
         listButton.setLayout(new GridLayout(1,2,5,5));
 
 
-        titleLabel = new JLabel("Title : ");
+        titleLabel = new JLabel("*Title : ");
         titleLabel.setHorizontalAlignment(SwingConstants.RIGHT);
         form.add(titleLabel);
         titleTF = new JTextField(isUpdate ? eventUpdate.getTitle() : "");
         form.add(titleTF);
 
-        descriptionLabel = new JLabel("Description : ");
+        descriptionLabel = new JLabel("*Description : ");
         descriptionLabel.setHorizontalAlignment(SwingConstants.RIGHT);
         form.add(descriptionLabel);
         descriptionTF = new JTextField(isUpdate ? eventUpdate.getDescription() : "");
@@ -71,28 +71,28 @@ public class EventFormPanel extends JPanel {
         isImportant = new Checkbox("", isUpdate ? eventUpdate.getImportant() : false);
         form.add(isImportant);
 
-        startDateLabel = new JLabel("Start Date Event : ");
+        startDateLabel = new JLabel("*Start Date Event : ");
         startDateLabel.setHorizontalAlignment(SwingConstants.RIGHT);
         form.add(startDateLabel);
         startDate = new JXDatePicker();
         if(isUpdate) startDate.setDate(eventUpdate.getStartDate());
         form.add(startDate);
 
-        endDateLabel = new JLabel("End Date Event : ");
+        endDateLabel = new JLabel("*End Date Event : ");
         endDateLabel.setHorizontalAlignment(SwingConstants.RIGHT);
         form.add(endDateLabel);
         endDate = new JXDatePicker();
         if(isUpdate) endDate.setDate(eventUpdate.getEndDate());
         form.add(endDate);
 
-        priceLabel = new JLabel("Price : ");
+        priceLabel = new JLabel("*Price : ");
         priceLabel.setHorizontalAlignment(SwingConstants.RIGHT);
         form.add(priceLabel);
         priceTF = new JTextField(isUpdate ? Double.toString(eventUpdate.getPrice()) : "");
         form.add(priceTF);
         priceTF.addKeyListener(new VerificationPriceListener(priceTF));
 
-        nbParticipantLabel = new JLabel("Number of participant : ");
+        nbParticipantLabel = new JLabel("*Number of participant : ");
         nbParticipantLabel.setHorizontalAlignment(SwingConstants.RIGHT);
         form.add(nbParticipantLabel);
         nbParticipantTF = new JTextField(isUpdate ? Integer.toString(eventUpdate.getParticipantNbMax()) : "");
@@ -105,7 +105,7 @@ public class EventFormPanel extends JPanel {
         isPrivate = new Checkbox("", isUpdate ? eventUpdate.getPrivate() : false);
         form.add(isPrivate);
 
-        creatorLabel = new JLabel("Creator of Event ? ");
+        creatorLabel = new JLabel("*Creator of Event ? ");
         creatorLabel.setHorizontalAlignment(SwingConstants.RIGHT);
         form.add(creatorLabel);
 
@@ -113,19 +113,21 @@ public class EventFormPanel extends JPanel {
         creator = new JComboBox(userModelArrayList.toArray());
         creator.setSelectedIndex(-1);
 
-        typeLabel = new JLabel("Type of Event ? ");
+        typeLabel = new JLabel("*Type of Event ? ");
         typeLabel.setHorizontalAlignment(SwingConstants.RIGHT);
         eventTypeModelArrayList = MainWindow.getController().getEventTypeList();
         eventType = new JComboBox(eventTypeModelArrayList.toArray());
         eventType.setSelectedIndex(-1);
 
 
-        addressLabel = new JLabel("Address of Event ? ");
+        addressLabel = new JLabel("*Address of Event ? ");
         addressLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 
         addressModelArrayList = MainWindow.getController().getAddressList();
         address = new JComboBox(addressModelArrayList.toArray());
         address.setSelectedIndex(-1);
+
+        requiredLabel = new JLabel("*Required field");
 
 
 
@@ -152,6 +154,7 @@ public class EventFormPanel extends JPanel {
         form.add(eventType);
         form.add(addressLabel);
         form.add(address);
+        form.add(requiredLabel);
         listButton.add(add);
         listButton.add(cancel);
 

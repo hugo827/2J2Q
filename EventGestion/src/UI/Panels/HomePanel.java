@@ -1,12 +1,16 @@
 package UI.Panels;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class HomePanel extends JPanel {
 
-    private JLabel label;
+    private JLabel  welcome;
     public HomePanel() {
-        label = new JLabel("Home panel");
-        this.add(label);
+        this.setLayout(new BorderLayout());
+        welcome = new JLabel("Bienvenue sur notre application :) ");
+        welcome.setFont(new Font("Serif", Font.BOLD, 26));
+        welcome.setHorizontalAlignment(JLabel.CENTER);
+        this.add(welcome, BorderLayout.CENTER);
     }
 }

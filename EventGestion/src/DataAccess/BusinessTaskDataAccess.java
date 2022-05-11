@@ -33,7 +33,8 @@ public class BusinessTaskDataAccess implements IBusinessTask {
                  sumTotal = data.getDouble(3);
             }
 
-            query = (" SELECT SUM(? * pr.reductionPourcent) FROM promotion pr WHERE pr.fk_event = ?;");
+            query = ("SELECT SUM(? * pr.reductionPourcent) FROM promotion pr WHERE pr.fk_event = ?;");
+
             statement = connectionDB.prepareStatement(query);
             statement.setDouble(1, price);
             statement.setInt(2, idEvent);
