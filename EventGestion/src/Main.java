@@ -15,6 +15,5 @@ public class Main {
             if(i == 0) main(new String[]{"test"});
             else System.exit(0);
         }
-
     }
 }

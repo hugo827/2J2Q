@@ -40,8 +40,6 @@ public class AddListener implements ActionListener {
         EventTypeModel eventType = eventFormPanel.getEventType();
         AddressModel address = eventFormPanel.getAddress();
 
-
-
         if(title.trim().isEmpty()) {
             message += " - Title is required\n";
             eventFormPanel.setBorderObject('t');
@@ -67,7 +65,10 @@ public class AddListener implements ActionListener {
             message += " - All combobox is required \n";
             eventFormPanel.setBorderObject('b');
 
-        } else {
+        }
+
+        if(!message.trim().isEmpty() )  JOptionPane.showMessageDialog(eventFormPanel, message, "Error", JOptionPane.ERROR_MESSAGE);
+        else {
             double price = Double.parseDouble(priceSTR);
             int nbParticipant = Integer.parseInt(nbParticipantSTR);
             eventModel = new EventModel(title, description, additionnalInformation, isImportant, startDate, endDate, price, nbParticipant, isPrivate, creator.getIduser(), eventType.getIdEventType(), address.getIdaddress());
@@ -82,7 +83,5 @@ public class AddListener implements ActionListener {
             MainWindow.getMainWindow().printAll(MainWindow.getMainWindow().getGraphics());
 
         }
-
-        if(!message.trim().isEmpty() )  JOptionPane.showMessageDialog(eventFormPanel, message, "Error", JOptionPane.ERROR_MESSAGE);
     }
 }
