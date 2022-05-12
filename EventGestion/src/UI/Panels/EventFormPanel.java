@@ -34,6 +34,8 @@ public class EventFormPanel extends JPanel {
     private ArrayList<EventTypeModel> eventTypeModelArrayList;
     private ArrayList<AddressModel> addressModelArrayList;
 
+    private LineBorder lineBorder = new LineBorder(Color.RED, 1);
+
 
     private EventFormPanel(Boolean isUpdate, EventModel eventUpdate) {
         this.setLayout(new BorderLayout());
@@ -169,7 +171,7 @@ public class EventFormPanel extends JPanel {
         this(true, eventUpdate);
     }
     public void setBorderObject(char c) {
-        LineBorder lineBorder = new LineBorder(Color.RED, 1);
+
 
         switch (c) {
             case 't' -> titleTF.setBorder(lineBorder);
@@ -209,11 +211,11 @@ public class EventFormPanel extends JPanel {
     }
 
     public String getPriceTF() {
-        return priceTF.getText().trim();
+        return priceTF.getText().trim().isEmpty() ? "-1" : priceTF.getText().trim();
     }
 
     public String getNbParticipantTF() {
-        return nbParticipantTF.getText().trim();
+        return nbParticipantTF.getText().trim().isEmpty() ? "-1" : nbParticipantTF.getText().trim();
     }
 
     public Date getStartDate() {

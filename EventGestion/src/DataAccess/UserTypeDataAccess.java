@@ -1,6 +1,7 @@
 package DataAccess;
 
 import DataAccess.Interfaces.IUserType;
+import Exceptions.ConnectionDBException;
 import Models.UserTypeModel;
 
 import java.sql.Connection;

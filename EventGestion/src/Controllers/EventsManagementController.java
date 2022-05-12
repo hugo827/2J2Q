@@ -1,6 +1,7 @@
 package Controllers;
 
 import BusinessLogic.EventsManagementBusiness;
+import Exceptions.AddEventException;
 import Models.*;
 
 import java.sql.SQLException;
@@ -16,7 +17,7 @@ public class EventsManagementController {
     }
 
     /* -------------------CRUD-------------------- */
-    public void addEvent(EventModel event) {
+    public void addEvent(EventModel event) throws AddEventException {
         eventsManagementBusiness.addEvent(event);
     }
     public ArrayList<EventModel> getEventList() {

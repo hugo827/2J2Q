@@ -125,4 +125,13 @@ public class MainWindow extends JFrame {
     }
     public static MainWindow getMainWindow() { return mainWindow; }
 
+    public static void refreshPanel(JPanel panel, String title) {
+        getMainWindow().setTitle(title == null ? "Events Management " :  title);
+        getMainWindow().getFrameContainer().removeAll();
+        getMainWindow().getFrameContainer().setLayout(new BorderLayout());
+        getMainWindow().getFrameContainer().add(panel == null ? new HomePanel() : panel, BorderLayout.CENTER);
+        getMainWindow().repaint();
+        getMainWindow().printAll(MainWindow.getMainWindow().getGraphics());
+    }
+
 }

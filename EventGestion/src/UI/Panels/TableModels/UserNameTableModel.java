@@ -9,7 +9,7 @@ public class UserNameTableModel extends AbstractTableModel {
 
     //TODO trouver une facons de ne pas afficher l'id ( idee : hashmap)
     private final String[] columnsName = {
-            "User Name", "Id"
+            "User Name"
     };
     private ArrayList<UserModel> contents;
 
@@ -37,23 +37,13 @@ public class UserNameTableModel extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         return switch (columnIndex) {
             case 0 -> contents.get(rowIndex);
-            case 1 -> contents.get(rowIndex).getIduser();
             default -> null;
         };
     }
 
     public Class getColumnClass (int column)
     {
-        Class c;
-        switch (column)
-        {
-            case 0 : c = String.class;
-                break;
-            case 1 : c = Integer.class;
-                break;
-            default: c = String.class;
-        }
-        return c;
+        return String.class;
     }
 
 }

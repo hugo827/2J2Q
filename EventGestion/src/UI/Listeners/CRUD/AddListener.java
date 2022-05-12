@@ -1,5 +1,7 @@
 package UI.Listeners.CRUD;
 
+import Exceptions.AddEventException;
+import Exceptions.EventException;
 import Models.AddressModel;
 import Models.EventModel;
 import Models.EventTypeModel;
@@ -48,11 +50,11 @@ public class AddListener implements ActionListener {
             message += " - Description is required \n";
             eventFormPanel.setBorderObject('d');
         }
-        if(priceSTR.trim().isEmpty()) {
+        if(priceSTR.trim().isEmpty() || priceSTR.trim().equals("-1")) {
             message += " - Price is required \n";
             eventFormPanel.setBorderObject('p');
         }
-        if(nbParticipantSTR.trim().isEmpty()) {
+        if(nbParticipantSTR.trim().isEmpty() || nbParticipantSTR.trim().equals("-1")) {
             message += " - Number max of participant is required \n";
             eventFormPanel.setBorderObject('n');
         }
@@ -62,6 +64,7 @@ public class AddListener implements ActionListener {
             if(endDate == null) eventFormPanel.setBorderObject('e');
         }
         if(startDate != null && startDate.before(new Date())) message += " - Start date can't be before today !\n";
+        if(endDate != null && endDate.before(startDate)) message += " - End date can't be before start date\n";
 
         if(creator == null || eventType == null || address == null) {
             message += " - All combobox is required \n";
@@ -75,17 +78,24 @@ public class AddListener implements ActionListener {
         else {
             double price = Double.parseDouble(priceSTR);
             int nbParticipant = Integer.parseInt(nbParticipantSTR);
-            eventModel = new EventModel(title, description, additionnalInformation, isImportant, startDate, endDate, price, nbParticipant, isPrivate, creator.getIduser(), eventType.getIdEventType(), address.getIdaddress());
-            MainWindow.getController().addEvent(eventModel);
 
-            //TODO voir si on peut pas faire autrement le retour !
-            //class callPanel(JPanel panel) => on appelle cette class qui removeall...)
-            MainWindow.getMainWindow().getFrameContainer().removeAll();
-            MainWindow.getMainWindow().getFrameContainer().setLayout(new BorderLayout());
-            MainWindow.getMainWindow().getFrameContainer().add(new EventListingPanel(), BorderLayout.CENTER);
-            MainWindow.getMainWindow().repaint();
-            MainWindow.getMainWindow().printAll(MainWindow.getMainWindow().getGraphics());
+            try {
+                eventModel = new EventModel(title, description, additionnalInformation, isImportant, startDate, endDate, price, nbParticipant, isPrivate, creator.getIduser(), eventType.getIdEventType(), address.getIdaddress());
+                MainWindow.getController().addEvent(eventModel);
 
+                //TODO voir si on peut pas faire autrement le retour !
+                //class callPanel(JPanel panel) => on appelle cette class qui removeall...)
+                MainWindow.getMainWindow().getFrameContainer().removeAll();
+                MainWindow.getMainWindow().getFrameContainer().setLayout(new BorderLayout());
+                MainWindow.getMainWindow().getFrameContainer().add(new EventListingPanel(), BorderLayout.CENTER);
+                MainWindow.getMainWindow().repaint();
+                MainWindow.getMainWindow().printAll(MainWindow.getMainWindow().getGraphics());
+
+            } catch (AddEventException ex) {
+                JOptionPane.showMessageDialog(eventFormPanel, ex.getMessage(), "Error add event", JOptionPane.ERROR_MESSAGE);
+            } catch (EventException ex) {
+                JOptionPane.showMessageDialog(eventFormPanel, ex.getMessage(), ex.getTitleError(), JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
 }

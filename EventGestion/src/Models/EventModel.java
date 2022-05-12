@@ -1,5 +1,7 @@
 package Models;
 
+import Exceptions.EventException;
+
 import java.util.Date;
 
 public class EventModel {
@@ -17,7 +19,7 @@ public class EventModel {
     private Integer fk_creator, fk_eventType, fk_address;
     private String creator, eventtype, address;
 
-    public EventModel(String title, String description, String additionnalInformation, Boolean isImportant, Date startDate, Date endDate, double price, int participantNbMax, Boolean isPrivate) {
+    public EventModel(String title, String description, String additionnalInformation, Boolean isImportant, Date startDate, Date endDate, Double price, Integer participantNbMax, Boolean isPrivate) throws EventException {
         setTitle(title);
         setDescription(description);
         setAdditionnalInformation(additionnalInformation);
@@ -28,19 +30,19 @@ public class EventModel {
         setParticipantNbMax(participantNbMax);
         setPrivate(isPrivate);
     }
-    public EventModel(String title, String description, String additionnalInformation, Boolean isImportant, Date startDate, Date endDate, double price, int participantNbMax, Boolean isPrivate, int fk_creator, int fk_eventType, int fk_address) {
+    public EventModel(String title, String description, String additionnalInformation, Boolean isImportant, Date startDate, Date endDate, Double price, Integer participantNbMax, Boolean isPrivate, Integer fk_creator, Integer fk_eventType, Integer fk_address) throws EventException {
         this(title, description, additionnalInformation, isImportant, startDate, endDate, price, participantNbMax, isPrivate);
         setFk_creator(fk_creator);
         setFk_eventType(fk_eventType);
         setFk_address(fk_address);
     }
 
-    public EventModel(int idEvent, String title, String description, String additionnalInformation, Boolean isImportant, Date startDate, Date endDate, double price, int participantNbMax, Boolean isPrivate, int fk_creator, int fk_eventType, int fk_address) {
+    public EventModel(Integer idEvent, String title, String description, String additionnalInformation, Boolean isImportant, Date startDate, Date endDate, Double price, Integer participantNbMax, Boolean isPrivate, Integer fk_creator, Integer fk_eventType, Integer fk_address) throws EventException {
         this(title, description, additionnalInformation, isImportant, startDate, endDate, price, participantNbMax, isPrivate, fk_creator, fk_eventType, fk_address);
         setIdEvent(idEvent);
     }
 
-    public EventModel(int idEvent, String title, String description, String additionnalInformation, Boolean isImportant, Date startDate, Date endDate, double price, int participantNbMax, Boolean isPrivate, int fk_creator, int fk_eventType, int fk_address, String creator, String address, String eventType) {
+    public EventModel(Integer idEvent, String title, String description, String additionnalInformation, Boolean isImportant, Date startDate, Date endDate, Double price, Integer participantNbMax, Boolean isPrivate, Integer fk_creator, Integer fk_eventType, Integer fk_address, String creator, String address, String eventType) throws EventException {
         this(idEvent, title, description, additionnalInformation, isImportant, startDate, endDate, price, participantNbMax, isPrivate, fk_creator, fk_eventType, fk_address);
         setAddress(address);
         setCreator(creator);
@@ -60,16 +62,24 @@ public class EventModel {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setTitle(String title) throws EventException {
+        if(title == null || title.trim().isEmpty()) {
+           throw new EventException("Title can't be null", "Error event title");
+        } else {
+            this.title = title;
+        }
     }
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDescription(String description) throws EventException {
+        if(description == null || description.trim().isEmpty()) {
+            throw new EventException("Description can't be null", "Error event description");
+        } else {
+            this.description = description;
+        }
     }
 
     public String getAdditionnalInformation() {
@@ -77,6 +87,7 @@ public class EventModel {
     }
 
     public void setAdditionnalInformation(String additionnalInformation) {
+        if(additionnalInformation != null && additionnalInformation.trim().isEmpty()) additionnalInformation = null;
         this.additionnalInformation = additionnalInformation;
     }
 
@@ -92,32 +103,48 @@ public class EventModel {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
+    public void setStartDate(Date startDate) throws EventException {
+        if(startDate == null) {
+            throw new EventException("Title can't be null", "Error event title");
+        } else {
+            this.startDate = startDate;
+        }
     }
 
     public Date getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
+    public void setEndDate(Date endDate) throws EventException {
+        if(endDate == null || endDate.before(startDate) ) {
+            throw new EventException("Event end date can't be null and can't be before start date", "Error event");
+        } else {
+            this.endDate = endDate;
+        }
     }
 
     public double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setPrice(double price) throws EventException {
+        if(price < 0.) {
+            throw new EventException("Price can't be null or negatif", "Error event");
+        } else {
+            this.price = price;
+        }
     }
 
     public int getParticipantNbMax() {
         return participantNbMax;
     }
 
-    public void setParticipantNbMax(int participantNbMax) {
-        this.participantNbMax = participantNbMax;
+    public void setParticipantNbMax(int participantNbMax) throws EventException {
+        if(participantNbMax < 0) {
+            throw new EventException("Number of participant can't be negatif or null ", "Error event");
+        } else {
+            this.participantNbMax = participantNbMax;
+        }
     }
 
     public Boolean getPrivate() {
@@ -132,47 +159,59 @@ public class EventModel {
         return fk_creator;
     }
 
-    public void setFk_creator(int fk_creator) {
-        this.fk_creator = fk_creator;
+    public void setFk_creator(int fk_creator) throws EventException {
+        if(fk_creator <= 0) {
+            throw new EventException("Creator is required", "Error event");
+        } else {
+            this.fk_creator = fk_creator;
+        }
     }
 
     public int getFk_eventType() {
         return fk_eventType;
     }
 
-    public void setFk_eventType(int fk_eventType) {
-        this.fk_eventType = fk_eventType;
+    public void setFk_eventType(int fk_eventType) throws EventException {
+        if(fk_eventType <= 0) {
+            throw new EventException("Event type is required", "Error event");
+        } else {
+            this.fk_eventType = fk_eventType;
+        }
     }
 
     public int getFk_address() {
         return fk_address;
     }
 
-    public void setFk_address(int fk_address) {
-        this.fk_address = fk_address;
+    public void setFk_address(int fk_address) throws EventException {
+        if(fk_address <= 0) {
+            throw new EventException("Event address is required ", "Error event fk_address ");
+        } else {
+            this.fk_address = fk_address;
+        }
     }
 
     public String getCreator() {
         return creator;
     }
 
-    public void setCreator(String creator) {
-        this.creator = creator;
-    }
-
     public String getEventtype() {
         return eventtype;
-    }
-
-    public void setEventtype(String eventtype) {
-        this.eventtype = eventtype;
     }
 
     public String getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+    private void setCreator(String creator) {
+        this.creator = creator;
+    }
+
+    private void setEventtype(String eventtype) {
+        this.eventtype = eventtype;
+    }
+
+    private void setAddress(String address) {
         this.address = address;
     }
 }

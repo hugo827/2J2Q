@@ -1,5 +1,6 @@
 package UI.Panels;
 
+import Models.UserModel;
 import UI.Listeners.Search.CalculateListener;
 import UI.Listeners.Business.SelectEventListener;
 import UI.Listeners.Business.SelectUserListener;
@@ -68,8 +69,8 @@ public class BusinessTaskPanel extends JPanel {
 
     public void setNewEventPanel() {
         int line = userJTable.getSelectedRow();
-
-        eventTableModel = new EventTableModel(MainWindow.getController().getUserEventList((Integer) userJTable.getValueAt(line, 1)));
+        UserModel selectUser = (UserModel) userJTable.getValueAt(line, 0);
+        eventTableModel = new EventTableModel(MainWindow.getController().getUserEventList(selectUser.getIduser()));
         eventJTable = new JTable(eventTableModel);
         eventJTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         eventJTable.getTableHeader().setReorderingAllowed(false);

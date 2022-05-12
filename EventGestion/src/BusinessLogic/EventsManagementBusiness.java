@@ -2,6 +2,7 @@ package BusinessLogic;
 
 import DataAccess.*;
 import DataAccess.Interfaces.*;
+import Exceptions.AddEventException;
 import Models.*;
 
 import java.sql.SQLException;
@@ -71,7 +72,7 @@ public class EventsManagementBusiness {
         loadEventList();
     }
     public EventModel getEvent(int idEvent) { return eventDataAccess.getEvent(idEvent);}
-    public void addEvent(EventModel event) {
+    public void addEvent(EventModel event) throws AddEventException {
         eventDataAccess.addEvent(event);
         loadEventList();
     }

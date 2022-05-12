@@ -1,6 +1,7 @@
 package DataAccess;
 
 import DataAccess.Interfaces.IBusinessTask;
+import Exceptions.ConnectionDBException;
 import Models.BusinessTaskModel;
 
 import java.sql.Connection;
@@ -48,6 +49,7 @@ public class BusinessTaskDataAccess implements IBusinessTask {
         } catch(SQLException throwables) {
             throwables.printStackTrace();
         }
+
         return res;
     }
 }
