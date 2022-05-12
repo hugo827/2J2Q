@@ -12,11 +12,11 @@ public class AddressModel {
         this.name = name;
     }
 
-    public int getIdaddress() {
+    public Integer getIdaddress() {
         return idaddress;
     }
 
-    public int getZipCode() {
+    public Integer getZipCode() {
         return zipCode;
     }
 

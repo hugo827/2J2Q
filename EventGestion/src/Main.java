@@ -3,10 +3,12 @@ import UI.Windows.MainWindow;
 
 import javax.swing.*;
 import java.sql.Connection;
+import java.util.Date;
 
 
 public class Main {
     public static void main(String[] args) {
+
         try {
             Connection connection = ConnectionDB.getInstance();
             new MainWindow();

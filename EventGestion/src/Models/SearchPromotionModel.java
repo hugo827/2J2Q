@@ -5,14 +5,14 @@ import java.util.Date;
 
 public class SearchPromotionModel {
 
-    private double reduction;
+    private Double reduction;
     private String title;
     private Date startDate;
     private Date endDate;
-    private double finalPrice;
+    private Double finalPrice;
     private String eventTypeName;
 
-    public SearchPromotionModel(double reduction, String title, Date startDate, Date endDate, double finalPrice, String eventTypeName) {
+    public SearchPromotionModel(Double reduction, String title, Date startDate, Date endDate, Double finalPrice, String eventTypeName) {
         this.reduction = reduction;
         this.title = title;
         this.startDate = startDate;
@@ -21,7 +21,7 @@ public class SearchPromotionModel {
         this.eventTypeName = eventTypeName;
     }
 
-    public double getReduction() {
+    public Double getReduction() {
         return reduction;
     }
 
@@ -38,7 +38,7 @@ public class SearchPromotionModel {
         return endDate;
     }
 
-    public double getFinalPrice() {
+    public Double getFinalPrice() {
         return finalPrice;
     }
 

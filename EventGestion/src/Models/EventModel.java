@@ -4,19 +4,17 @@ import java.util.Date;
 
 public class EventModel {
 
-    private int idEvent;
+    private Integer idEvent;
     private String title;
     private String description;
     private String additionnalInformation;
     private Boolean isImportant;
     private Date startDate;
     private Date endDate;
-    private double price;
-    private int participantNbMax;
+    private Double price;
+    private Integer participantNbMax;
     private Boolean isPrivate;
-
-    private int fk_creator, fk_eventType, fk_address;
-
+    private Integer fk_creator, fk_eventType, fk_address;
     private String creator, eventtype, address;
 
     public EventModel(String title, String description, String additionnalInformation, Boolean isImportant, Date startDate, Date endDate, double price, int participantNbMax, Boolean isPrivate) {

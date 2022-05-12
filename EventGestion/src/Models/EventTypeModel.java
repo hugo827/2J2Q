@@ -2,15 +2,15 @@ package Models;
 
 public class EventTypeModel {
 
-    private int idEventType;
+    private Integer idEventType;
     private String name;
 
-    public EventTypeModel(int idEventType, String name) {
+    public EventTypeModel(Integer idEventType, String name) {
         this.idEventType = idEventType;
         this.name = name;
     }
 
-    public int getIdEventType() {
+    public Integer getIdEventType() {
         return idEventType;
     }
 

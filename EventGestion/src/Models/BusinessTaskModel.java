@@ -2,12 +2,12 @@ package Models;
 
 public class BusinessTaskModel {
 
-    private int nbParticpant;
-    private double sumFinal;
-    private double sumTotalWithOutPromotion;
-    private double sumTotalPromotion;
+    private Integer nbParticpant;
+    private Double sumFinal;
+    private Double sumTotalWithOutPromotion;
+    private Double sumTotalPromotion;
 
-    public BusinessTaskModel(int nbParticpant, double sumFinal, double sumTotalWithOutPromotion, double sumTotalPromotion) {
+    public BusinessTaskModel(Integer nbParticpant, Double sumFinal, Double sumTotalWithOutPromotion, Double sumTotalPromotion) {
         this.nbParticpant = nbParticpant;
         this.sumFinal = sumFinal;
         this.sumTotalWithOutPromotion = sumTotalWithOutPromotion;

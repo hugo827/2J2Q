@@ -61,11 +61,15 @@ public class AddListener implements ActionListener {
             if(startDate == null) eventFormPanel.setBorderObject('s');
             if(endDate == null) eventFormPanel.setBorderObject('e');
         }
+        if(startDate != null && startDate.before(new Date())) message += " - Start date can't be before today !\n";
+
         if(creator == null || eventType == null || address == null) {
             message += " - All combobox is required \n";
             eventFormPanel.setBorderObject('b');
 
         }
+
+
 
         if(!message.trim().isEmpty() )  JOptionPane.showMessageDialog(eventFormPanel, message, "Error", JOptionPane.ERROR_MESSAGE);
         else {

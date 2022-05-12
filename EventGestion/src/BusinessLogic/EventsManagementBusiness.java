@@ -125,7 +125,7 @@ public class EventsManagementBusiness {
     public String getInformationEvent(int idEvent) {
 
         BusinessTaskModel businessTaskModel = businessTaskDataAccess.getDataEvent(idEvent);
-        if(businessTaskModel == null ) businessTaskModel = new BusinessTaskModel(0,0,0,0);
+        if(businessTaskModel == null ) businessTaskModel = new BusinessTaskModel(0, 0., 0.,0.);
 
         return  " - Nombre de participant : " + businessTaskModel.getNbParticpant() + "\n"
         + " - Somme total : " + businessTaskModel.getSumTotalWithOutPromotion() + "\n"
