@@ -50,7 +50,7 @@ public class EventModel {
     }
 
 
-    public int getIdEvent() {
+    public Integer getIdEvent() {
         return idEvent;
     }
 
@@ -123,7 +123,7 @@ public class EventModel {
         }
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
@@ -135,7 +135,7 @@ public class EventModel {
         }
     }
 
-    public int getParticipantNbMax() {
+    public Integer getParticipantNbMax() {
         return participantNbMax;
     }
 
@@ -155,7 +155,7 @@ public class EventModel {
         isPrivate = aPrivate;
     }
 
-    public int getFk_creator() {
+    public Integer getFk_creator() {
         return fk_creator;
     }
 
@@ -167,7 +167,7 @@ public class EventModel {
         }
     }
 
-    public int getFk_eventType() {
+    public Integer getFk_eventType() {
         return fk_eventType;
     }
 
@@ -179,7 +179,7 @@ public class EventModel {
         }
     }
 
-    public int getFk_address() {
+    public Integer getFk_address() {
         return fk_address;
     }
 
