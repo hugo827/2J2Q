@@ -9,7 +9,7 @@ public class EventModel {
     private Integer idEvent;
     private String title;
     private String description;
-    private String additionnalInformation;
+    private String additionalInformation;
     private Boolean isImportant;
     private Date startDate;
     private Date endDate;
@@ -19,10 +19,10 @@ public class EventModel {
     private Integer fk_creator, fk_eventType, fk_address;
     private String creator, eventtype, address;
 
-    public EventModel(String title, String description, String additionnalInformation, Boolean isImportant, Date startDate, Date endDate, Double price, Integer participantNbMax, Boolean isPrivate) throws EventException {
+    public EventModel(String title, String description, String additionalInformation, Boolean isImportant, Date startDate, Date endDate, Double price, Integer participantNbMax, Boolean isPrivate) throws EventException {
         setTitle(title);
         setDescription(description);
-        setAdditionnalInformation(additionnalInformation);
+        setAdditionalInformation(additionalInformation);
         setImportant(isImportant);
         setStartDate(startDate);
         setEndDate(endDate);
@@ -30,20 +30,20 @@ public class EventModel {
         setParticipantNbMax(participantNbMax);
         setPrivate(isPrivate);
     }
-    public EventModel(String title, String description, String additionnalInformation, Boolean isImportant, Date startDate, Date endDate, Double price, Integer participantNbMax, Boolean isPrivate, Integer fk_creator, Integer fk_eventType, Integer fk_address) throws EventException {
-        this(title, description, additionnalInformation, isImportant, startDate, endDate, price, participantNbMax, isPrivate);
+    public EventModel(String title, String description, String additionalInformation, Boolean isImportant, Date startDate, Date endDate, Double price, Integer participantNbMax, Boolean isPrivate, Integer fk_creator, Integer fk_eventType, Integer fk_address) throws EventException {
+        this(title, description, additionalInformation, isImportant, startDate, endDate, price, participantNbMax, isPrivate);
         setFk_creator(fk_creator);
         setFk_eventType(fk_eventType);
         setFk_address(fk_address);
     }
 
-    public EventModel(Integer idEvent, String title, String description, String additionnalInformation, Boolean isImportant, Date startDate, Date endDate, Double price, Integer participantNbMax, Boolean isPrivate, Integer fk_creator, Integer fk_eventType, Integer fk_address) throws EventException {
-        this(title, description, additionnalInformation, isImportant, startDate, endDate, price, participantNbMax, isPrivate, fk_creator, fk_eventType, fk_address);
+    public EventModel(Integer idEvent, String title, String description, String additionalInformation, Boolean isImportant, Date startDate, Date endDate, Double price, Integer participantNbMax, Boolean isPrivate, Integer fk_creator, Integer fk_eventType, Integer fk_address) throws EventException {
+        this(title, description, additionalInformation, isImportant, startDate, endDate, price, participantNbMax, isPrivate, fk_creator, fk_eventType, fk_address);
         setIdEvent(idEvent);
     }
 
-    public EventModel(Integer idEvent, String title, String description, String additionnalInformation, Boolean isImportant, Date startDate, Date endDate, Double price, Integer participantNbMax, Boolean isPrivate, Integer fk_creator, Integer fk_eventType, Integer fk_address, String creator, String address, String eventType) throws EventException {
-        this(idEvent, title, description, additionnalInformation, isImportant, startDate, endDate, price, participantNbMax, isPrivate, fk_creator, fk_eventType, fk_address);
+    public EventModel(Integer idEvent, String title, String description, String additionalInformation, Boolean isImportant, Date startDate, Date endDate, Double price, Integer participantNbMax, Boolean isPrivate, Integer fk_creator, Integer fk_eventType, Integer fk_address, String creator, String address, String eventType) throws EventException {
+        this(idEvent, title, description, additionalInformation, isImportant, startDate, endDate, price, participantNbMax, isPrivate, fk_creator, fk_eventType, fk_address);
         setAddress(address);
         setCreator(creator);
         setEventtype(eventType);
@@ -82,13 +82,13 @@ public class EventModel {
         }
     }
 
-    public String getAdditionnalInformation() {
-        return additionnalInformation;
+    public String getAdditionalInformation() {
+        return additionalInformation;
     }
 
-    public void setAdditionnalInformation(String additionnalInformation) {
-        if(additionnalInformation != null && additionnalInformation.trim().isEmpty()) additionnalInformation = null;
-        this.additionnalInformation = additionnalInformation;
+    public void setAdditionalInformation(String additionalInformation) {
+        if(additionalInformation != null && additionalInformation.trim().isEmpty()) additionalInformation = null;
+        this.additionalInformation = additionalInformation;
     }
 
     public Boolean getImportant() {
@@ -105,7 +105,7 @@ public class EventModel {
 
     public void setStartDate(Date startDate) throws EventException {
         if(startDate == null) {
-            throw new EventException("Title can't be null", "Error event title");
+            throw new EventException("Title can't be null", "Error event");
         } else {
             this.startDate = startDate;
         }
@@ -129,9 +129,22 @@ public class EventModel {
 
     public void setPrice(double price) throws EventException {
         if(price < 0.) {
-            throw new EventException("Price can't be null or negatif", "Error event");
+            throw new EventException("Price can't be negative", "Error event");
         } else {
             this.price = price;
+        }
+    }
+
+    public void setPrice(String priceSTR) throws EventException {
+        if(priceSTR == null || priceSTR.trim().isEmpty()) {
+            throw new EventException("Price can't be null", "Error event");
+        } else {
+            try {
+                setPrice(Double.parseDouble(priceSTR));
+            } catch (NumberFormatException  eventException) {
+                throw new EventException(eventException.getMessage(), "Error event");
+            }
+
         }
     }
 
@@ -141,9 +154,21 @@ public class EventModel {
 
     public void setParticipantNbMax(int participantNbMax) throws EventException {
         if(participantNbMax < 0) {
-            throw new EventException("Number of participant can't be negatif or null ", "Error event");
+            throw new EventException("Number of participant can't be negative", "Error event");
         } else {
             this.participantNbMax = participantNbMax;
+        }
+    }
+
+    public void setParticipantNbMax(String participantNbMaxSTR) throws EventException {
+        if(participantNbMaxSTR == null || participantNbMaxSTR.trim().isEmpty()) {
+            throw new EventException("Number of participant can't be null", "Error event");
+        } else {
+            try {
+                setParticipantNbMax( Integer.parseInt(participantNbMaxSTR) );
+            } catch (NumberFormatException  eventException) {
+                throw new EventException(eventException.getMessage(), "Error event");
+            }
         }
     }
 

@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class SearchEventTypeDataAcces implements ISearchEventType {
+public class SearchEventTypeDataAccess implements ISearchEventType {
 
     public ArrayList<SearchEventTypeModel> getSearchByEventType(int idEventType) {
 
@@ -34,8 +34,8 @@ public class SearchEventTypeDataAcces implements ISearchEventType {
                 searchByEventTypeList.add(new SearchEventTypeModel(title,startDate, endDate, firstname, lastname, userTypeName));
             }
 
-        } catch(SQLException throwables) {
-            throwables.printStackTrace();
+        } catch(SQLException throwable) {
+            throwable.printStackTrace();
         }
         return searchByEventTypeList;
     }

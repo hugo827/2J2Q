@@ -41,7 +41,7 @@ public class SearchDatesTableModel extends AbstractTableModel {
             case 0 -> contents.get(rowIndex).getTitle();
             case 1 -> contents.get(rowIndex).getStartDate();
             case 2 -> contents.get(rowIndex).getPrivate();
-            case 3 -> contents.get(rowIndex).getAddressComplet();
+            case 3 -> contents.get(rowIndex).getFullAddress();
             default -> null;
         };
     }

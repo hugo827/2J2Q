@@ -33,9 +33,9 @@ public class UpdateListener implements ActionListener {
             event.setPrivate(eventFormPanel.getIsPrivate());
             event.setTitle(eventFormPanel.getTitleTF());
             event.setDescription(eventFormPanel.getDescriptionTF());
-            event.setAdditionnalInformation(eventFormPanel.getAiTF());
-            event.setPrice(Double.parseDouble(eventFormPanel.getPriceTF()));
-            event.setParticipantNbMax(Integer.parseInt(eventFormPanel.getNbParticipantTF()));
+            event.setAdditionalInformation(eventFormPanel.getAiTF());
+            event.setPrice(eventFormPanel.getPriceTF());
+            event.setParticipantNbMax(eventFormPanel.getNbParticipantTF());
             event.setStartDate(eventFormPanel.getStartDate());
             event.setEndDate(eventFormPanel.getEndDate());
 
@@ -44,7 +44,7 @@ public class UpdateListener implements ActionListener {
             AddressModel address = eventFormPanel.getAddress();
 
             event.setFk_eventType(eventType.getIdEventType());
-            event.setFk_address(address.getIdaddress());
+            event.setFk_address(address.getIdAddress());
             event.setFk_creator(creator.getIduser());
 
             MainWindow.getController().updateEvent(event);

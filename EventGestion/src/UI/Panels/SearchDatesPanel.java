@@ -9,7 +9,7 @@ import java.awt.*;
 import java.util.Date;
 
 public class SearchDatesPanel extends JPanel {
-    private JLabel label, datesLabel;
+    private JLabel label, startDateLabel, endDateLabel;
 
     private JPanel searchPanel, datesPanel;
 
@@ -27,14 +27,17 @@ public class SearchDatesPanel extends JPanel {
         searchPanel = new JPanel();
         datesPanel = new JPanel();
         searchPanel.setLayout(new BorderLayout());
-        datesPanel.setLayout(new GridLayout(1,4,5,5));
-        datesLabel = new JLabel("Select start dates and en dates : ");
-        datesPanel.add(datesLabel);
+        datesPanel.setLayout(new GridLayout(1,5,5,5));
+        startDateLabel = new JLabel("Select start date : ");
         startDate = new JXDatePicker();
+        endDateLabel = new JLabel("Select end date :");
         endDate = new JXDatePicker();
         validate = new JButton("Search");
         validate.addActionListener(new SearchDatesListener(this));
+
+        datesPanel.add(startDateLabel);
         datesPanel.add(startDate);
+        datesPanel.add(endDateLabel);
         datesPanel.add(endDate);
         datesPanel.add(validate);
         searchPanel.add(datesPanel, BorderLayout.NORTH);

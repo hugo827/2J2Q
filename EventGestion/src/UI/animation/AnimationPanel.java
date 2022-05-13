@@ -5,7 +5,6 @@ import java.awt.*;
 
 public class AnimationPanel extends JPanel {
 
-    private JLabel label;
     private ScrollingDate scrollingDate;
     public AnimationPanel() {
         this.setLayout(new BorderLayout());

@@ -33,7 +33,7 @@ public class AddListener implements ActionListener {
         Boolean isPrivate = eventFormPanel.getIsPrivate();
         String title = eventFormPanel.getTitleTF();
         String description = eventFormPanel.getDescriptionTF();
-        String additionnalInformation = eventFormPanel.getAiTF();
+        String additionalInformation = eventFormPanel.getAiTF();
         String priceSTR = eventFormPanel.getPriceTF();
         String nbParticipantSTR = eventFormPanel.getNbParticipantTF();
         Date startDate = eventFormPanel.getStartDate();
@@ -80,10 +80,10 @@ public class AddListener implements ActionListener {
             int nbParticipant = Integer.parseInt(nbParticipantSTR);
 
             try {
-                eventModel = new EventModel(title, description, additionnalInformation, isImportant, startDate, endDate, price, nbParticipant, isPrivate, creator.getIduser(), eventType.getIdEventType(), address.getIdaddress());
+                eventModel = new EventModel(title, description, additionalInformation, isImportant, startDate, endDate, price, nbParticipant, isPrivate, creator.getIduser(), eventType.getIdEventType(), address.getIdAddress());
                 MainWindow.getController().addEvent(eventModel);
 
-                //TODO voir si on peut pas faire autrement le retour !
+                //TODO : voir si on peut pas faire autrement le retour !
                 //class callPanel(JPanel panel) => on appelle cette class qui removeall...)
                 MainWindow.getMainWindow().getFrameContainer().removeAll();
                 MainWindow.getMainWindow().getFrameContainer().setLayout(new BorderLayout());

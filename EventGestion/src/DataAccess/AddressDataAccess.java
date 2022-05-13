@@ -29,8 +29,8 @@ public class AddressDataAccess implements IAddress {
                 addressList.add(new AddressModel(id,zipcode, numberStreet, name));
             }
 
-        } catch(SQLException throwables) {
-            throwables.printStackTrace();
+        } catch(SQLException throwable) {
+            throwable.printStackTrace();
         }
         return addressList;
     }

@@ -2,6 +2,7 @@ package Controllers;
 
 import BusinessLogic.EventsManagementBusiness;
 import Exceptions.AddEventException;
+import Exceptions.SearchDateException;
 import Models.*;
 
 import java.sql.SQLException;
@@ -54,7 +55,7 @@ public class EventsManagementController {
 
     /*------------------------- SEARCH By Dates --------------*/
 
-    public ArrayList<SearchDateModel> getSearchByDates(Date startDate, Date endDate) {
+    public ArrayList<SearchDateModel> getSearchByDates(Date startDate, Date endDate) throws SearchDateException {
         return eventsManagementBusiness.getSearchByDates(startDate, endDate);
     }
 

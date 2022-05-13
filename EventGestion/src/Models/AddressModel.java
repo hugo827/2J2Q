@@ -2,18 +2,18 @@ package Models;
 
 public class AddressModel {
 
-    private Integer idaddress, zipCode;
+    private Integer idAddress, zipCode;
     private String  numberStreet, name;
 
-    public AddressModel(Integer idaddress, Integer zipCode, String numberStreet, String name) {
-        this.idaddress = idaddress;
+    public AddressModel(Integer idAddress, Integer zipCode, String numberStreet, String name) {
+        this.idAddress = idAddress;
         this.zipCode = zipCode;
         this.numberStreet = numberStreet;
         this.name = name;
     }
 
-    public Integer getIdaddress() {
-        return idaddress;
+    public Integer getIdAddress() {
+        return idAddress;
     }
 
     public Integer getZipCode() {

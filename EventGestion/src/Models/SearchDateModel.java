@@ -8,13 +8,13 @@ public class SearchDateModel {
     private String title;
     private Date startDate;
     private Boolean isPrivate;
-    private String addressComplet;
+    private String fullAddress;
 
-    public SearchDateModel(String title, Date startDate, Boolean isPrivate, String addressComplet) {
+    public SearchDateModel(String title, Date startDate, Boolean isPrivate, String fullAddress) {
         this.title = title;
         this.startDate = startDate;
         this.isPrivate = isPrivate;
-        this.addressComplet = addressComplet;
+        this.fullAddress = fullAddress;
     }
 
     public String getTitle() {
@@ -29,8 +29,8 @@ public class SearchDateModel {
         return isPrivate;
     }
 
-    public String getAddressComplet() {
-        return addressComplet;
+    public String getFullAddress() {
+        return fullAddress;
     }
 
 }

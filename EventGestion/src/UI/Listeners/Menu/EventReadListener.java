@@ -3,7 +3,6 @@ package UI.Listeners.Menu;
 
 import UI.Panels.EventListingPanel;
 import UI.Windows.MainWindow;
-import UI.animation.AnimationPanel;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;

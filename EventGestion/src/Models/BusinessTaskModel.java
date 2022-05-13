@@ -2,20 +2,20 @@ package Models;
 
 public class BusinessTaskModel {
 
-    private Integer nbParticpant;
+    private Integer nbParticipant;
     private Double sumFinal;
     private Double sumTotalWithOutPromotion;
     private Double sumTotalPromotion;
 
-    public BusinessTaskModel(Integer nbParticpant, Double sumFinal, Double sumTotalWithOutPromotion, Double sumTotalPromotion) {
-        this.nbParticpant = nbParticpant;
+    public BusinessTaskModel(Integer nbParticipant, Double sumFinal, Double sumTotalWithOutPromotion, Double sumTotalPromotion) {
+        this.nbParticipant = nbParticipant;
         this.sumFinal = sumFinal;
         this.sumTotalWithOutPromotion = sumTotalWithOutPromotion;
         this.sumTotalPromotion = sumTotalPromotion;
     }
 
-    public int getNbParticpant() {
-        return nbParticpant;
+    public int getNbParticipant() {
+        return nbParticipant;
     }
 
     public double getSumFinal() {

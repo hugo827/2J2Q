@@ -1,7 +1,6 @@
 package DataAccess;
 
 import DataAccess.Interfaces.IBusinessTask;
-import Exceptions.ConnectionDBException;
 import Models.BusinessTaskModel;
 
 import java.sql.Connection;
@@ -46,8 +45,8 @@ public class BusinessTaskDataAccess implements IBusinessTask {
 
             res = new BusinessTaskModel(nbParticipant, sumTotal - sumTotalPromotion,sumTotal,sumTotalPromotion);
 
-        } catch(SQLException throwables) {
-            throwables.printStackTrace();
+        } catch(SQLException throwable) {
+            throwable.printStackTrace();
         }
 
         return res;

@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class ChangeDate {
 
-    private String[] months = {"January", "Ferbruary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
+    private String[] months = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
     private String[] daysNames = { "Monday", "Tuesday","Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
     private int indMonth = 0;
     private int indDay = 0;

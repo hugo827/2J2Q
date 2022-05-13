@@ -28,8 +28,8 @@ public class EventTypeDataAccess implements IEventType {
                 eventTypeList.add(new EventTypeModel(id,name));
             }
 
-        } catch(SQLException throwables) {
-            throwables.printStackTrace();
+        } catch(SQLException throwable) {
+            throwable.printStackTrace();
         }
         return eventTypeList;
     }

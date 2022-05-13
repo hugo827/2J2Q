@@ -15,7 +15,7 @@ public class AnimationThread extends Thread {
                 changeDate.removeAll();
                 changeDate.repaint();
             } catch(Exception e) {
-                System.out.println(e);
+                e.printStackTrace();
             }
         }
     }

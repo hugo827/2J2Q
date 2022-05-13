@@ -20,7 +20,7 @@ public class SearchByDatesDataAccess implements ISearchDates {
             Connection connectionDB = ConnectionDB.getInstance();
             String query = ("SELECT e.title, e.startDate, e.isPrivate, CONCAT(l.name,'(',l.zipCode,') - ', a.numberStreet) as `Address` " +
                     "FROM event e INNER JOIN address a ON e.fk_address = a.idAddress INNER JOIN locality l ON a.fk_locality = l.idLocality" +
-                    " WHERE startDate >= ? AND endDate <= ? ");
+                    " WHERE startDate >= ? AND endDate <= ? ORDER BY e.startDate");
             PreparedStatement statement = connectionDB.prepareStatement(query);
             statement.setDate(1, startDate);
             statement.setDate(2, endDate);
@@ -34,8 +34,8 @@ public class SearchByDatesDataAccess implements ISearchDates {
                 searchDateList.add(new SearchDateModel(title, startDateRec, isPrivate, address));
             }
 
-        } catch(SQLException throwables) {
-            throwables.printStackTrace();
+        } catch(SQLException throwable) {
+            throwable.printStackTrace();
         }
         return searchDateList;
     }

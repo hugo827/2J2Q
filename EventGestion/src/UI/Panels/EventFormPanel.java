@@ -64,7 +64,7 @@ public class EventFormPanel extends JPanel {
         AILabel = new JLabel("Additional information : ");
         AILabel.setHorizontalAlignment(SwingConstants.RIGHT);
         form.add(AILabel);
-        aiTF = new JTextField(isUpdate ? eventUpdate.getAdditionnalInformation() : "");
+        aiTF = new JTextField(isUpdate ? eventUpdate.getAdditionalInformation() : "");
         form.add(aiTF);
 
         importantLabel = new JLabel("Is Important : ");
@@ -211,11 +211,11 @@ public class EventFormPanel extends JPanel {
     }
 
     public String getPriceTF() {
-        return priceTF.getText().trim().isEmpty() ? "-1" : priceTF.getText().trim();
+        return priceTF.getText().trim();
     }
 
     public String getNbParticipantTF() {
-        return nbParticipantTF.getText().trim().isEmpty() ? "-1" : nbParticipantTF.getText().trim();
+        return nbParticipantTF.getText().trim();
     }
 
     public Date getStartDate() {

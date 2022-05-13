@@ -30,7 +30,7 @@ public class EventDataAccess implements IEvent {
 
             statement.setString(1, event.getTitle());
             statement.setString(2, event.getDescription());
-            statement.setString(3, event.getAdditionnalInformation());
+            statement.setString(3, event.getAdditionalInformation());
             statement.setBoolean(4, event.getImportant());
             statement.setDate(5, startDate);
 
@@ -46,7 +46,7 @@ public class EventDataAccess implements IEvent {
 
             statement.executeUpdate();
 
-        } catch(SQLException throwables) {
+        } catch(SQLException throwable) {
             throw new AddEventException();
         }
     }
@@ -86,8 +86,8 @@ public class EventDataAccess implements IEvent {
                 eventList.add(new EventModel(id, title, description, additionalInformation, isImportant, startDate, endDate, price, participantNbMax, isPrivate, fk_creator, fk_eventtype, fk_address, creator, address, eventType));
             }
 
-        } catch(SQLException throwables) {
-            throwables.printStackTrace();
+        } catch(SQLException throwable) {
+            throwable.printStackTrace();
         } catch (EventException e) {
             throw new RuntimeException(e);
         }
@@ -110,7 +110,7 @@ public class EventDataAccess implements IEvent {
 
             statement.setString(1, event.getTitle());
             statement.setString(2, event.getDescription());
-            statement.setString(3, event.getAdditionnalInformation());
+            statement.setString(3, event.getAdditionalInformation());
             statement.setBoolean(4, event.getImportant());
             statement.setDate(5, startDate);
             formattedDate = simpleDateFormat.format(event.getEndDate());
@@ -126,8 +126,8 @@ public class EventDataAccess implements IEvent {
 
             statement.executeUpdate();
 
-        } catch(SQLException throwables) {
-            throwables.printStackTrace();
+        } catch(SQLException throwable) {
+            throwable.printStackTrace();
         }
     }
 
@@ -146,7 +146,7 @@ public class EventDataAccess implements IEvent {
                 int id = data.getInt(1);
                 String title = data.getString(2);
                 String description = data.getString(3);
-                String additionnalInformation = data.getString(4);
+                String additionalInformation = data.getString(4);
                 Boolean isImportant = data.getBoolean(5);
                 Date startDate = data.getDate(6);
                 Date endDate = data.getDate(7);
@@ -156,11 +156,11 @@ public class EventDataAccess implements IEvent {
                 int fk_creator = data.getInt(11);
                 int fk_eventtype = data.getInt(12);
                 int fk_address = data.getInt(13);
-                event = new EventModel(id, title, description, additionnalInformation, isImportant, startDate, endDate, price, participantNbMax, isPrivate, fk_creator, fk_eventtype, fk_address);
+                event = new EventModel(id, title, description, additionalInformation, isImportant, startDate, endDate, price, participantNbMax, isPrivate, fk_creator, fk_eventtype, fk_address);
             }
 
-        } catch(SQLException throwables) {
-            throwables.printStackTrace();
+        } catch(SQLException throwable) {
+            throwable.printStackTrace();
         } catch (EventException e) {
             throw new RuntimeException(e);
         }
@@ -191,8 +191,8 @@ public class EventDataAccess implements IEvent {
 
             connectionDB.commit();
 
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException throwable) {
+            throwable.printStackTrace();
             connectionDB.rollback();
         }
     }

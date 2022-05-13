@@ -1,7 +1,6 @@
 package DataAccess;
 
 import DataAccess.Interfaces.IUserType;
-import Exceptions.ConnectionDBException;
 import Models.UserTypeModel;
 
 import java.sql.Connection;
@@ -28,8 +27,8 @@ public class UserTypeDataAccess implements IUserType {
                 userType.add(new UserTypeModel(id, userTypeName));
             }
 
-        } catch(SQLException throwables) {
-            throwables.printStackTrace();
+        } catch(SQLException throwable) {
+            throwable.printStackTrace();
         }
 
 

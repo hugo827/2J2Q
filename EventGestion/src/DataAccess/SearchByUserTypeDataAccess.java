@@ -35,8 +35,8 @@ public class SearchByUserTypeDataAccess implements ISearchUserType {
                 searchPromotionList.add(new SearchPromotionModel(reduction, title, startDate, endDate, finalPrice, eventType ));
             }
 
-        } catch(SQLException throwables) {
-            throwables.printStackTrace();
+        } catch(SQLException throwable) {
+            throwable.printStackTrace();
         }
         return searchPromotionList;
     }

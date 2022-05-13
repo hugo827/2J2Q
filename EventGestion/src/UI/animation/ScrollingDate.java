@@ -17,8 +17,6 @@ public class ScrollingDate extends JPanel {
     private List<Wall> verticalWalls = Collections.synchronizedList(verticalArray);
     private List<Wall> horizontalWalls = Collections.synchronizedList(horizontalArray);
 
-    private JLabel label;
-
     public ScrollingDate() {
 
         verticalWalls.add(new Wall(100,5,5,5));

@@ -1,7 +1,6 @@
 package DataAccess;
 
 import DataAccess.Interfaces.IUser;
-import Exceptions.ConnectionDBException;
 import Models.UserModel;
 
 import java.sql.Connection;
@@ -29,8 +28,8 @@ public class UserDataAccess implements IUser {
                 UserList.add(new UserModel(id,firstname, lastname));
             }
 
-        } catch(SQLException throwables) {
-            throwables.printStackTrace();
+        } catch(SQLException throwable) {
+            throwable.printStackTrace();
         }
 
         return UserList;

@@ -3,6 +3,7 @@ package BusinessLogic;
 import DataAccess.*;
 import DataAccess.Interfaces.*;
 import Exceptions.AddEventException;
+import Exceptions.SearchDateException;
 import Models.*;
 
 import java.sql.SQLException;
@@ -35,7 +36,7 @@ public class EventsManagementBusiness {
         userDataAccess = new UserDataAccess();
         eventTypeDataAccess = new EventTypeDataAccess();
         addressDataAccess = new AddressDataAccess();
-        searchEventTypeDataAccess = new SearchEventTypeDataAcces();
+        searchEventTypeDataAccess = new SearchEventTypeDataAccess();
         searchByDatesDataAccess = new SearchByDatesDataAccess();
         userTypeDataAccess = new UserTypeDataAccess();
         searchByUserTypeDataAccess = new SearchByUserTypeDataAccess();
@@ -88,18 +89,21 @@ public class EventsManagementBusiness {
 
     /*-------------------------- SEARCH by dates -------------*/
 
-    public ArrayList<SearchDateModel> getSearchByDates(Date startDate, Date endDate) {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String formattedStartDate = simpleDateFormat.format(startDate);
-        String formattedEndDate = simpleDateFormat.format(endDate);
-        java.sql.Date startDateConvert = java.sql.Date.valueOf(formattedStartDate);
-        java.sql.Date endDateConvert = java.sql.Date.valueOf(formattedEndDate);
-
-        return  searchByDatesDataAccess.getSearchDates(startDateConvert, endDateConvert);
+    public ArrayList<SearchDateModel> getSearchByDates(Date startDate, Date endDate) throws SearchDateException {
+        if(endDate.before(startDate)) {
+            throw new SearchDateException();
+        } else {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            String formattedStartDate = simpleDateFormat.format(startDate);
+            String formattedEndDate = simpleDateFormat.format(endDate);
+            java.sql.Date startDateConvert = java.sql.Date.valueOf(formattedStartDate);
+            java.sql.Date endDateConvert = java.sql.Date.valueOf(formattedEndDate);
+            return  searchByDatesDataAccess.getSearchDates(startDateConvert, endDateConvert);
+        }
     }
 
 
-    /*-------------------------------- SEARCH promotiion -------------------------------------*/
+    /*-------------------------------- SEARCH promotion -------------------------------------*/
 
     public ArrayList<UserTypeModel> getUserType() {
         return userType;
@@ -128,7 +132,7 @@ public class EventsManagementBusiness {
         BusinessTaskModel businessTaskModel = businessTaskDataAccess.getDataEvent(idEvent);
         if(businessTaskModel == null ) businessTaskModel = new BusinessTaskModel(0, 0., 0.,0.);
 
-        return  " - Nombre de participant : " + businessTaskModel.getNbParticpant() + "\n"
+        return  " - Nombre de participant : " + businessTaskModel.getNbParticipant() + "\n"
         + " - Somme total : " + businessTaskModel.getSumTotalWithOutPromotion() + "\n"
         + " - Somme total prommotion : "+ businessTaskModel.getSumTotalPromotion() +  "\n"
         + " - Somme final : "+ businessTaskModel.getSumFinal() + "\n";
