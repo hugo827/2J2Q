@@ -1,6 +1,5 @@
 package UI.Panels;
 
-import Exceptions.BusinessTaskException;
 import Models.UserModel;
 import UI.Listeners.Search.CalculateListener;
 import UI.Listeners.Business.SelectEventListener;
@@ -85,7 +84,7 @@ public class BusinessTaskPanel extends JPanel {
         calculateButton.setVisible(true);
     }
 
-    public void showInformation() throws BusinessTaskException {
+    public void showInformation() {
         String msg = MainWindow.getController().getInformationEvent((Integer) eventJTable.getValueAt(eventJTable.getSelectedRow(), 0));
         JOptionPane.showMessageDialog(this, msg, "Information Event", JOptionPane.PLAIN_MESSAGE);
     }

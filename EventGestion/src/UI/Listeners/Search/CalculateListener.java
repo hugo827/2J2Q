@@ -1,6 +1,5 @@
 package UI.Listeners.Search;
 
-import Exceptions.BusinessTaskException;
 import UI.Panels.BusinessTaskPanel;
 
 
@@ -18,10 +17,6 @@ public class CalculateListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        try {
-            businessTaskPanel.showInformation();
-        } catch (BusinessTaskException ex) {
-            JOptionPane.showMessageDialog(businessTaskPanel, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
+        businessTaskPanel.showInformation();
     }
 }

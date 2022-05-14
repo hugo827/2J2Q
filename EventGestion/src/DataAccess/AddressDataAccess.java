@@ -1,6 +1,7 @@
 package DataAccess;
 
 import DataAccess.Interfaces.IAddress;
+import Exceptions.DataAccessException;
 import Models.AddressModel;
 
 
@@ -32,6 +33,7 @@ public class AddressDataAccess implements IAddress {
         } catch(SQLException throwable) {
             throwable.printStackTrace();
         }
+
         return addressList;
     }
 }

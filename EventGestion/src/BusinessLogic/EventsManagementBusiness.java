@@ -3,7 +3,6 @@ package BusinessLogic;
 import DataAccess.*;
 import DataAccess.Interfaces.*;
 import Exceptions.AddEventException;
-import Exceptions.BusinessTaskException;
 import Exceptions.QueryException;
 import Exceptions.SearchDateException;
 import Models.*;
@@ -155,7 +154,7 @@ public class EventsManagementBusiness {
         return eventModelArrayList;
     }
 
-    public String getInformationEvent(int idEvent) throws BusinessTaskException {
+    public String getInformationEvent(int idEvent) {
         if(idEvent <=  0) {
             System.out.print("error");
         }
