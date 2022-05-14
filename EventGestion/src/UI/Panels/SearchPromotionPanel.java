@@ -59,6 +59,7 @@ public class SearchPromotionPanel extends JPanel {
         jTable = new JTable(searchPromotionTableModel);
         jTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         jTable.getTableHeader().setReorderingAllowed(false);
+        jTable.setRowHeight(30);
         jScrollPane.setViewportView(jTable);
     }
 }

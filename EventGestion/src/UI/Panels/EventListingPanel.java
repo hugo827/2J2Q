@@ -44,6 +44,7 @@ public class EventListingPanel extends JPanel {
         eventsTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         eventsTable.getTableHeader().setReorderingAllowed(false);
         eventsTable.getTableHeader().setResizingAllowed(true);
+        eventsTable.setRowHeight(30);
 
         this.add(jScrollPane, BorderLayout.CENTER);
     }

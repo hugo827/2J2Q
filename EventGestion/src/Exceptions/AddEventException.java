@@ -6,6 +6,6 @@ public class AddEventException extends Exception {
 
 
     public String getMessage(){
-        return "L'ajout de l'evenement a echoué !";
+        return "Adding event failed";
     }
 }

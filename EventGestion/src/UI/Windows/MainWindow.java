@@ -38,8 +38,8 @@ public class MainWindow extends JFrame {
         setBounds(100,100,1300,800);
         this.setMinimumSize(minimunSizeJFrame);
 
-        //TODO : a voir si il n'existe pas des element par defaut pour fermer le programme ...
         //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
         addWindowListener(
                 new WindowAdapter() {
                     public void windowClosing(WindowEvent e){
@@ -47,6 +47,8 @@ public class MainWindow extends JFrame {
                     }
                 }
         );
+
+
 
         eventsManagementController = new EventsManagementController();
 

@@ -69,19 +69,36 @@ public class EventsManagementBusiness {
         events.removeIf(event -> event.getIdEvent() == idEvent);
     }
     public void updateEvent(EventModel event) {
-        eventDataAccess.updateEvent(event);
-        loadEventList();
+        if(event == null) {
+            System.out.println("Error");
+        } else {
+            eventDataAccess.updateEvent(event);
+            loadEventList();
+        }
     }
-    public EventModel getEvent(int idEvent) { return eventDataAccess.getEvent(idEvent);}
+
+    public EventModel getEvent(int idEvent) {
+        if(idEvent <= 0) {
+            System.out.println("Error");
+        }
+        return eventDataAccess.getEvent(idEvent);
+    }
     public void addEvent(EventModel event) throws AddEventException {
-        eventDataAccess.addEvent(event);
-        loadEventList();
+        if(event == null){
+            System.out.println("Error");
+        } else {
+            eventDataAccess.addEvent(event);
+            loadEventList();
+        }
     }
 
 
     /*-------------------------- SEARCH EVENT TYPE -------------*/
 
     public ArrayList<SearchEventTypeModel> getSearchByEventType(int idEventType) {
+        if(idEventType <= 0) {
+            System.out.println("Error");
+        }
         return  searchEventTypeDataAccess.getSearchByEventType(idEventType);
     }
 
@@ -113,10 +130,17 @@ public class EventsManagementBusiness {
     }
 
     public ArrayList<SearchPromotionModel> getSearchByUserType(int idUserType) {
+        if(idUserType <= 0) {
+            System.out.println("Error");
+        }
         return searchByUserTypeDataAccess.getSearchUsertype(idUserType);
     }
 
     public ArrayList<EventModel> getUserEventsList(int idUser) {
+        if(idUser <= 0) {
+            System.out.println("Error");
+        }
+
         ArrayList<EventModel> eventModelArrayList = new ArrayList<>();
 
         //TODO : je crois qu'on peut utiliser un -> avec un filter ...

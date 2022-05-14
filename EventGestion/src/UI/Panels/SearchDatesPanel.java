@@ -62,6 +62,7 @@ public class SearchDatesPanel extends JPanel {
         jTable = new JTable(searchDatesTableModel);
         jTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         jTable.getTableHeader().setReorderingAllowed(false);
+        jTable.setRowHeight(30);
         jScrollPane.setViewportView(jTable);
     }
 }

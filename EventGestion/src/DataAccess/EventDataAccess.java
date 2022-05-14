@@ -47,6 +47,7 @@ public class EventDataAccess implements IEvent {
             statement.executeUpdate();
 
         } catch(SQLException throwable) {
+            System.out.println(throwable.getMessage());
             throw new AddEventException();
         }
     }
