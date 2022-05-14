@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class SearchEventTypeDataAccess implements ISearchEventType {
+public class SearchByEventTypeDataAccess implements ISearchEventType {
 
     public ArrayList<SearchEventTypeModel> getSearchByEventType(int idEventType) {
 

@@ -36,11 +36,13 @@ public class EventsManagementBusiness {
         userDataAccess = new UserDataAccess();
         eventTypeDataAccess = new EventTypeDataAccess();
         addressDataAccess = new AddressDataAccess();
-        searchEventTypeDataAccess = new SearchEventTypeDataAccess();
+
         searchByDatesDataAccess = new SearchByDatesDataAccess();
         userTypeDataAccess = new UserTypeDataAccess();
         searchByUserTypeDataAccess = new SearchByUserTypeDataAccess();
         businessTaskDataAccess = new BusinessTaskDataAccess();
+
+        searchEventTypeDataAccess = new SearchByEventTypeDataAccess();
 
         loadEventList();
         loadUserList();
