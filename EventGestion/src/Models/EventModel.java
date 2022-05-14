@@ -19,7 +19,7 @@ public class EventModel {
     private Integer fk_creator, fk_eventType, fk_address;
     private String creator, eventtype, address;
 
-    public EventModel(String title, String description, String additionalInformation, Boolean isImportant, Date startDate, Date endDate, Double price, Integer participantNbMax, Boolean isPrivate) throws EventException {
+    public EventModel(String title, String description, String additionalInformation, Boolean isImportant, Date startDate, Date endDate, Double price, Integer participantNbMax, Boolean isPrivate, Integer fk_creator, Integer fk_eventType, Integer fk_address) throws EventException {
         setTitle(title);
         setDescription(description);
         setAdditionalInformation(additionalInformation);
@@ -29,9 +29,6 @@ public class EventModel {
         setPrice(price);
         setParticipantNbMax(participantNbMax);
         setPrivate(isPrivate);
-    }
-    public EventModel(String title, String description, String additionalInformation, Boolean isImportant, Date startDate, Date endDate, Double price, Integer participantNbMax, Boolean isPrivate, Integer fk_creator, Integer fk_eventType, Integer fk_address) throws EventException {
-        this(title, description, additionalInformation, isImportant, startDate, endDate, price, participantNbMax, isPrivate);
         setFk_creator(fk_creator);
         setFk_eventType(fk_eventType);
         setFk_address(fk_address);

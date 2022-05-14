@@ -16,6 +16,6 @@ public class CalculateListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-       businessTaskPanel.showInformation();
+            businessTaskPanel.showInformation();
     }
 }

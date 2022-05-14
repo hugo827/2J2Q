@@ -31,4 +31,5 @@ public class BusinessTaskModel {
         return sumTotalPromotion;
     }
 
+
 }

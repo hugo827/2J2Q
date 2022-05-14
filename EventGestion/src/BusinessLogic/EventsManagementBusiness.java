@@ -3,6 +3,7 @@ package BusinessLogic;
 import DataAccess.*;
 import DataAccess.Interfaces.*;
 import Exceptions.AddEventException;
+import Exceptions.QueryException;
 import Exceptions.SearchDateException;
 import Models.*;
 
@@ -85,7 +86,7 @@ public class EventsManagementBusiness {
         }
         return eventDataAccess.getEvent(idEvent);
     }
-    public void addEvent(EventModel event) throws AddEventException {
+    public void addEvent(EventModel event) throws AddEventException, QueryException {
         if(event == null){
             System.out.println("Error");
         } else {

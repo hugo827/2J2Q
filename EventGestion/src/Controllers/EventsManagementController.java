@@ -2,6 +2,7 @@ package Controllers;
 
 import BusinessLogic.EventsManagementBusiness;
 import Exceptions.AddEventException;
+import Exceptions.QueryException;
 import Exceptions.SearchDateException;
 import Models.*;
 
@@ -18,7 +19,7 @@ public class EventsManagementController {
     }
 
     /* -------------------CRUD-------------------- */
-    public void addEvent(EventModel event) throws AddEventException {
+    public void addEvent(EventModel event) throws AddEventException, QueryException {
         eventsManagementBusiness.addEvent(event);
     }
     public ArrayList<EventModel> getEventList() {

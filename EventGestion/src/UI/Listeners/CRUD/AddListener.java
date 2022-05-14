@@ -2,6 +2,7 @@ package UI.Listeners.CRUD;
 
 import Exceptions.AddEventException;
 import Exceptions.EventException;
+import Exceptions.QueryException;
 import Models.AddressModel;
 import Models.EventModel;
 import Models.EventTypeModel;
@@ -83,18 +84,20 @@ public class AddListener implements ActionListener {
                 eventModel = new EventModel(title, description, additionalInformation, isImportant, startDate, endDate, price, nbParticipant, isPrivate, creator.getIduser(), eventType.getIdEventType(), address.getIdAddress());
                 MainWindow.getController().addEvent(eventModel);
 
-                //TODO : voir si on peut pas faire autrement le retour !
-                //class callPanel(JPanel panel) => on appelle cette class qui removeall...)
-                MainWindow.getMainWindow().getFrameContainer().removeAll();
-                MainWindow.getMainWindow().getFrameContainer().setLayout(new BorderLayout());
-                MainWindow.getMainWindow().getFrameContainer().add(new EventListingPanel(), BorderLayout.CENTER);
-                MainWindow.getMainWindow().repaint();
-                MainWindow.getMainWindow().printAll(MainWindow.getMainWindow().getGraphics());
+
+                MainWindow.refreshPanel(new EventListingPanel(), "Listing events");
+//                MainWindow.getMainWindow().getFrameContainer().removeAll();
+//                MainWindow.getMainWindow().getFrameContainer().setLayout(new BorderLayout());
+//                MainWindow.getMainWindow().getFrameContainer().add(new EventListingPanel(), BorderLayout.CENTER);
+//                MainWindow.getMainWindow().repaint();
+//                MainWindow.getMainWindow().printAll(MainWindow.getMainWindow().getGraphics());
 
             } catch (AddEventException ex) {
                 JOptionPane.showMessageDialog(eventFormPanel, ex.getMessage(), "Error add event", JOptionPane.ERROR_MESSAGE);
             } catch (EventException ex) {
                 JOptionPane.showMessageDialog(eventFormPanel, ex.getMessage(), ex.getTitleError(), JOptionPane.ERROR_MESSAGE);
+            } catch (QueryException ex) {
+                JOptionPane.showMessageDialog(eventFormPanel, ex.getMessage(), "Error add event", JOptionPane.ERROR_MESSAGE);
             }
         }
     }
