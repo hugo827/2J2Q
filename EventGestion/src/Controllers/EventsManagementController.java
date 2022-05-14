@@ -2,6 +2,7 @@ package Controllers;
 
 import BusinessLogic.EventsManagementBusiness;
 import Exceptions.AddEventException;
+import Exceptions.BusinessTaskException;
 import Exceptions.QueryException;
 import Exceptions.SearchDateException;
 import Models.*;
@@ -79,7 +80,7 @@ public class EventsManagementController {
         return eventsManagementBusiness.getUserEventsList(idUser);
     }
 
-    public String getInformationEvent(int idEvent) {
+    public String getInformationEvent(int idEvent) throws BusinessTaskException {
         return eventsManagementBusiness.getInformationEvent( idEvent);
     }
 }

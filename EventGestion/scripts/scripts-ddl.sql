@@ -1,5 +1,5 @@
-CREATE SCHEMA IF NOT EXISTS `eventgestiondb` DEFAULT CHARACTER SET utf8 ;
-USE eventgestiondb;
+CREATE SCHEMA IF NOT EXISTS `eventmanagmentdb` DEFAULT CHARACTER SET utf8 ;
+USE eventmanagmentdb;
 
 DROP TABLE IF EXISTS `promotion`;
 DROP TABLE IF EXISTS `participation`;

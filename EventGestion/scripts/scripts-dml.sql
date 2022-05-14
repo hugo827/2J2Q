@@ -1,14 +1,4 @@
-USE eventgestiondb;
-
--- TRUNCATE TABLE eventgestiondb.participation;
--- TRUNCATE TABLE eventgestiondb.promotion;
--- TRUNCATE TABLE eventgestiondb.event;
--- TRUNCATE TABLE eventgestiondb.address;
--- TRUNCATE TABLE eventgestiondb.user;
--- TRUNCATE TABLE eventgestiondb.usertype;
--- TRUNCATE TABLE eventgestiondb.eventtype;
--- TRUNCATE TABLE eventgestiondb.locality;
-
+USE eventmanagmentdb;
 
 INSERT INTO eventgestiondb.eventtype(name) VALUES ("festival");
 INSERT INTO eventgestiondb.eventtype(name) VALUES ("birthday");

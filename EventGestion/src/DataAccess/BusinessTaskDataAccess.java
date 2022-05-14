@@ -13,7 +13,7 @@ public class BusinessTaskDataAccess implements IBusinessTask {
     public BusinessTaskModel getDataEvent(int idEvent) {
 
         int nbParticipant = 0;
-        double sumTotal = 0, sumTotalPromotion = 0, price =0;
+        double sumTotal = 0, sumTotalPromotion = 0, price = 0;
         BusinessTaskModel res = null;
 
         try {
@@ -33,7 +33,12 @@ public class BusinessTaskDataAccess implements IBusinessTask {
                  sumTotal = data.getDouble(3);
             }
 
-            query = ("SELECT SUM(? * pr.reductionPourcent) FROM promotion pr WHERE pr.fk_event = ?;");
+            query = ("\n" +
+                    "SELECT SUM(? * pr.reductionPourcent) FROM user u " +
+                    "INNER JOIN participation p ON p.fk_user = u.idUser " +
+                    "INNER JOIN usertype ut ON ut.idUserType = u.fk_usertype " +
+                    "INNER JOIN promotion pr ON  pr.fk_usertype = u.fk_usertype AND pr.fk_event = p.fk_event " +
+                    "WHERE p.fk_event = ?");
 
             statement = connectionDB.prepareStatement(query);
             statement.setDouble(1, price);

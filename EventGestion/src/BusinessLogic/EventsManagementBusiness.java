@@ -3,6 +3,7 @@ package BusinessLogic;
 import DataAccess.*;
 import DataAccess.Interfaces.*;
 import Exceptions.AddEventException;
+import Exceptions.BusinessTaskException;
 import Exceptions.QueryException;
 import Exceptions.SearchDateException;
 import Models.*;
@@ -154,10 +155,11 @@ public class EventsManagementBusiness {
         return eventModelArrayList;
     }
 
-    public String getInformationEvent(int idEvent) {
-
+    public String getInformationEvent(int idEvent) throws BusinessTaskException {
+        if(idEvent <=  0) {
+            System.out.print("error");
+        }
         BusinessTaskModel businessTaskModel = businessTaskDataAccess.getDataEvent(idEvent);
-        if(businessTaskModel == null ) businessTaskModel = new BusinessTaskModel(0, 0., 0.,0.);
 
         return  " - Nombre de participant : " + businessTaskModel.getNbParticipant() + "\n"
         + " - Somme total : " + businessTaskModel.getSumTotalWithOutPromotion() + "\n"
