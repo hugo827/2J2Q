@@ -1,8 +1,6 @@
 package DataAccess;
 
 import DataAccess.Interfaces.IEvent;
-import Exceptions.AddEventException;
-import Exceptions.QueryException;
 import Exceptions.EventException;
 import Models.EventModel;
 
@@ -17,7 +15,7 @@ import java.util.Date;
 public class EventDataAccess implements IEvent {
 
     @Override
-    public void addEvent(EventModel event) throws  QueryException {
+    public void addEvent(EventModel event)  {
         try {
             Connection connectionDB = ConnectionDB.getInstance();
             String query = ("INSERT INTO event(title, description, additionalInformation, isImportant, startDate, endDate, price, participantNbMax, isPrivate, fk_creator, fk_eventType, fk_address)" +
@@ -48,7 +46,7 @@ public class EventDataAccess implements IEvent {
             statement.executeUpdate();
 
         } catch(SQLException throwable) {
-            throw new QueryException(throwable.getMessage());
+            throwable.printStackTrace();
         }
     }
 
@@ -61,7 +59,7 @@ public class EventDataAccess implements IEvent {
             String query = ("SELECT e.idEvent, e.title, e.description, e.additionalInformation, e.isImportant, e.startDate, e.endDate, e.price, e.participantNbMax, " +
                     "e.isPrivate,e.fk_creator, e.fk_eventtype, e.fk_address, et.name as `Event Type`, CONCAT(l.name,'(',l.zipCode,') - ', a.numberStreet) as `Address`," +
                     " CONCAT(u.firstName,' ', u.lastName) as `Creator Name` " +
-                    "FROM eventgestiondb.event e INNER JOIN eventtype et ON e.fk_eventType = et.idEventType INNER JOIN address a ON e.fk_address = a.idaddress INNER " +
+                    "FROM event e INNER JOIN eventtype et ON e.fk_eventType = et.idEventType INNER JOIN address a ON e.fk_address = a.idaddress INNER " +
                     "JOIN locality l ON a.fk_locality = l.idlocality INNER JOIN user u ON e.fk_creator = u.iduser ");
             PreparedStatement statement = connectionDB.prepareStatement(query);
             ResultSet data = statement.executeQuery();

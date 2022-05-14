@@ -11,7 +11,7 @@ public class ConnectionDB {
 
     private ConnectionDB() {
         try{
-            connection =  DriverManager.getConnection("jdbc:mysql://localhost:3306/eventgestiondb", "WWHJ", "wWhJ5000+");
+            connection =  DriverManager.getConnection("jdbc:mysql://localhost:3306/eventmanagmentdb", "WWHJ", "wWhJ5000+");
         } catch (SQLException exception) {
             JOptionPane.showMessageDialog(null,   "Connection to database failed. Click ok, to close program \n Call admin or Retry later.", "Error connection", JOptionPane.ERROR_MESSAGE);
         }

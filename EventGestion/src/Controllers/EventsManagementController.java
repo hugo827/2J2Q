@@ -2,7 +2,7 @@ package Controllers;
 
 import BusinessLogic.EventsManagementBusiness;
 import Exceptions.AddEventException;
-import Exceptions.QueryException;
+import Exceptions.DataAccessException;
 import Exceptions.SearchDateException;
 import Models.*;
 
@@ -19,7 +19,7 @@ public class EventsManagementController {
     }
 
     /* -------------------CRUD-------------------- */
-    public void addEvent(EventModel event) throws AddEventException, QueryException {
+    public void addEvent(EventModel event) throws AddEventException, DataAccessException {
         eventsManagementBusiness.addEvent(event);
     }
     public ArrayList<EventModel> getEventList() {
@@ -68,18 +68,18 @@ public class EventsManagementController {
         return eventsManagementBusiness.getUserType();
     }
 
-    public ArrayList<SearchPromotionModel> getSearchByUserType(int idUserType) {
+    public ArrayList<SearchPromotionModel> getSearchByUserType(int idUserType) throws DataAccessException {
         return eventsManagementBusiness.getSearchByUserType(idUserType);
     }
 
 
     /* Business task */
 
-    public ArrayList<EventModel> getUserEventList(int idUser) {
+    public ArrayList<EventModel> getUserEventList(int idUser) throws DataAccessException {
         return eventsManagementBusiness.getUserEventsList(idUser);
     }
 
-    public String getInformationEvent(int idEvent)  {
+    public String getInformationEvent(int idEvent) throws DataAccessException {
         return eventsManagementBusiness.getInformationEvent( idEvent);
     }
 }

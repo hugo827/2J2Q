@@ -5,6 +5,7 @@ import Exceptions.DataAccessException;
 import Models.AddressModel;
 
 
+import javax.swing.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -31,7 +32,7 @@ public class AddressDataAccess implements IAddress {
             }
 
         } catch(SQLException throwable) {
-            throwable.printStackTrace();
+            JOptionPane.showMessageDialog(null, throwable.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
 
         return addressList;

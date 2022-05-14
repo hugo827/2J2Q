@@ -3,7 +3,7 @@ package BusinessLogic;
 import DataAccess.*;
 import DataAccess.Interfaces.*;
 import Exceptions.AddEventException;
-import Exceptions.QueryException;
+import Exceptions.DataAccessException;
 import Exceptions.SearchDateException;
 import Models.*;
 
@@ -86,9 +86,9 @@ public class EventsManagementBusiness {
         }
         return eventDataAccess.getEvent(idEvent);
     }
-    public void addEvent(EventModel event) throws AddEventException, QueryException {
+    public void addEvent(EventModel event) throws AddEventException, DataAccessException {
         if(event == null){
-            System.out.println("Error");
+           throw new DataAccessException("The object event can't be null");
         } else {
             eventDataAccess.addEvent(event);
             loadEventList();
@@ -110,7 +110,7 @@ public class EventsManagementBusiness {
     /*-------------------------- SEARCH by dates -------------*/
 
     public ArrayList<SearchDateModel> getSearchByDates(Date startDate, Date endDate) throws SearchDateException {
-        if(endDate.before(startDate)) {
+        if(startDate == null || endDate == null || endDate.before(startDate)) {
             throw new SearchDateException();
         } else {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -132,37 +132,40 @@ public class EventsManagementBusiness {
         userType = userTypeDataAccess.getUserTypeList();
     }
 
-    public ArrayList<SearchPromotionModel> getSearchByUserType(int idUserType) {
+    public ArrayList<SearchPromotionModel> getSearchByUserType(int idUserType) throws DataAccessException {
         if(idUserType <= 0) {
-            System.out.println("Error");
+            throw new DataAccessException("The value : " + idUserType + " isn't correct for find an user type");
+        } else {
+            return searchByUserTypeDataAccess.getSearchUsertype(idUserType);
         }
-        return searchByUserTypeDataAccess.getSearchUsertype(idUserType);
     }
 
-    public ArrayList<EventModel> getUserEventsList(int idUser) {
+    public ArrayList<EventModel> getUserEventsList(int idUser) throws DataAccessException {
         if(idUser <= 0) {
-            System.out.println("Error");
+            throw new DataAccessException("This value " + idUser + " isn't correct for finding user's event");
+        } else {
+
+            ArrayList<EventModel> eventModelArrayList = new ArrayList<>();
+
+            //TODO : je crois qu'on peut utiliser un -> avec un filter ...
+            for (EventModel eventModel : events) {
+                if (idUser == eventModel.getFk_creator()) eventModelArrayList.add(eventModel);
+            }
+
+            return eventModelArrayList;
         }
-
-        ArrayList<EventModel> eventModelArrayList = new ArrayList<>();
-
-        //TODO : je crois qu'on peut utiliser un -> avec un filter ...
-        for(EventModel eventModel : events) {
-            if(idUser == eventModel.getFk_creator()) eventModelArrayList.add(eventModel);
-        }
-
-        return eventModelArrayList;
     }
 
-    public String getInformationEvent(int idEvent) {
+    public String getInformationEvent(int idEvent) throws DataAccessException {
         if(idEvent <=  0) {
-            System.out.print("error");
-        }
-        BusinessTaskModel businessTaskModel = businessTaskDataAccess.getDataEvent(idEvent);
+            throw new DataAccessException("This value " + idEvent + " isn't correct for finding an event");
+        } else {
+            BusinessTaskModel businessTaskModel = businessTaskDataAccess.getDataEvent(idEvent);
 
-        return  " - Nombre de participant : " + businessTaskModel.getNbParticipant() + "\n"
-        + " - Somme total : " + businessTaskModel.getSumTotalWithOutPromotion() + "\n"
-        + " - Somme total prommotion : "+ businessTaskModel.getSumTotalPromotion() +  "\n"
-        + " - Somme final : "+ businessTaskModel.getSumFinal() + "\n";
+            return " - Nombre de participant : " + businessTaskModel.getNbParticipant() + "\n"
+                    + " - Somme total : " + businessTaskModel.getSumTotalWithOutPromotion() + "\n"
+                    + " - Somme total prommotion : " + businessTaskModel.getSumTotalPromotion() + "\n"
+                    + " - Somme final : " + businessTaskModel.getSumFinal() + "\n";
+        }
     }
 }

@@ -1,5 +1,6 @@
 package UI.Listeners.Business;
 
+import Exceptions.DataAccessException;
 import UI.Panels.BusinessTaskPanel;
 
 import java.awt.event.MouseEvent;
@@ -25,7 +26,11 @@ public class SelectUserListener implements MouseListener {
 
     @Override
     public void mouseReleased(MouseEvent e) {
-       businessTaskPanel.setNewEventPanel();
+        try {
+            businessTaskPanel.setNewEventPanel();
+        } catch (DataAccessException ex) {
+            throw new RuntimeException(ex);
+        }
     }
 
     @Override

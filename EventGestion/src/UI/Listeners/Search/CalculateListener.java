@@ -1,5 +1,6 @@
 package UI.Listeners.Search;
 
+import Exceptions.DataAccessException;
 import UI.Panels.BusinessTaskPanel;
 
 
@@ -17,6 +18,10 @@ public class CalculateListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        businessTaskPanel.showInformation();
+        try {
+            businessTaskPanel.showInformation();
+        } catch (DataAccessException ex) {
+            throw new RuntimeException(ex);
+        }
     }
 }

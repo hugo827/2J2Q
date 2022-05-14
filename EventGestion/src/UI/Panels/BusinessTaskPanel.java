@@ -1,5 +1,6 @@
 package UI.Panels;
 
+import Exceptions.DataAccessException;
 import Models.UserModel;
 import UI.Listeners.Search.CalculateListener;
 import UI.Listeners.Business.SelectEventListener;
@@ -67,7 +68,7 @@ public class BusinessTaskPanel extends JPanel {
     }
 
 
-    public void setNewEventPanel() {
+    public void setNewEventPanel() throws DataAccessException {
         int line = userJTable.getSelectedRow();
         UserModel selectUser = (UserModel) userJTable.getValueAt(line, 0);
         eventTableModel = new EventTableModel(MainWindow.getController().getUserEventList(selectUser.getIduser()));
@@ -84,7 +85,7 @@ public class BusinessTaskPanel extends JPanel {
         calculateButton.setVisible(true);
     }
 
-    public void showInformation() {
+    public void showInformation() throws DataAccessException {
         String msg = MainWindow.getController().getInformationEvent((Integer) eventJTable.getValueAt(eventJTable.getSelectedRow(), 0));
         JOptionPane.showMessageDialog(this, msg, "Information Event", JOptionPane.PLAIN_MESSAGE);
     }

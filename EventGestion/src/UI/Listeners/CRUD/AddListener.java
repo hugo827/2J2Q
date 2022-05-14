@@ -1,8 +1,8 @@
 package UI.Listeners.CRUD;
 
 import Exceptions.AddEventException;
+import Exceptions.DataAccessException;
 import Exceptions.EventException;
-import Exceptions.QueryException;
 import Models.AddressModel;
 import Models.EventModel;
 import Models.EventTypeModel;
@@ -12,7 +12,6 @@ import UI.Panels.EventListingPanel;
 import UI.Windows.MainWindow;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
@@ -92,11 +91,7 @@ public class AddListener implements ActionListener {
 //                MainWindow.getMainWindow().repaint();
 //                MainWindow.getMainWindow().printAll(MainWindow.getMainWindow().getGraphics());
 
-            } catch (AddEventException ex) {
-                JOptionPane.showMessageDialog(eventFormPanel, ex.getMessage(), "Error add event", JOptionPane.ERROR_MESSAGE);
-            } catch (EventException ex) {
-                JOptionPane.showMessageDialog(eventFormPanel, ex.getMessage(), ex.getTitleError(), JOptionPane.ERROR_MESSAGE);
-            } catch (QueryException ex) {
+            } catch (AddEventException | DataAccessException | EventException ex) {
                 JOptionPane.showMessageDialog(eventFormPanel, ex.getMessage(), "Error add event", JOptionPane.ERROR_MESSAGE);
             }
         }
