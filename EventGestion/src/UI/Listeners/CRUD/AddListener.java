@@ -63,8 +63,8 @@ public class AddListener implements ActionListener {
             if(startDate == null) eventFormPanel.setBorderObject('s');
             if(endDate == null) eventFormPanel.setBorderObject('e');
         }
-        if(startDate != null && startDate.before(new Date())) message += " - Start date can't be before today !\n";
-        if(endDate != null && endDate.before(startDate)) message += " - End date can't be before start date\n";
+        if(startDate != null && startDate.before(new Date() )) message += " - Start date can't be before today !\n";
+        if(endDate != null && startDate != null && endDate.before(startDate)) message += " - End date can't be before start date\n";
 
         if(creator == null || eventType == null || address == null) {
             message += " - All combobox is required \n";

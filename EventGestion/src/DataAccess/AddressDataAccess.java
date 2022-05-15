@@ -32,7 +32,7 @@ public class AddressDataAccess implements IAddress {
             }
 
         } catch(SQLException throwable) {
-            JOptionPane.showMessageDialog(null, throwable.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            throwable.printStackTrace();
         }
 
         return addressList;

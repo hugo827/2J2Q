@@ -102,7 +102,7 @@ public class EventModel {
 
     public void setStartDate(Date startDate) throws EventException {
         if(startDate == null) {
-            throw new EventException("Title can't be null", "Error event");
+            throw new EventException("Start date is required", "Error event");
         } else {
             this.startDate = startDate;
         }
@@ -113,7 +113,7 @@ public class EventModel {
     }
 
     public void setEndDate(Date endDate) throws EventException {
-        if(endDate == null || endDate.before(startDate) ) {
+        if(endDate == null || (startDate != null && endDate.before(startDate) ) ) {
             throw new EventException("Event end date can't be null and can't be before start date", "Error event");
         } else {
             this.endDate = endDate;

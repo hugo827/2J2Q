@@ -24,7 +24,7 @@ CREATE TABLE `eventtype` (
 
 CREATE TABLE `locality` (
     `idlocality` int NOT NULL AUTO_INCREMENT,
-    `zipCode` int unique,
+    `zipCode` int UNIQUE,
     `name` varchar(45),
     PRIMARY KEY (`idlocality`)
 );
@@ -51,23 +51,23 @@ CREATE TABLE `user` (
 );
 
 CREATE TABLE `event` (
-                         `idEvent` int NOT NULL AUTO_INCREMENT,
-                         `title` varchar(45) DEFAULT NULL,
-                         `description` text DEFAULT NULL,
-                         `additionalInformation` text DEFAULT NULL,
-                         `isImportant` tinyint DEFAULT NULL,
-                         `startDate` TIMESTAMP DEFAULT NULL,
-                         `endDate` TIMESTAMP DEFAULT NULL, -- TODO: verifier que startDate < endDate with check
-                         `price` float DEFAULT NULL CHECK ( price >= 0 ),
-                         `participantNbMax` int DEFAULT NULL CHECK ( participantNbMax > 0 ),
-                         `isPrivate` tinyint DEFAULT NULL,
-                         `fk_creator` int DEFAULT NULL,
-                         `fk_eventType` int DEFAULT NULL,
-                         `fk_address` int DEFAULT NULL,
-                         PRIMARY KEY (`idEvent`),
-                         CONSTRAINT `fk_address` FOREIGN KEY (`fk_address`) REFERENCES `address` (`idaddress`),
-                         CONSTRAINT `fk_creator` FOREIGN KEY (`fk_creator`) REFERENCES `user` (`iduser`),
-                         CONSTRAINT `fk_eventType` FOREIGN KEY (`fk_eventType`) REFERENCES `eventtype` (`idEventType`)
+    `idEvent` int NOT NULL AUTO_INCREMENT,
+    `title` varchar(45) DEFAULT NULL,
+    `description` text DEFAULT NULL,
+    `additionalInformation` text DEFAULT NULL,
+    `isImportant` tinyint DEFAULT NULL,
+    `startDate` TIMESTAMP DEFAULT NULL,
+    `endDate` TIMESTAMP DEFAULT NULL,
+    `price` float DEFAULT NULL CHECK ( price >= 0 ),
+    `participantNbMax` int DEFAULT NULL CHECK ( participantNbMax > 0 ),
+    `isPrivate` tinyint DEFAULT NULL,
+    `fk_creator` int DEFAULT NULL,
+    `fk_eventType` int DEFAULT NULL,
+    `fk_address` int DEFAULT NULL,
+    PRIMARY KEY (`idEvent`),
+    CONSTRAINT `fk_address` FOREIGN KEY (`fk_address`) REFERENCES `address` (`idaddress`),
+    CONSTRAINT `fk_creator` FOREIGN KEY (`fk_creator`) REFERENCES `user` (`iduser`),
+    CONSTRAINT `fk_eventType` FOREIGN KEY (`fk_eventType`) REFERENCES `eventtype` (`idEventType`)
 );
 
 CREATE TABLE `participation` (
