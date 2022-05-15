@@ -25,7 +25,7 @@ CREATE TABLE `eventtype` (
 CREATE TABLE `locality` (
     `idlocality` int NOT NULL AUTO_INCREMENT,
     `zipCode` int UNIQUE,
-    `name` varchar(45),
+    `name` varchar(45) NOT NULL,
     PRIMARY KEY (`idlocality`)
 );
 
@@ -33,9 +33,9 @@ CREATE TABLE `locality` (
 CREATE TABLE `address` (
     `idaddress` int NOT NULL AUTO_INCREMENT,
     `libelle` text DEFAULT NULL,
-    `numberStreet` varchar(150) DEFAULT NULL,
+    `numberStreet` varchar(150) NOT NULL,
     `additionalInformation` text DEFAULT NULL,
-    `fk_locality` int DEFAULT NULL,
+    `fk_locality` int NOT NULL,
     PRIMARY KEY (`idaddress`),
     CONSTRAINT `fk_locality` FOREIGN KEY (`fk_locality`) REFERENCES `locality` (`idlocality`)
 );
@@ -43,27 +43,27 @@ CREATE TABLE `address` (
 
 CREATE TABLE `user` (
     `iduser` int NOT NULL AUTO_INCREMENT,
-    `firstName` varchar(45) DEFAULT NULL,
-    `lastName` varchar(45) DEFAULT NULL,
-    `fk_userType` int DEFAULT NULL,
+    `firstName` varchar(45) NOT NULL,
+    `lastName` varchar(45) NOT NULL,
+    `fk_userType` int NOT NULL,
     PRIMARY KEY (`iduser`),
     CONSTRAINT `fk_userType` FOREIGN KEY (`fk_userType`) REFERENCES `usertype` (`idusertype`)
 );
 
 CREATE TABLE `event` (
     `idEvent` int NOT NULL AUTO_INCREMENT,
-    `title` varchar(45) DEFAULT NULL,
-    `description` text DEFAULT NULL,
+    `title` varchar(45) NOT NULL,
+    `description` text NOT NULL,
     `additionalInformation` text DEFAULT NULL,
-    `isImportant` tinyint DEFAULT NULL,
-    `startDate` TIMESTAMP DEFAULT NULL,
-    `endDate` TIMESTAMP DEFAULT NULL,
-    `price` float DEFAULT NULL CHECK ( price >= 0 ),
-    `participantNbMax` int DEFAULT NULL CHECK ( participantNbMax > 0 ),
-    `isPrivate` tinyint DEFAULT NULL,
-    `fk_creator` int DEFAULT NULL,
-    `fk_eventType` int DEFAULT NULL,
-    `fk_address` int DEFAULT NULL,
+    `isImportant` tinyint DEFAULT 0,
+    `startDate` TIMESTAMP NOT NULL,
+    `endDate` TIMESTAMP NOT NULL,
+    `price` float NOT NULL CHECK ( price >= 0 ),
+    `participantNbMax` int NOT NULL CHECK ( participantNbMax > 0 ),
+    `isPrivate` tinyint DEFAULT 0,
+    `fk_creator` int NOT NULL,
+    `fk_eventType` int NOT NULL,
+    `fk_address` int NOT NULL,
     PRIMARY KEY (`idEvent`),
     CONSTRAINT `fk_address` FOREIGN KEY (`fk_address`) REFERENCES `address` (`idaddress`),
     CONSTRAINT `fk_creator` FOREIGN KEY (`fk_creator`) REFERENCES `user` (`iduser`),
@@ -72,8 +72,8 @@ CREATE TABLE `event` (
 
 CREATE TABLE `participation` (
     `idparticipation` int NOT NULL AUTO_INCREMENT,
-    `fk_user` int DEFAULT NULL,
-     `fk_event` int DEFAULT NULL,
+    `fk_user` int NOT NULL,
+     `fk_event` int NOT NULL,
      PRIMARY KEY (`idparticipation`),
      CONSTRAINT `fk_user` FOREIGN KEY (`fk_user`) REFERENCES `user` (`iduser`),
      CONSTRAINT `fk_event` FOREIGN KEY (`fk_event`) REFERENCES `event` (`idEvent`)
@@ -81,9 +81,9 @@ CREATE TABLE `participation` (
 
 CREATE TABLE `promotion` (
     `idpromotion` int NOT NULL AUTO_INCREMENT,
-    `reductionPourcent` double DEFAULT NULL CHECK ( reductionPourcent > 0 AND reductionPourcent <= 1.0 ),
-    `fk_userType` int DEFAULT NULL,
-     `fk_event` int DEFAULT NULL,
+    `reductionPourcent` double NOT NULL CHECK ( reductionPourcent BETWEEN 0 AND 1.0 ),
+    `fk_userType` int NOT NULL,
+     `fk_event` int NOT NULL,
      PRIMARY KEY (`idpromotion`),
      CONSTRAINT `event_fk` FOREIGN KEY (`fk_event`) REFERENCES `event` (`idEvent`),
      CONSTRAINT `usertype_fk` FOREIGN KEY (`fk_userType`) REFERENCES `usertype` (`idusertype`)

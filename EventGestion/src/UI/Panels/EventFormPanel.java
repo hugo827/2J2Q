@@ -20,6 +20,7 @@ public class EventFormPanel extends JPanel {
     private JLabel label;
 
     private JLabel requiredLabel,titleLabel, descriptionLabel, AILabel, importantLabel, startDateLabel, endDateLabel, priceLabel, nbParticipantLabel, privateLabel, creatorLabel, typeLabel, addressLabel;
+    private JLabel startTime, endTime;
     private Checkbox isImportant, isPrivate;
     private JTextField titleTF, descriptionTF, aiTF, priceTF, nbParticipantTF;
     private JXDatePicker startDate, endDate;
@@ -28,13 +29,38 @@ public class EventFormPanel extends JPanel {
 
     private JButton  cancel, add;
 
-    private JPanel form;
+    private JPanel form, startTimePanel, endTimePanel;
 
     private  ArrayList<UserModel> userModelArrayList;
     private ArrayList<EventTypeModel> eventTypeModelArrayList;
     private ArrayList<AddressModel> addressModelArrayList;
 
     private LineBorder lineBorder = new LineBorder(Color.RED, 1);
+
+    private SpinnerModel modelStartHour = new SpinnerNumberModel(
+            8, //valeur initiale
+            1, //valeur minimum
+            24, //valeur maximum
+            1 //pas
+    );
+    private SpinnerModel modelEndHour= new SpinnerNumberModel(
+            8, //valeur initiale
+            1, //valeur minimum
+            24, //valeur maximum
+            1 //pas
+    );
+    private SpinnerModel modelEndMinutes = new SpinnerNumberModel(
+            0, //valeur initiale
+            0, //valeur minimum
+            59, //valeur maximum
+            1 //pas
+    );
+    private SpinnerModel modelStartMinutes = new SpinnerNumberModel(
+            0, //valeur initiale
+            0, //valeur minimum
+            59, //valeur maximum
+            1 //pas
+    );
 
 
     private EventFormPanel(Boolean isUpdate, EventModel eventUpdate) {
@@ -45,7 +71,7 @@ public class EventFormPanel extends JPanel {
         this.add(label, BorderLayout.NORTH);
         JPanel listButton = new JPanel();
         form = new JPanel();
-        form.setLayout(new GridLayout(13,2,5,5));
+        form.setLayout(new GridLayout(15,2,5,5));
         listButton.setLayout(new GridLayout(1,2,5,5));
 
 
@@ -71,6 +97,33 @@ public class EventFormPanel extends JPanel {
         startDate = new JXDatePicker();
         if(isUpdate) startDate.setDate(eventUpdate.getStartDate());
 
+        startTime = new JLabel("Select start time : ");
+        startTime.setHorizontalAlignment(SwingConstants.RIGHT);
+        startTimePanel = new JPanel(new FlowLayout());
+        JLabel startHourLabel = new JLabel("Hour : ");
+        JLabel startMinutesLabel = new JLabel("minutes :");
+
+        JSpinner startHour = new JSpinner(modelStartHour);
+        JSpinner startMinutes = new JSpinner(modelStartMinutes);
+        startTimePanel.add(startHourLabel);
+        startTimePanel.add(startHour);
+        startTimePanel.add(startMinutesLabel);
+        startTimePanel.add(startMinutes);
+
+        endTime = new JLabel("Select end time :");
+        endTime.setHorizontalAlignment(SwingConstants.RIGHT);
+        endTimePanel = new JPanel(new FlowLayout());
+        JLabel endHourLabel = new JLabel("Hour : ");
+        JLabel endMinutesLabel = new JLabel("minutes :");
+
+        JSpinner endHour = new JSpinner(modelEndHour);
+        JSpinner endMinutes = new JSpinner(modelEndMinutes);
+        endTimePanel.add(endHourLabel);
+        endTimePanel.add(endHour);
+        endTimePanel.add(endMinutesLabel);
+        endTimePanel.add(endMinutes);
+
+
         endDateLabel = new JLabel("*End Date Event : ");
         endDateLabel.setHorizontalAlignment(SwingConstants.RIGHT);
         endDate = new JXDatePicker();
@@ -89,7 +142,6 @@ public class EventFormPanel extends JPanel {
         privateLabel = new JLabel("Is Private Event ? ");
         privateLabel.setHorizontalAlignment(SwingConstants.RIGHT);
         isPrivate = new Checkbox("", isUpdate ? eventUpdate.getPrivate() : false);
-
 
         creatorLabel = new JLabel("*Creator of Event ? ");
         creatorLabel.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -137,8 +189,12 @@ public class EventFormPanel extends JPanel {
         form.add(isImportant);
         form.add(startDateLabel);
         form.add(startDate);
+        form.add(startTime);
+        form.add(startTimePanel);
         form.add(endDateLabel);
         form.add(endDate);
+        form.add(endTime);
+        form.add(endTimePanel);
         form.add(priceLabel);
         form.add(priceTF);
         form.add(nbParticipantLabel);
