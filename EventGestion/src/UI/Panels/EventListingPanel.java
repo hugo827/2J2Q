@@ -14,7 +14,6 @@ public class EventListingPanel extends JPanel {
     private JTable eventsTable;
     private EventTableModel eventTableModel;
 
-
     private JScrollPane jScrollPane;
 
     private JButton btnDEL, btnUPD;

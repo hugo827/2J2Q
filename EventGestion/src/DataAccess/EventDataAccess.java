@@ -4,10 +4,7 @@ import DataAccess.Interfaces.IEvent;
 import Exceptions.EventException;
 import Models.EventModel;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,20 +19,20 @@ public class EventDataAccess implements IEvent {
                     "VALUES(?,?,?,?,?,?,?,?,?,?,?,?)");
             PreparedStatement statement = connectionDB.prepareStatement(query);
 
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String formattedDate = simpleDateFormat.format(event.getStartDate());
-            java.sql.Date startDate = java.sql.Date.valueOf(formattedDate);
+            Timestamp startDate = Timestamp.valueOf(formattedDate);
 
 
             statement.setString(1, event.getTitle());
             statement.setString(2, event.getDescription());
             statement.setString(3, event.getAdditionalInformation());
             statement.setBoolean(4, event.getImportant());
-            statement.setDate(5, startDate);
+            statement.setTimestamp(5, startDate);
 
             formattedDate = simpleDateFormat.format(event.getEndDate());
-            java.sql.Date endDate = java.sql.Date.valueOf(formattedDate);
-            statement.setDate(6, endDate);
+            Timestamp endDate = Timestamp.valueOf(formattedDate);
+            statement.setTimestamp(6, endDate);
             statement.setDouble(7, event.getPrice());
             statement.setInt(8, event.getParticipantNbMax());
             statement.setBoolean(9, event.getPrivate());
@@ -70,8 +67,8 @@ public class EventDataAccess implements IEvent {
                 String description = data.getString(3);
                 String additionalInformation = data.getString(4);
                 Boolean  isImportant = data.getBoolean(5);
-                Date startDate = data.getDate(6);
-                Date endDate = data.getDate(7);
+                Date startDate = data.getTimestamp(6);
+                Date endDate = data.getTimestamp(7);
                 double price = data.getDouble(8);
                 int participantNbMax = data.getInt(9);
                 Boolean isPrivate = data.getBoolean(10);
@@ -102,19 +99,18 @@ public class EventDataAccess implements IEvent {
                     " WHERE `idEvent` = ? ");
             PreparedStatement statement = connectionDB.prepareStatement(query);
 
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String formattedDate = simpleDateFormat.format(event.getStartDate());
-            java.sql.Date startDate = java.sql.Date.valueOf(formattedDate);
-
+            Timestamp startDate = Timestamp.valueOf(formattedDate);
 
             statement.setString(1, event.getTitle());
             statement.setString(2, event.getDescription());
             statement.setString(3, event.getAdditionalInformation());
             statement.setBoolean(4, event.getImportant());
-            statement.setDate(5, startDate);
+            statement.setTimestamp(5, startDate);
             formattedDate = simpleDateFormat.format(event.getEndDate());
-            java.sql.Date endDate = java.sql.Date.valueOf(formattedDate);
-            statement.setDate(6, endDate);
+            Timestamp endDate = Timestamp.valueOf(formattedDate);
+            statement.setTimestamp(6, endDate);
             statement.setDouble(7, event.getPrice());
             statement.setInt(8, event.getParticipantNbMax());
             statement.setBoolean(9, event.getPrivate());
@@ -147,8 +143,8 @@ public class EventDataAccess implements IEvent {
                 String description = data.getString(3);
                 String additionalInformation = data.getString(4);
                 Boolean isImportant = data.getBoolean(5);
-                Date startDate = data.getDate(6);
-                Date endDate = data.getDate(7);
+                Date startDate = data.getTimestamp(6);
+                Date endDate = data.getTimestamp(7);
                 double price = data.getDouble(8);
                 int participantNbMax = data.getInt(9);
                 Boolean isPrivate = data.getBoolean(10);

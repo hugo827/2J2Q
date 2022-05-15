@@ -78,6 +78,10 @@ public class AddListener implements ActionListener {
         else {
             double price = Double.parseDouble(priceSTR);
             int nbParticipant = Integer.parseInt(nbParticipantSTR);
+            startDate.setHours(eventFormPanel.getStartHour());
+            startDate.setMinutes(eventFormPanel.getStartMinutes());
+            endDate.setHours(eventFormPanel.getEndHour());
+            endDate.setMinutes(eventFormPanel.getEndMinutes());
 
             try {
                 eventModel = new EventModel(title, description, additionalInformation, isImportant, startDate, endDate, price, nbParticipant, isPrivate, creator.getIduser(), eventType.getIdEventType(), address.getIdAddress());

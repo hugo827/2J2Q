@@ -12,9 +12,9 @@ import UI.Windows.MainWindow;
 
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
 
 public class UpdateListener implements ActionListener {
 
@@ -30,6 +30,14 @@ public class UpdateListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
+            Date startDate = eventFormPanel.getStartDate();
+            startDate.setHours(eventFormPanel.getStartHour());
+            startDate.setMinutes(eventFormPanel.getStartMinutes());
+            Date endDate = eventFormPanel.getEndDate();
+            endDate.setHours(eventFormPanel.getEndHour());
+            endDate.setMinutes(eventFormPanel.getEndMinutes());
+
+
             event.setImportant(eventFormPanel.getIsImportant());
             event.setPrivate(eventFormPanel.getIsPrivate());
             event.setTitle(eventFormPanel.getTitleTF());
@@ -37,8 +45,8 @@ public class UpdateListener implements ActionListener {
             event.setAdditionalInformation(eventFormPanel.getAiTF());
             event.setPrice(eventFormPanel.getPriceTF());
             event.setParticipantNbMax(eventFormPanel.getNbParticipantTF());
-            event.setStartDate(eventFormPanel.getStartDate());
-            event.setEndDate(eventFormPanel.getEndDate());
+            event.setStartDate(startDate);
+            event.setEndDate(endDate);
 
             UserModel creator = eventFormPanel.getCreator();
             EventTypeModel eventType = eventFormPanel.getEventType();

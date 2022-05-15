@@ -37,6 +37,8 @@ public class EventFormPanel extends JPanel {
 
     private LineBorder lineBorder = new LineBorder(Color.RED, 1);
 
+    private JSpinner startMinutes, startHour, endHour, endMinutes;
+
     private SpinnerModel modelStartHour = new SpinnerNumberModel(
             8, //valeur initiale
             1, //valeur minimum
@@ -103,8 +105,8 @@ public class EventFormPanel extends JPanel {
         JLabel startHourLabel = new JLabel("Hour : ");
         JLabel startMinutesLabel = new JLabel("minutes :");
 
-        JSpinner startHour = new JSpinner(modelStartHour);
-        JSpinner startMinutes = new JSpinner(modelStartMinutes);
+        startHour = new JSpinner(modelStartHour);
+        startMinutes = new JSpinner(modelStartMinutes);
         startTimePanel.add(startHourLabel);
         startTimePanel.add(startHour);
         startTimePanel.add(startMinutesLabel);
@@ -116,8 +118,8 @@ public class EventFormPanel extends JPanel {
         JLabel endHourLabel = new JLabel("Hour : ");
         JLabel endMinutesLabel = new JLabel("minutes :");
 
-        JSpinner endHour = new JSpinner(modelEndHour);
-        JSpinner endMinutes = new JSpinner(modelEndMinutes);
+        endHour = new JSpinner(modelEndHour);
+        endMinutes = new JSpinner(modelEndMinutes);
         endTimePanel.add(endHourLabel);
         endTimePanel.add(endHour);
         endTimePanel.add(endMinutesLabel);
@@ -174,6 +176,10 @@ public class EventFormPanel extends JPanel {
             address.setSelectedIndex(eventUpdate.getFk_address()-1);
             creator.setSelectedIndex(eventUpdate.getFk_creator()-1);
             eventType.setSelectedIndex(eventUpdate.getFk_eventType()-1);
+            startHour.setValue(eventUpdate.getStartDate().getHours());
+            startMinutes.setValue(eventUpdate.getStartDate().getMinutes());
+            endHour.setValue(eventUpdate.getEndDate().getHours());
+            endMinutes.setValue(eventUpdate.getEndDate().getMinutes());
         } else {
             cancel.addActionListener(new CancelListener());
             add.addActionListener(new AddListener(this));
@@ -292,5 +298,19 @@ public class EventFormPanel extends JPanel {
         else return addressModelArrayList.get(address.getSelectedIndex());
     }
 
+    public int getStartHour() {
+        return (int) startHour.getValue();
+    }
+    public int getStartMinutes() {
+        return (int) startMinutes.getValue();
+    }
+
+    public int getEndHour() {
+        return (int) endHour.getValue();
+    }
+
+    public int getEndMinutes() {
+        return (int) endMinutes.getValue();
+    }
 
 }

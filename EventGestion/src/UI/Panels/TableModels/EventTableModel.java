@@ -46,8 +46,8 @@ public class EventTableModel extends AbstractTableModel {
             case 2 -> contents.get(rowIndex).getDescription();
             case 3 -> contents.get(rowIndex).getAdditionalInformation();
             case 4 -> contents.get(rowIndex).getImportant();
-            case 5 -> contents.get(rowIndex).getStartDate();
-            case 6 -> contents.get(rowIndex).getEndDate();
+            case 5 -> contents.get(rowIndex).getStartDateSTR();
+            case 6 -> contents.get(rowIndex).getEndDateSTR();
             case 7 -> contents.get(rowIndex).getPrice();
             case 8 -> contents.get(rowIndex).getParticipantNbMax();
             case 9 -> contents.get(rowIndex).getPrivate();
@@ -62,10 +62,9 @@ public class EventTableModel extends AbstractTableModel {
     {
        return  switch (column) {
             case 0, 8 -> Integer.class;
-            case 1, 2, 3, 10, 11, 12 -> String.class;
+            case 1, 2, 3, 10, 11, 12, 5, 6 -> String.class;
             case 4, 9 -> Boolean.class;
             case 7 -> Float.class;
-            case 5, 6 -> Date.class;
             default -> String.class;
         };
     }

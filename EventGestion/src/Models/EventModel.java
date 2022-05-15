@@ -2,7 +2,10 @@ package Models;
 
 import Exceptions.EventException;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class EventModel {
 
@@ -18,6 +21,7 @@ public class EventModel {
     private Boolean isPrivate;
     private Integer fk_creator, fk_eventType, fk_address;
     private String creator, eventtype, address;
+    private final SimpleDateFormat format = new SimpleDateFormat(" dd MMM yyyy 'at' HH:mm");
 
     public EventModel(String title, String description, String additionalInformation, Boolean isImportant, Date startDate, Date endDate, Double price, Integer participantNbMax, Boolean isPrivate, Integer fk_creator, Integer fk_eventType, Integer fk_address) throws EventException {
         setTitle(title);
@@ -100,6 +104,10 @@ public class EventModel {
         return startDate;
     }
 
+    public String getStartDateSTR() {
+        return format.format(startDate);
+    }
+
     public void setStartDate(Date startDate) throws EventException {
         if(startDate == null) {
             throw new EventException("Start date is required", "Error event");
@@ -110,6 +118,9 @@ public class EventModel {
 
     public Date getEndDate() {
         return endDate;
+    }
+    public String getEndDateSTR() {
+        return format.format(endDate);
     }
 
     public void setEndDate(Date endDate) throws EventException {
@@ -236,4 +247,6 @@ public class EventModel {
     private void setAddress(String address) {
         this.address = address;
     }
+
+
 }
