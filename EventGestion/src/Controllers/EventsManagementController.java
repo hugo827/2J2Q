@@ -31,15 +31,15 @@ public class EventsManagementController {
     public ArrayList<AddressModel> getAddressList() { return eventsManagementBusiness.getAddressList(); }
 
 
-    public void deleteEvent(int idEvent) throws SQLException {
+    public void deleteEvent(int idEvent) throws SQLException, DataAccessException {
         eventsManagementBusiness.deleteEvent(idEvent);
     }
 
-    public void updateEvent(EventModel event) {
+    public void updateEvent(EventModel event) throws DataAccessException {
         eventsManagementBusiness.updateEvent(event);
     }
 
-    public EventModel getEvent(int idEvent) {
+    public EventModel getEvent(int idEvent) throws DataAccessException {
         return eventsManagementBusiness.getEvent(idEvent);
     }
 
@@ -48,11 +48,10 @@ public class EventsManagementController {
 
     /*-------------------------- SEARCH EVENT TYPE -------------*/
 
-    public ArrayList<SearchEventTypeModel> getSearchByEventType(int idEventType) {
+    public ArrayList<SearchEventTypeModel> getSearchByEventType(int idEventType) throws DataAccessException {
         return  eventsManagementBusiness.getSearchByEventType(idEventType);
     }
 
-    /*-------------------------------------------------*/
 
     /*------------------------- SEARCH By Dates --------------*/
 
@@ -60,9 +59,8 @@ public class EventsManagementController {
         return eventsManagementBusiness.getSearchByDates(startDate, endDate);
     }
 
-    /* ---------------------------------------------------------*/
 
-    /* SEARCH promotion */
+    /* ------------------------SEARCH promotion------------------------ */
 
     public ArrayList<UserTypeModel> getUserTypeList() {
         return eventsManagementBusiness.getUserType();
@@ -73,7 +71,7 @@ public class EventsManagementController {
     }
 
 
-    /* Business task */
+    /* ------------------------Business task------------------------------ */
 
     public ArrayList<EventModel> getUserEventList(int idUser) throws DataAccessException {
         return eventsManagementBusiness.getUserEventsList(idUser);

@@ -1,5 +1,6 @@
 package UI.Listeners.CRUD;
 
+import Exceptions.DataAccessException;
 import Models.EventModel;
 import UI.Panels.EventFormPanel;
 import UI.Panels.EventListingPanel;
@@ -25,11 +26,17 @@ public class SelectUpdateListener implements ActionListener {
         if (jTable.getSelectedRow() == -1) {
             JOptionPane.showMessageDialog(eventListingPanel, "To update an event, you need to select him !", "Information Update", JOptionPane.ERROR_MESSAGE);
         } else {
-            int idEvent = (int) jTable.getValueAt(jTable.getSelectedRow(), 0);
 
-            EventModel eventUpdate = MainWindow.getController().getEvent(idEvent);
 
-            MainWindow.refreshPanel(new EventFormPanel(eventUpdate), " Update event");
+            try {
+                int idEvent = (int) jTable.getValueAt(jTable.getSelectedRow(), 0);
+                EventModel eventUpdate =  MainWindow.getController().getEvent(idEvent);
+                MainWindow.refreshPanel(new EventFormPanel(eventUpdate), " Update event");
+            } catch (DataAccessException ex) {
+                JOptionPane.showMessageDialog(eventListingPanel, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+
 
 //            MainWindow.getMainWindow().setTitle("Events Management - Update event");
 //            MainWindow.getMainWindow().getFrameContainer().removeAll();

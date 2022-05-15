@@ -1,5 +1,6 @@
 package UI.Listeners.CRUD;
 
+import Exceptions.DataAccessException;
 import UI.Panels.EventListingPanel;
 import UI.Windows.MainWindow;
 
@@ -31,6 +32,8 @@ public class DeleteListener implements ActionListener {
                     MainWindow.getController().deleteEvent(idEvent);
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
+                } catch (DataAccessException ex) {
+                    JOptionPane.showMessageDialog(eventListingPanel,ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 }
 
                 MainWindow.getMainWindow().repaint();

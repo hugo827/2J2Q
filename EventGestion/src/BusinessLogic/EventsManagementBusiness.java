@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 public class EventsManagementBusiness {
@@ -67,22 +68,26 @@ public class EventsManagementBusiness {
     public void loadEventTypeList() { eventType = eventTypeDataAccess.getEventType();}
     public void loadAddressList() { address = addressDataAccess.getAddressList(); }
 
-    public void deleteEvent(int idEvent) throws SQLException {
-        eventDataAccess.deleteEvent(idEvent);
-        events.removeIf(event -> event.getIdEvent() == idEvent);
+    public void deleteEvent(int idEvent) throws SQLException, DataAccessException {
+        if(idEvent <= 0) {
+            throw new DataAccessException("This value " + idEvent + " isn't correct !");
+        } else {
+            eventDataAccess.deleteEvent(idEvent);
+            events.removeIf(event -> event.getIdEvent() == idEvent);
+        }
     }
-    public void updateEvent(EventModel event) {
+    public void updateEvent(EventModel event) throws DataAccessException {
         if(event == null) {
-            System.out.println("Error");
+            throw new DataAccessException("The object event can't be null");
         } else {
             eventDataAccess.updateEvent(event);
             loadEventList();
         }
     }
 
-    public EventModel getEvent(int idEvent) {
+    public EventModel getEvent(int idEvent) throws DataAccessException {
         if(idEvent <= 0) {
-            System.out.println("Error");
+            throw new DataAccessException("This value " + idEvent + " isn't correct !");
         }
         return eventDataAccess.getEvent(idEvent);
     }
@@ -98,9 +103,9 @@ public class EventsManagementBusiness {
 
     /*-------------------------- SEARCH EVENT TYPE -------------*/
 
-    public ArrayList<SearchEventTypeModel> getSearchByEventType(int idEventType) {
+    public ArrayList<SearchEventTypeModel> getSearchByEventType(int idEventType) throws DataAccessException {
         if(idEventType <= 0) {
-            System.out.println("Error");
+            throw new DataAccessException("This value " + idEventType + " isn't correct !");
         }
         return  searchEventTypeDataAccess.getSearchByEventType(idEventType);
     }
@@ -144,12 +149,9 @@ public class EventsManagementBusiness {
         if(idUser <= 0) {
             throw new DataAccessException("This value " + idUser + " isn't correct for finding user's event");
         } else {
+            List<EventModel> list= events.stream().filter(e -> idUser == e.getIdEvent()).toList();
 
-            ArrayList<EventModel> eventModelArrayList = new ArrayList<>();
-
-            events.forEach(event -> { if(idUser == event.getIdEvent()) eventModelArrayList.add(event); });
-
-            return eventModelArrayList;
+            return new ArrayList<>(list);
         }
     }
 
