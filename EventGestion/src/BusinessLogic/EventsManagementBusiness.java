@@ -147,10 +147,7 @@ public class EventsManagementBusiness {
 
             ArrayList<EventModel> eventModelArrayList = new ArrayList<>();
 
-            //TODO : je crois qu'on peut utiliser un -> avec un filter ...
-            for (EventModel eventModel : events) {
-                if (idUser == eventModel.getFk_creator()) eventModelArrayList.add(eventModel);
-            }
+            events.forEach(event -> { if(idUser == event.getIdEvent()) eventModelArrayList.add(event); });
 
             return eventModelArrayList;
         }

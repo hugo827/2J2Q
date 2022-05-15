@@ -19,7 +19,6 @@ public class EventTableModel extends AbstractTableModel {
     }
 
     private void setContents(ArrayList<EventModel> eventModels) {
-        //TODO : verification ?
         this.contents = eventModels;
     }
 
@@ -61,7 +60,7 @@ public class EventTableModel extends AbstractTableModel {
 
     public Class getColumnClass (int column)
     {
-        Class c = switch (column) {
+       return  switch (column) {
             case 0, 8 -> Integer.class;
             case 1, 2, 3, 10, 11, 12 -> String.class;
             case 4, 9 -> Boolean.class;
@@ -69,7 +68,6 @@ public class EventTableModel extends AbstractTableModel {
             case 5, 6 -> Date.class;
             default -> String.class;
         };
-        return c;
     }
 
 

@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 public class UserNameTableModel extends AbstractTableModel {
 
-    //TODO trouver une facons de ne pas afficher l'id ( idee : hashmap)
     private final String[] columnsName = {
             "User Name"
     };

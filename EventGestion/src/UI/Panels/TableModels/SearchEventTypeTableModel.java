@@ -19,7 +19,6 @@ public class SearchEventTypeTableModel extends AbstractTableModel  {
         setContents(contents);
     }
     private void setContents(ArrayList<SearchEventTypeModel> searchEventTypeModels) {
-        //TODO : verification ?
         this.contents = searchEventTypeModels;
     }
     @Override
@@ -52,11 +51,10 @@ public class SearchEventTypeTableModel extends AbstractTableModel  {
 
 
     public Class getColumnClass (int column) {
-        Class c = switch (column) {
+       return switch (column) {
             case 0, 3, 4, 5 -> String.class;
             case 1, 2 -> Date.class;
             default -> String.class;
         };
-        return c;
     }
 }

@@ -50,12 +50,16 @@ public class UpdateListener implements ActionListener {
             MainWindow.getController().updateEvent(event);
 
             //TODO voir si on peut pas faire autrement le retour !
-            MainWindow.getMainWindow().setTitle("Events Management - Listing Event");
-            MainWindow.getMainWindow().getFrameContainer().removeAll();
-            MainWindow.getMainWindow().getFrameContainer().setLayout(new BorderLayout());
-            MainWindow.getMainWindow().getFrameContainer().add(new EventListingPanel(), BorderLayout.CENTER);
-            MainWindow.getMainWindow().repaint();
-            MainWindow.getMainWindow().printAll(MainWindow.getMainWindow().getGraphics());
+
+            MainWindow.refreshPanel(new EventListingPanel(), "Listing Event");
+
+//            MainWindow.getMainWindow().setTitle("Events Management - Listing Event");
+//            MainWindow.getMainWindow().getFrameContainer().removeAll();
+//            MainWindow.getMainWindow().getFrameContainer().setLayout(new BorderLayout());
+//            MainWindow.getMainWindow().getFrameContainer().add(new EventListingPanel(), BorderLayout.CENTER);
+//            MainWindow.getMainWindow().repaint();
+//            MainWindow.getMainWindow().printAll(MainWindow.getMainWindow().getGraphics());
+
         } catch (EventException ex) {
             JOptionPane.showMessageDialog(eventFormPanel,ex.getMessage(), ex.getTitleError(),JOptionPane.ERROR_MESSAGE);
         }
