@@ -50,13 +50,12 @@ public class BusinessTaskDataAccess implements IBusinessTask {
             while (data.next()){
                 sumTotalPromotion = data.getDouble(1);
             }
-            connectionDB.commit();
             res = new BusinessTaskModel(nbParticipant, sumTotal - sumTotalPromotion,sumTotal,sumTotalPromotion);
+            connectionDB.commit();
 
         } catch(SQLException throwable) {
             throwable.printStackTrace();
             connectionDB.rollback();
-
         }
 
         return res;

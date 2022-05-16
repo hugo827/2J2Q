@@ -26,12 +26,13 @@ public class EventManagementTest {
     @BeforeEach
     public void setUp() throws Exception {
         System.out.println("Setting up for test " + i);
-        i++;
+
     }
 
     @AfterEach
     public void tearDown() throws Exception {
-
+        System.out.println("Test ended " + i);
+        i++;
     }
 
 
@@ -45,7 +46,7 @@ public class EventManagementTest {
     }
 
     @Test
-    @DisplayName("Test return correct value with promotion")
+    @DisplayName("correct value with promotion")
     public void test_correct_value() throws DataAccessException, SQLException {
         String res = eventsManagementBusiness.getInformationEvent(1);
         String expected = " - Nombre de participant : 5\n"
@@ -56,7 +57,7 @@ public class EventManagementTest {
     }
 
     @Test
-    @DisplayName("Test return correct value without promotion")
+    @DisplayName("correct value without promotion")
     public void test_correct_value_2() throws DataAccessException, SQLException {
         String res = eventsManagementBusiness.getInformationEvent(5);
         String expected = " - Nombre de participant : 4\n"
@@ -68,7 +69,7 @@ public class EventManagementTest {
 
     @Test
     @DisplayName("event not exist")
-    public void non_existent_line() throws DataAccessException, SQLException {
+    public void no_existent_line() throws DataAccessException, SQLException {
         String res = eventsManagementBusiness.getInformationEvent(25);
         String expected = " - Nombre de participant : 0\n"
                 + " - Somme total : 0.0\n"
