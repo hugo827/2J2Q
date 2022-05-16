@@ -41,11 +41,11 @@ public class ChangeDate {
 
     public void draw(Graphics g) {
         g.setColor(Color.BLUE);
-        g.drawString("" + months[indMonth], 25,22);
-        g.drawString("" + daysNames[indDay], 15,50);
+        g.drawString("" + months[indMonth], 35,32);
+        g.drawString("" + daysNames[indDay], 25,60);
         g.setColor(Color.RED);
         g.setFont(new Font("TimesRoman", Font.PLAIN, 35));
-        if(numberOfDayMonth >= 10)  g.drawString("" + numberOfDayMonth + "", 25, 85 );
-        else g.drawString("" + numberOfDayMonth + "", 35, 85 );
+        if(numberOfDayMonth >= 10)  g.drawString("" + numberOfDayMonth + "", 35, 95 );
+        else g.drawString("" + numberOfDayMonth + "", 45, 95 );
     }
 }

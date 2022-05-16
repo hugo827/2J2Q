@@ -63,7 +63,7 @@ public class BusinessTaskPanel extends JPanel {
 
         listEventPanel.setVisible(false);
         calculateButton.addActionListener(new CalculateListener(this));
-        calculateButton.setVisible(true);
+        calculateButton.setVisible(false);
 
         this.add(searchEventPanel, BorderLayout.CENTER);
     }

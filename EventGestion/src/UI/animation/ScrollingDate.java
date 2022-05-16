@@ -19,11 +19,11 @@ public class ScrollingDate extends JPanel {
 
     public ScrollingDate() {
 
-        verticalWalls.add(new Wall(100,5,5,5));
-        verticalWalls.add(new Wall(100,5,85,5));
-        horizontalWalls.add(new Wall(5,80,10,5));
-        horizontalWalls.add(new Wall(5,80,10,25));
-        horizontalWalls.add(new Wall(5,80,10,100));
+        verticalWalls.add(new Wall(100,5,15,15));
+        verticalWalls.add(new Wall(100,5,95,15));
+        horizontalWalls.add(new Wall(5,80,20,15));
+        horizontalWalls.add(new Wall(5,80,20,35));
+        horizontalWalls.add(new Wall(5,80,20,110));
 
         changeDate = new ChangeDate();
         animationThread = new AnimationThread(this);

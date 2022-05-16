@@ -41,14 +41,14 @@ public class EventFormPanel extends JPanel {
 
     private SpinnerModel modelStartHour = new SpinnerNumberModel(
             8, //valeur initiale
-            1, //valeur minimum
-            24, //valeur maximum
+            0, //valeur minimum
+            23, //valeur maximum
             1 //pas
     );
     private SpinnerModel modelEndHour= new SpinnerNumberModel(
             8, //valeur initiale
-            1, //valeur minimum
-            24, //valeur maximum
+            0, //valeur minimum
+            23, //valeur maximum
             1 //pas
     );
     private SpinnerModel modelEndMinutes = new SpinnerNumberModel(
