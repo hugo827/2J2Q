@@ -12,12 +12,14 @@ public class BusinessTaskDataAccess implements IBusinessTask {
 
     public BusinessTaskModel getDataEvent(int idEvent) {
 
+
         int nbParticipant = 0;
         double sumTotal = 0, sumTotalPromotion = 0, price = 0;
         BusinessTaskModel res = null;
+        Connection connectionDB = ConnectionDB.getInstance();
 
         try {
-            Connection connectionDB = ConnectionDB.getInstance();
+
             String query = ("SELECT  COUNT(*), price, SUM(price) FROM event e " +
                     "INNER JOIN participation p ON e.idEvent = p.fk_event " +
                     "INNER JOIN user u ON p.fk_user = u.idUser " +
@@ -33,8 +35,7 @@ public class BusinessTaskDataAccess implements IBusinessTask {
                  sumTotal = data.getDouble(3);
             }
 
-            query = ("\n" +
-                    "SELECT SUM(? * pr.reductionPourcent) FROM user u " +
+            query = ("SELECT SUM(? * pr.reductionPourcent) FROM user u " +
                     "INNER JOIN participation p ON p.fk_user = u.idUser " +
                     "INNER JOIN usertype ut ON ut.idUserType = u.fk_usertype " +
                     "INNER JOIN promotion pr ON  pr.fk_usertype = u.fk_usertype AND pr.fk_event = p.fk_event " +
@@ -52,6 +53,7 @@ public class BusinessTaskDataAccess implements IBusinessTask {
 
         } catch(SQLException throwable) {
             throwable.printStackTrace();
+
         }
 
         return res;

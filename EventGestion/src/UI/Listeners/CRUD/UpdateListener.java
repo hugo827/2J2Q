@@ -2,6 +2,7 @@ package UI.Listeners.CRUD;
 
 import Exceptions.DataAccessException;
 import Exceptions.EventException;
+import Exceptions.UpdateEventException;
 import Models.AddressModel;
 import Models.EventModel;
 import Models.EventTypeModel;
@@ -73,6 +74,8 @@ public class UpdateListener implements ActionListener {
             JOptionPane.showMessageDialog(eventFormPanel,ex.getMessage(), ex.getTitleError(),JOptionPane.ERROR_MESSAGE);
         } catch (DataAccessException ex) {
             throw new RuntimeException(ex);
+        } catch (UpdateEventException ex) {
+            JOptionPane.showMessageDialog(eventFormPanel, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
 
     }

@@ -4,6 +4,7 @@ import BusinessLogic.EventsManagementBusiness;
 import Exceptions.AddEventException;
 import Exceptions.DataAccessException;
 import Exceptions.SearchDateException;
+import Exceptions.UpdateEventException;
 import Models.*;
 
 import java.sql.SQLException;
@@ -35,7 +36,7 @@ public class EventsManagementController {
         eventsManagementBusiness.deleteEvent(idEvent);
     }
 
-    public void updateEvent(EventModel event) throws DataAccessException {
+    public void updateEvent(EventModel event) throws DataAccessException, UpdateEventException {
         eventsManagementBusiness.updateEvent(event);
     }
 

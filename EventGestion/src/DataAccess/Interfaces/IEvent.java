@@ -1,6 +1,7 @@
 package DataAccess.Interfaces;
 
 import Exceptions.AddEventException;
+import Exceptions.UpdateEventException;
 import Models.EventModel;
 
 import java.sql.SQLException;
@@ -10,6 +11,6 @@ public interface IEvent {
      void addEvent(EventModel eventModel) throws AddEventException; // CREATE
      ArrayList<EventModel> getAllEvent(); // READ
      EventModel getEvent(int idEvent); //READ
-     void updateEvent(EventModel event); // UPDATE
+     void updateEvent(EventModel event) throws UpdateEventException; // UPDATE
      void deleteEvent(int idEvent) throws SQLException; // DELETE
 }

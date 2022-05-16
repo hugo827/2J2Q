@@ -5,6 +5,7 @@ import DataAccess.Interfaces.*;
 import Exceptions.AddEventException;
 import Exceptions.DataAccessException;
 import Exceptions.SearchDateException;
+import Exceptions.UpdateEventException;
 import Models.*;
 
 import java.sql.SQLException;
@@ -76,7 +77,7 @@ public class EventsManagementBusiness {
             events.removeIf(event -> event.getIdEvent() == idEvent);
         }
     }
-    public void updateEvent(EventModel event) throws DataAccessException {
+    public void updateEvent(EventModel event) throws DataAccessException, UpdateEventException {
         if(event == null) {
             throw new DataAccessException("The object event can't be null");
         } else {

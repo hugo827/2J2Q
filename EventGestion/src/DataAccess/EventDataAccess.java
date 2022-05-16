@@ -1,7 +1,9 @@
 package DataAccess;
 
 import DataAccess.Interfaces.IEvent;
+import Exceptions.AddEventException;
 import Exceptions.EventException;
+import Exceptions.UpdateEventException;
 import Models.EventModel;
 
 import java.sql.*;
@@ -12,7 +14,7 @@ import java.util.Date;
 public class EventDataAccess implements IEvent {
 
     @Override
-    public void addEvent(EventModel event)  {
+    public void addEvent(EventModel event) throws AddEventException {
         try {
             Connection connectionDB = ConnectionDB.getInstance();
             String query = ("INSERT INTO event(title, description, additionalInformation, isImportant, startDate, endDate, price, participantNbMax, isPrivate, fk_creator, fk_eventType, fk_address)" +
@@ -43,7 +45,7 @@ public class EventDataAccess implements IEvent {
             statement.executeUpdate();
 
         } catch(SQLException throwable) {
-            throwable.printStackTrace();
+            throw new AddEventException();
         }
     }
 
@@ -91,7 +93,9 @@ public class EventDataAccess implements IEvent {
     }
 
     @Override
-    public void updateEvent(EventModel event) {
+    public void updateEvent(EventModel event) throws UpdateEventException {
+
+
         try {
             Connection connectionDB = ConnectionDB.getInstance();
             String query = ("UPDATE `event` SET `title` = ? , `description` = ? , `additionalInformation` = ? , `isImportant` = ? , `startDate` = ? , `endDate` = ? , `price` = ? ," +
@@ -122,7 +126,7 @@ public class EventDataAccess implements IEvent {
             statement.executeUpdate();
 
         } catch(SQLException throwable) {
-            throwable.printStackTrace();
+           throw new UpdateEventException();
         }
     }
 
