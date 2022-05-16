@@ -150,7 +150,7 @@ public class EventsManagementBusiness {
         if(idUser <= 0) {
             throw new DataAccessException("This value " + idUser + " isn't correct for finding user's event");
         } else {
-            List<EventModel> list= events.stream().filter(e -> idUser == e.getIdEvent()).toList();
+            List<EventModel> list= events.stream().filter(e -> idUser == e.getFk_creator()).toList();
 
             return new ArrayList<>(list);
         }
