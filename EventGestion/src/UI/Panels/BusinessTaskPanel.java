@@ -11,6 +11,7 @@ import UI.Windows.MainWindow;
 
 import javax.swing.*;
 import java.awt.*;
+import java.sql.SQLException;
 
 public class BusinessTaskPanel extends JPanel {
 
@@ -85,7 +86,7 @@ public class BusinessTaskPanel extends JPanel {
         calculateButton.setVisible(true);
     }
 
-    public void showInformation() throws DataAccessException {
+    public void showInformation() throws DataAccessException, SQLException {
         String msg = MainWindow.getController().getInformationEvent((Integer) eventJTable.getValueAt(eventJTable.getSelectedRow(), 0));
         JOptionPane.showMessageDialog(this, msg, "Information Event", JOptionPane.PLAIN_MESSAGE);
     }

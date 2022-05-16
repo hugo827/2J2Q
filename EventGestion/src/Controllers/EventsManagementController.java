@@ -78,7 +78,7 @@ public class EventsManagementController {
         return eventsManagementBusiness.getUserEventsList(idUser);
     }
 
-    public String getInformationEvent(int idEvent) throws DataAccessException {
+    public String getInformationEvent(int idEvent) throws DataAccessException, SQLException {
         return eventsManagementBusiness.getInformationEvent( idEvent);
     }
 }

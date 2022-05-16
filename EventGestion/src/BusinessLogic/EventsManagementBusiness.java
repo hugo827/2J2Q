@@ -156,12 +156,12 @@ public class EventsManagementBusiness {
         }
     }
 
-    public String getInformationEvent(int idEvent) throws DataAccessException {
+    public String getInformationEvent(int idEvent) throws DataAccessException, SQLException {
         if(idEvent <=  0) {
             throw new DataAccessException("This value " + idEvent + " isn't correct for finding an event");
         } else {
             BusinessTaskModel businessTaskModel = businessTaskDataAccess.getDataEvent(idEvent);
-
+            System.out.println(businessTaskModel);
             return " - Nombre de participant : " + businessTaskModel.getNbParticipant() + "\n"
                     + " - Somme total : " + businessTaskModel.getSumTotalWithOutPromotion() + "\n"
                     + " - Somme total prommotion : " + businessTaskModel.getSumTotalPromotion() + "\n"

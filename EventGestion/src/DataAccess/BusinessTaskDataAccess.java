@@ -10,7 +10,7 @@ import java.sql.SQLException;
 
 public class BusinessTaskDataAccess implements IBusinessTask {
 
-    public BusinessTaskModel getDataEvent(int idEvent) {
+    public BusinessTaskModel getDataEvent(int idEvent) throws SQLException {
 
 
         int nbParticipant = 0;
@@ -19,7 +19,8 @@ public class BusinessTaskDataAccess implements IBusinessTask {
         Connection connectionDB = ConnectionDB.getInstance();
 
         try {
-
+            connectionDB.setAutoCommit(false);
+            connectionDB.beginRequest();
             String query = ("SELECT  COUNT(*), price, SUM(price) FROM event e " +
                     "INNER JOIN participation p ON e.idEvent = p.fk_event " +
                     "INNER JOIN user u ON p.fk_user = u.idUser " +
@@ -35,6 +36,7 @@ public class BusinessTaskDataAccess implements IBusinessTask {
                  sumTotal = data.getDouble(3);
             }
 
+
             query = ("SELECT SUM(? * pr.reductionPourcent) FROM user u " +
                     "INNER JOIN participation p ON p.fk_user = u.idUser " +
                     "INNER JOIN usertype ut ON ut.idUserType = u.fk_usertype " +
@@ -48,11 +50,12 @@ public class BusinessTaskDataAccess implements IBusinessTask {
             while (data.next()){
                 sumTotalPromotion = data.getDouble(1);
             }
-
+            connectionDB.commit();
             res = new BusinessTaskModel(nbParticipant, sumTotal - sumTotalPromotion,sumTotal,sumTotalPromotion);
 
         } catch(SQLException throwable) {
             throwable.printStackTrace();
+            connectionDB.rollback();
 
         }
 

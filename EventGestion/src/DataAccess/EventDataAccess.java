@@ -171,7 +171,7 @@ public class EventDataAccess implements IEvent {
         Connection connectionDB = ConnectionDB.getInstance();
         try {
             connectionDB.setAutoCommit(false);
-
+            connectionDB.beginRequest();
             String query1 = "DELETE FROM `promotion` WHERE `fk_event` = ?";
             String query2 = "DELETE FROM `participation` WHERE `fk_event` = ?";
             String query3 = "DELETE FROM `event` WHERE `idEvent` = ?";
