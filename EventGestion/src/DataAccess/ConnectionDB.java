@@ -20,9 +20,14 @@ public class ConnectionDB {
         }
     }
 
-    public static Connection getInstance() {
+    public static Connection getInstance() throws SQLException {
         if(connection == null) {
             new ConnectionDB();
+        } else {
+            //TODO : si la conenction se coupe ... et rallume ???
+            if (!connection.isValid(100)) {
+                new ConnectionDB();
+            }
         }
         return connection;
     }
