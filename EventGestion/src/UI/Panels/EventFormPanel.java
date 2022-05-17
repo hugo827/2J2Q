@@ -171,7 +171,7 @@ public class EventFormPanel extends JPanel {
         add = new JButton(isUpdate ? "Update event" : "Add new event");
 
         if(isUpdate) {
-            cancel.addActionListener(new EventReadListener(MainWindow.getMainWindow()));
+            cancel.addActionListener(new EventReadListener(MainWindow.getInstance()));
             add.addActionListener(new UpdateListener(this, eventUpdate));
             address.setSelectedIndex(eventUpdate.getFk_address()-1);
             creator.setSelectedIndex(eventUpdate.getFk_creator()-1);

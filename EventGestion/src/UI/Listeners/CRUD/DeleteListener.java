@@ -36,8 +36,8 @@ public class DeleteListener implements ActionListener {
                     JOptionPane.showMessageDialog(eventListingPanel,ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 }
 
-                MainWindow.getMainWindow().repaint();
-                MainWindow.getMainWindow().printAll(MainWindow.getMainWindow().getGraphics());
+                MainWindow.getInstance().repaint();
+                MainWindow.getInstance().printAll(MainWindow.getInstance().getGraphics());
             }
         }
     }

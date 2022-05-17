@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 public class CancelListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
-        EventCreateListener eventCreateListener = new EventCreateListener(MainWindow.getMainWindow());
+        EventCreateListener eventCreateListener = new EventCreateListener(MainWindow.getInstance());
         eventCreateListener.actionPerformed(e);
     }
 }

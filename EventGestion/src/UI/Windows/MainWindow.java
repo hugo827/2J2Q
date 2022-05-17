@@ -9,7 +9,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 
 
 public class MainWindow extends JFrame {
@@ -33,7 +32,7 @@ public class MainWindow extends JFrame {
     private static EventsManagementController eventsManagementController;
     private static MainWindow mainWindow;
 
-    public MainWindow() {
+    private MainWindow() {
         super("Events Management");
         Dimension minimunSizeJFrame = new Dimension(1300,800);
         setBounds(100,100,1300,800);
@@ -124,15 +123,18 @@ public class MainWindow extends JFrame {
     public static EventsManagementController getController() {
         return eventsManagementController;
     }
-    public static MainWindow getMainWindow() { return mainWindow; }
+    public static MainWindow getInstance() {
+        if(mainWindow == null ) new MainWindow();
+        return mainWindow;
+    }
 
     public static void refreshPanel(JPanel panel, String title) {
-        getMainWindow().setTitle( "Events Management" + (title == null ? " " :  " - "+title));
-        getMainWindow().getFrameContainer().removeAll();
-        getMainWindow().getFrameContainer().setLayout(new BorderLayout());
-        getMainWindow().getFrameContainer().add(panel == null ? new HomePanel() : panel, BorderLayout.CENTER);
-        getMainWindow().repaint();
-        getMainWindow().printAll(MainWindow.getMainWindow().getGraphics());
+        getInstance().setTitle( "Events Management" + (title == null ? " " :  " - "+title));
+        getInstance().getFrameContainer().removeAll();
+        getInstance().getFrameContainer().setLayout(new BorderLayout());
+        getInstance().getFrameContainer().add(panel == null ? new HomePanel() : panel, BorderLayout.CENTER);
+        getInstance().repaint();
+        getInstance().printAll(MainWindow.getInstance().getGraphics());
     }
 
 }
