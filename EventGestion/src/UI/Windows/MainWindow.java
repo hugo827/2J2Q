@@ -16,7 +16,7 @@ public class MainWindow extends JFrame {
 
     private Container mainContainer, frameContainer;
     private JMenuBar jMenuBar;
-    private JMenu event, search, home, businessTask;
+    private JMenu event, search, home, businessTask, calculate;
     private JMenuItem  eventCreate, eventRead, search1, search2, search3;
     private HomeListener homeListener;
     private BusinessTaskListener btListener;
@@ -26,6 +26,7 @@ public class MainWindow extends JFrame {
     private SearchDatesListener searchDatesListener;
     private SearchEventTypeListener searchEventTypeListener;
     private SearchPromotionListener searchPromotionListener;
+    private CalculateListener calculateListener;
 
     private AnimationPanel animationPanel;
 
@@ -78,6 +79,7 @@ public class MainWindow extends JFrame {
         search = new JMenu("Search");
         home = new JMenu("Home");
         businessTask = new JMenu("Business task");
+        calculate = new JMenu("calculate");
         eventRead = new JMenuItem("Listing");
         eventCreate = new JMenuItem("Add Event");
         search1 = new JMenuItem("Search by dates");
@@ -88,6 +90,7 @@ public class MainWindow extends JFrame {
         jMenuBar.add(event);
         jMenuBar.add(search);
         jMenuBar.add(businessTask);
+        jMenuBar.add(calculate);
 
         event.add(eventRead);
         event.add(eventCreate);
@@ -105,6 +108,7 @@ public class MainWindow extends JFrame {
         searchDatesListener = new SearchDatesListener(this);
         searchPromotionListener = new SearchPromotionListener(this);
         searchEventTypeListener = new SearchEventTypeListener(this);
+        calculateListener = new CalculateListener();
 
         home.addMouseListener(homeListener);
         businessTask.addMouseListener(btListener);
@@ -113,6 +117,7 @@ public class MainWindow extends JFrame {
         search1.addActionListener(searchDatesListener);
         search2.addActionListener(searchPromotionListener);
         search3.addActionListener(searchEventTypeListener);
+        calculate.addMouseListener(calculateListener);
     }
 
 

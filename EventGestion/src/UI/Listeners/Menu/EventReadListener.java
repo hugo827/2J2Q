@@ -18,11 +18,12 @@ public class EventReadListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        mainWindow.setTitle("Events Management - Listing Event");
-        mainWindow.getFrameContainer().removeAll();
-        mainWindow.getFrameContainer().setLayout(new BorderLayout());
-        mainWindow.getFrameContainer().add(new EventListingPanel(), BorderLayout.CENTER);
-        mainWindow.repaint();
-        mainWindow.printAll(mainWindow.getGraphics());
+        MainWindow.refreshPanel(new EventListingPanel(), "Listing Event");
+//        mainWindow.setTitle("Events Management - Listing Event");
+//        mainWindow.getFrameContainer().removeAll();
+//        mainWindow.getFrameContainer().setLayout(new BorderLayout());
+//        mainWindow.getFrameContainer().add(new EventListingPanel(), BorderLayout.CENTER);
+//        mainWindow.repaint();
+//        mainWindow.printAll(mainWindow.getGraphics());
     }
 }

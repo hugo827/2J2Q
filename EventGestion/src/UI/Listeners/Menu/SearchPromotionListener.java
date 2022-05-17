@@ -16,11 +16,12 @@ public class SearchPromotionListener implements ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        mainWindow.setTitle("Events Management - Search promotions");
-        mainWindow.getFrameContainer().removeAll();
-        mainWindow.getFrameContainer().setLayout(new BorderLayout());
-        mainWindow.getFrameContainer().add(new SearchPromotionPanel(), BorderLayout.CENTER);
-        mainWindow.repaint();
-        mainWindow.printAll(mainWindow.getGraphics());
+        MainWindow.refreshPanel(new SearchPromotionPanel(), "Search promotions");
+//        mainWindow.setTitle("Events Management - Search promotions");
+//        mainWindow.getFrameContainer().removeAll();
+//        mainWindow.getFrameContainer().setLayout(new BorderLayout());
+//        mainWindow.getFrameContainer().add(new SearchPromotionPanel(), BorderLayout.CENTER);
+//        mainWindow.repaint();
+//        mainWindow.printAll(mainWindow.getGraphics());
     }
 }

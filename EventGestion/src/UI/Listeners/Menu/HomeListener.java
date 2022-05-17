@@ -17,12 +17,13 @@ public class HomeListener implements MouseListener {
     }
     @Override
     public void mouseClicked(MouseEvent e) {
-        mainWindow.setTitle("Events Management");
-        mainWindow.getFrameContainer().removeAll();
-        mainWindow.getFrameContainer().setLayout(new BorderLayout());
-        mainWindow.getFrameContainer().add(new HomePanel(), BorderLayout.CENTER);
-        mainWindow.repaint();
-        mainWindow.printAll(mainWindow.getGraphics());
+        MainWindow.refreshPanel(null, null);
+//        mainWindow.setTitle("Events Management");
+//        mainWindow.getFrameContainer().removeAll();
+//        mainWindow.getFrameContainer().setLayout(new BorderLayout());
+//        mainWindow.getFrameContainer().add(new HomePanel(), BorderLayout.CENTER);
+//        mainWindow.repaint();
+//        mainWindow.printAll(mainWindow.getGraphics());
     }
 
     @Override

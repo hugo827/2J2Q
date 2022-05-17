@@ -15,11 +15,12 @@ public class SearchDatesListener implements ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        mainWindow.setTitle("Events Management - Search Event by dates");
-        mainWindow.getFrameContainer().removeAll();
-        mainWindow.getFrameContainer().setLayout(new BorderLayout());
-        mainWindow.getFrameContainer().add(new SearchDatesPanel(), BorderLayout.CENTER);
-        mainWindow.repaint();
-        mainWindow.printAll(mainWindow.getGraphics());
+        MainWindow.refreshPanel(new SearchDatesPanel(), "Search Event by dates");
+//        mainWindow.setTitle("Events Management - Search Event by dates");
+//        mainWindow.getFrameContainer().removeAll();
+//        mainWindow.getFrameContainer().setLayout(new BorderLayout());
+//        mainWindow.getFrameContainer().add(new SearchDatesPanel(), BorderLayout.CENTER);
+//        mainWindow.repaint();
+//        mainWindow.printAll(mainWindow.getGraphics());
     }
 }

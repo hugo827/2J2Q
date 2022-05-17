@@ -1,6 +1,7 @@
 package UI.Listeners.Menu;
 
 import UI.Panels.BusinessTaskPanel;
+import UI.Panels.CalculatePanel;
 import UI.Windows.MainWindow;
 
 import java.awt.*;
@@ -17,12 +18,14 @@ public class BusinessTaskListener implements MouseListener {
     }
     @Override
     public void mouseClicked(MouseEvent e) {
-        mainWindow.setTitle("Events Management - Business task");
-        mainWindow.getFrameContainer().removeAll();
-        mainWindow.getFrameContainer().setLayout(new BorderLayout());
-        mainWindow.getFrameContainer().add(new BusinessTaskPanel(), BorderLayout.CENTER);
-        mainWindow.repaint();
-        mainWindow.printAll(mainWindow.getGraphics());
+
+        MainWindow.refreshPanel(new BusinessTaskPanel(), "Business task");
+//        mainWindow.setTitle("Events Management - Business task");
+//        mainWindow.getFrameContainer().removeAll();
+//        mainWindow.getFrameContainer().setLayout(new BorderLayout());
+//        mainWindow.getFrameContainer().add(new BusinessTaskPanel(), BorderLayout.CENTER);
+//        mainWindow.repaint();
+//        mainWindow.printAll(mainWindow.getGraphics());
     }
 
     @Override

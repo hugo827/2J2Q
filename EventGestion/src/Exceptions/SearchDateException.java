@@ -1,11 +1,32 @@
 package Exceptions;
 
+import java.util.Date;
+
 public class SearchDateException extends Exception {
 
-    public SearchDateException() {}
+    Date startDate, endDate;
+    public SearchDateException(Date startDate, Date endDate) {
+       this.startDate = startDate;
+       this.endDate = endDate;
+    }
 
     public String getMessage(){
-        return "The start date can't be after the end date for your search\n And \n Start date and end date can't be null";
+        String message;
+
+        if(startDate == null) {
+            message = "Start date can't be null, please enter a date";
+        } else {
+            if(endDate == null) {
+                message = "End date can't be null, please enter a valid end date";
+            } else {
+                if(endDate.before(startDate)) {
+                    message = "Start date can't be before end date";
+                } else {
+                    message = "Unknow error";
+                }
+            }
+        }
+        return  message;
     }
 
 

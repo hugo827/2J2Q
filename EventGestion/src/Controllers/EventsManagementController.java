@@ -81,4 +81,8 @@ public class EventsManagementController {
     public String getInformationEvent(int idEvent) throws DataAccessException, SQLException {
         return eventsManagementBusiness.getInformationEvent( idEvent);
     }
+
+    public double calculateReduction(int numberPerson, double reduc, double price) {
+        return eventsManagementBusiness.calculateReduction(numberPerson, reduc, price);
+    }
 }

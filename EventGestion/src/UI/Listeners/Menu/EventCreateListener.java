@@ -3,6 +3,7 @@ package UI.Listeners.Menu;
 
 import UI.Panels.EventFormPanel;
 import UI.Windows.MainWindow;
+import com.sun.tools.javac.Main;
 
 
 import java.awt.*;
@@ -18,12 +19,13 @@ public class EventCreateListener implements ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        mainWindow.setTitle("Events Management - Add new event");
-        mainWindow.getFrameContainer().removeAll();
-        mainWindow.getFrameContainer().setLayout(new BorderLayout());
-        mainWindow.getFrameContainer().add(new EventFormPanel(), BorderLayout.CENTER);
-        mainWindow.repaint();
-        mainWindow.printAll(mainWindow.getGraphics());
+        MainWindow.refreshPanel(new EventFormPanel(), "Add new event");
+//        mainWindow.setTitle("Events Management - Add new event");
+//        mainWindow.getFrameContainer().removeAll();
+//        mainWindow.getFrameContainer().setLayout(new BorderLayout());
+//        mainWindow.getFrameContainer().add(new EventFormPanel(), BorderLayout.CENTER);
+//        mainWindow.repaint();
+//        mainWindow.printAll(mainWindow.getGraphics());
     }
 
 }

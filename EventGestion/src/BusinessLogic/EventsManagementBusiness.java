@@ -117,7 +117,7 @@ public class EventsManagementBusiness {
 
     public ArrayList<SearchDateModel> getSearchByDates(Date startDate, Date endDate) throws SearchDateException {
         if(startDate == null || endDate == null || endDate.before(startDate)) {
-            throw new SearchDateException();
+            throw new SearchDateException(startDate, endDate);
         } else {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
             String formattedStartDate = simpleDateFormat.format(startDate);
@@ -167,5 +167,10 @@ public class EventsManagementBusiness {
                     + " - Somme total prommotion : " + businessTaskModel.getSumTotalPromotion() + "\n"
                     + " - Somme final : " + businessTaskModel.getSumFinal() + "\n";
         }
+    }
+
+    public double calculateReduction(int numberPerson, double reduc, double price) {
+
+        return (numberPerson * price) / reduc;
     }
 }
