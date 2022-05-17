@@ -7,7 +7,9 @@ import Exceptions.DataAccessException;
 import Exceptions.SearchDateException;
 import Exceptions.UpdateEventException;
 import Models.*;
+import UI.Panels.TestPanel;
 
+import javax.swing.*;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -169,8 +171,23 @@ public class EventsManagementBusiness {
         }
     }
 
-    public double calculateReduction(int numberPerson, double reduc, double price) {
+    public BusinessTaskModel calculateReduction(int numberPerson, double price, ArrayList<TestPanel> listPanel) {
+        BusinessTaskModel businessTaskModel = null;
+        double totalPromotion = 0;
+        double totalWithoutPromotion = numberPerson * price;
+        int totalPersonHavePromotion = 0;
 
-        return (numberPerson * price) / reduc;
+        for(TestPanel p : listPanel) {
+            if(p.getNumberPersonField() != null || p.getNumberPersonField().trim().isEmpty() || Integer.parseInt(p.getNumberPersonField()) == 0) {
+                totalPromotion += (price * Double.parseDouble(p.getReducField()) / 100) * Double.parseDouble(p.getNumberPersonField());
+                totalPersonHavePromotion += Integer.parseInt(p.getNumberPersonField());
+            }
+        }
+
+        double total = totalWithoutPromotion - totalPromotion;
+
+        businessTaskModel = new BusinessTaskModel(numberPerson, total, totalWithoutPromotion, totalPromotion, totalPersonHavePromotion);
+
+        return businessTaskModel;
     }
 }

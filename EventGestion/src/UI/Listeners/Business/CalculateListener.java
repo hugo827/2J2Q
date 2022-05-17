@@ -1,5 +1,6 @@
 package UI.Listeners.Business;
 
+import Models.BusinessTaskModel;
 import UI.Panels.CalculatePanel;
 import UI.Windows.MainWindow;
 
@@ -20,12 +21,16 @@ public class CalculateListener implements ActionListener {
             JOptionPane.showMessageDialog(null, "Need number of person", "Error", JOptionPane.ERROR_MESSAGE);
         } else if (calculatePanel.getPriceSTR() == null || calculatePanel.getPriceSTR().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Need price", "Error", JOptionPane.ERROR_MESSAGE);
-        } else if (calculatePanel.getReducSTR() == null || calculatePanel.getReducSTR().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Need reduc", "Error", JOptionPane.ERROR_MESSAGE);
-        } else {
-            double res = MainWindow.getController().calculateReduction(Integer.parseInt(calculatePanel.getNumberPersonSTR()),
-                   Double.parseDouble(calculatePanel.getReducSTR()), Double.parseDouble(calculatePanel.getPriceSTR()));
-            JOptionPane.showMessageDialog(null, "La reduction total est de : " + res, "Information", JOptionPane.PLAIN_MESSAGE );
+        }  else {
+            BusinessTaskModel res = MainWindow.getController().calculateReduction(Integer.parseInt(calculatePanel.getNumberPersonSTR()),
+                   Double.parseDouble(calculatePanel.getPriceSTR()), calculatePanel.getListPanel());
+
+            String message = " - Nombre de participant : " + res.getNbParticipant() + "\n"
+                    + " - Nombre de participant ayant eu une promotion : "  + res.getTotalPersonHavePromotion() + "\n"
+                    + " - Somme total : " + res.getSumTotalWithOutPromotion() + "\n"
+                    + " - Somme total prommotion : " + res.getSumTotalPromotion() + "\n"
+                    + " - Somme final : " + res.getSumFinal() + "\n";
+            JOptionPane.showMessageDialog(null, message, "Information", JOptionPane.PLAIN_MESSAGE );
 
         }
     }

@@ -6,7 +6,9 @@ import Exceptions.DataAccessException;
 import Exceptions.SearchDateException;
 import Exceptions.UpdateEventException;
 import Models.*;
+import UI.Panels.TestPanel;
 
+import javax.swing.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -82,7 +84,7 @@ public class EventsManagementController {
         return eventsManagementBusiness.getInformationEvent( idEvent);
     }
 
-    public double calculateReduction(int numberPerson, double reduc, double price) {
-        return eventsManagementBusiness.calculateReduction(numberPerson, reduc, price);
+    public BusinessTaskModel calculateReduction(int numberPerson, double price, ArrayList<TestPanel> listPanel) {
+        return eventsManagementBusiness.calculateReduction(numberPerson, price, listPanel);
     }
 }
