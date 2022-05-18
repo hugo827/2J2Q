@@ -12,9 +12,11 @@ import java.awt.event.ActionListener;
 
 public class CalculateListener implements ActionListener {
 
-    CalculatePanel calculatePanel;
-    public CalculateListener(CalculatePanel calculatePanel) {
+    private CalculatePanel calculatePanel;
+    private MainWindow mainWindow;
+    public CalculateListener(CalculatePanel calculatePanel, MainWindow mainWindow) {
         this.calculatePanel = calculatePanel;
+        this.mainWindow = mainWindow;
     }
 
     @Override
@@ -29,7 +31,7 @@ public class CalculateListener implements ActionListener {
             BusinessTaskModel res = null;
             try {
 
-                res = MainWindow.getController().calculateReduction(Integer.parseInt(calculatePanel.getNumberPersonSTR()),
+                res = mainWindow.getEventsManagementController().calculateReduction(Integer.parseInt(calculatePanel.getNumberPersonSTR()),
                        Double.parseDouble(calculatePanel.getPriceSTR()), calculatePanel.getListPanel());
                 String message = " - Nombre de participant : " + res.getNbParticipant() + "\n"
                         + " - Nombre de participant ayant eu une promotion : "  + res.getTotalPersonHavePromotion() + "\n"

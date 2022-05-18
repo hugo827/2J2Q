@@ -20,7 +20,7 @@ public class SearchEventTypeListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         mainWindow.setTitle("Events Management - Search By Event Type");
         mainWindow.getFrameContainer().removeAll();
-        mainWindow.getFrameContainer().add(new SearchEventTypePanel(), BorderLayout.CENTER);
+        mainWindow.getFrameContainer().add(new SearchEventTypePanel(mainWindow), BorderLayout.CENTER);
         mainWindow.printAll(mainWindow.getGraphics());
     }
 }

@@ -175,7 +175,7 @@ public class EventsManagementBusiness {
                 if(Double.parseDouble(p.getReducField()) > 100 || Double.parseDouble(p.getReducField()) <= 0) {
                     throw  new ReductionBetweenException();
                 } else {
-                    if (p.getNumberPersonField() != null || p.getNumberPersonField().trim().isEmpty() || Integer.parseInt(p.getNumberPersonField()) == 0) {
+                    if (p.getNumberPersonField() != null && !p.getNumberPersonField().trim().isEmpty() && !(Integer.parseInt(p.getNumberPersonField()) == 0)) {
                         totalPromotion += (price * Double.parseDouble(p.getReducField()) / 100) * Double.parseDouble(p.getNumberPersonField());
                         totalPersonHavePromotion += Integer.parseInt(p.getNumberPersonField());
                     }

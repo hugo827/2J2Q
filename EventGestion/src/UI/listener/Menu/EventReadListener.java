@@ -20,7 +20,7 @@ public class EventReadListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         mainWindow.setTitle("Events Management - Listing Event");
         mainWindow.getFrameContainer().removeAll();
-        mainWindow.getFrameContainer().add(new EventListingPanel(), BorderLayout.CENTER);
+        mainWindow.getFrameContainer().add(new EventListingPanel(mainWindow), BorderLayout.CENTER);
         mainWindow.printAll(mainWindow.getGraphics());
     }
 }

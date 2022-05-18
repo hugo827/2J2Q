@@ -19,7 +19,7 @@ public class CalculateListener implements MouseListener {
     public void mouseClicked(MouseEvent e) {
         mainWindow.setTitle( "Events Management - Calculate ");
         mainWindow.getFrameContainer().removeAll();
-        mainWindow.getFrameContainer().add(new CalculatePanel(), BorderLayout.CENTER);
+        mainWindow.getFrameContainer().add(new CalculatePanel(mainWindow), BorderLayout.CENTER);
         mainWindow.printAll(mainWindow.getGraphics());
     }
 

@@ -17,7 +17,7 @@ public class SearchDatesListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         mainWindow.setTitle("Events Management - Search Event by dates");
         mainWindow.getFrameContainer().removeAll();
-        mainWindow.getFrameContainer().add(new SearchDatesPanel(), BorderLayout.CENTER);
+        mainWindow.getFrameContainer().add(new SearchDatesPanel(mainWindow), BorderLayout.CENTER);
         mainWindow.printAll(mainWindow.getGraphics());
     }
 }

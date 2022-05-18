@@ -22,7 +22,7 @@ public class SearchEventTypePanel extends JPanel {
     private JScrollPane jScrollPane;
     private SearchEventTypeTableModel searchEventTypeTableModel;
 
-    public SearchEventTypePanel() {
+    public SearchEventTypePanel(MainWindow mainWindow) {
         this.setLayout(new BorderLayout());
         label = new JLabel("Search event type panel");
         label.setHorizontalAlignment(JLabel.CENTER);
@@ -36,10 +36,10 @@ public class SearchEventTypePanel extends JPanel {
         eventtypeLabel = new JLabel("Select event types : ");
         eventTypePanel.add(eventtypeLabel);
 
-        eventTypeModelArrayList = MainWindow.getController().getEventTypeList();
+        eventTypeModelArrayList = mainWindow.getEventsManagementController().getEventTypeList();
         eventTypes = new JComboBox(eventTypeModelArrayList.toArray());
         eventTypes.setSelectedIndex(-1);
-        eventTypes.addActionListener(new SelectEventTypeListener(this));
+        eventTypes.addActionListener(new SelectEventTypeListener(this, mainWindow));
         eventTypePanel.add(eventTypes);
         searchPanel.add(eventTypePanel, BorderLayout.NORTH);
 

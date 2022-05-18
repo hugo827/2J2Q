@@ -33,7 +33,7 @@ public class MainWindow extends JFrame {
     private static EventsManagementController eventsManagementController;
     private static MainWindow mainWindow;
 
-    private MainWindow() {
+    public MainWindow() {
         super("Events Management");
         Dimension minimunSizeJFrame = new Dimension(1300,800);
         setBounds(100,100,1300,800);
@@ -125,21 +125,8 @@ public class MainWindow extends JFrame {
         return frameContainer;
     }
 
-    public static EventsManagementController getController() {
+    public EventsManagementController getEventsManagementController() {
         return eventsManagementController;
-    }
-    public static MainWindow getInstance() {
-        if(mainWindow == null ) new MainWindow();
-        return mainWindow;
-    }
-
-    public static void refreshPanel(JPanel panel, String title) {
-        getInstance().setTitle( "Events Management" + (title == null ? " " :  " - "+title));
-        getInstance().getFrameContainer().removeAll();
-        getInstance().getFrameContainer().setLayout(new BorderLayout());
-        getInstance().getFrameContainer().add(panel == null ? new HomePanel() : panel, BorderLayout.CENTER);
-        getInstance().repaint();
-        getInstance().printAll(MainWindow.getInstance().getGraphics());
     }
 
 }

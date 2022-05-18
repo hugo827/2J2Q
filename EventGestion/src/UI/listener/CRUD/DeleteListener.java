@@ -5,6 +5,7 @@ import UI.panel.EventListingPanel;
 import UI.window.MainWindow;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -12,9 +13,11 @@ import java.sql.SQLException;
 public class DeleteListener implements ActionListener {
 
     private EventListingPanel eventListingPanel;
+    private MainWindow mainWindow;
 
-    public DeleteListener(EventListingPanel eventListingPanel) {
+    public DeleteListener(EventListingPanel eventListingPanel, MainWindow mainWindow) {
         this.eventListingPanel = eventListingPanel;
+        this.mainWindow = mainWindow;
     }
 
     @Override
@@ -29,15 +32,17 @@ public class DeleteListener implements ActionListener {
             int reply = JOptionPane.showConfirmDialog(eventListingPanel, "Confirm deleting event", "Delete confirmation", JOptionPane.OK_CANCEL_OPTION);
             if(reply == 0) {
                 try {
-                    MainWindow.getController().deleteEvent(idEvent);
+                    mainWindow.getEventsManagementController().deleteEvent(idEvent);
+                    mainWindow.getFrameContainer().removeAll();
+                    mainWindow.getFrameContainer().add(new EventListingPanel(mainWindow), BorderLayout.CENTER);
+                    mainWindow.printAll(mainWindow.getGraphics());
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
                 } catch (DataAccessException ex) {
                     JOptionPane.showMessageDialog(eventListingPanel,ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 }
 
-                MainWindow.getInstance().repaint();
-                MainWindow.getInstance().printAll(MainWindow.getInstance().getGraphics());
+
             }
         }
     }

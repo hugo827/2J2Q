@@ -20,22 +20,23 @@ public class EventListingPanel extends JPanel {
 
     private JPanel panelSouth = new JPanel();
 
-    public EventListingPanel() {
+
+    public EventListingPanel(MainWindow mainWindow) {
         this.setLayout(new BorderLayout());
         label = new JLabel("Event listing panel");
         label.setHorizontalAlignment(JLabel.CENTER);
         panelSouth.setLayout(new GridLayout());
         btnDEL = new JButton("Delete");
         btnUPD = new JButton("Update");
-        btnDEL.addActionListener(new DeleteListener(this));
-        btnUPD.addActionListener(new SelectUpdateListener(this));
+        btnDEL.addActionListener(new DeleteListener(this, mainWindow));
+        btnUPD.addActionListener(new SelectUpdateListener(this, mainWindow));
 
         panelSouth.add(btnUPD);
         panelSouth.add(btnDEL);
         this.add(label, BorderLayout.NORTH);
         this.add(panelSouth, BorderLayout.SOUTH);
 
-        eventTableModel = new EventTableModel(MainWindow.getController().getEventList());
+        eventTableModel = new EventTableModel(mainWindow.getEventsManagementController().getEventList());
         eventsTable = new JTable(eventTableModel);
         jScrollPane = new JScrollPane(eventsTable);
 

@@ -19,7 +19,7 @@ public class BusinessTaskListener implements MouseListener {
     public void mouseClicked(MouseEvent e) {
         mainWindow.setTitle("Events Management - Business task");
         mainWindow.getFrameContainer().removeAll();
-        mainWindow.getFrameContainer().add(new BusinessTaskPanel(), BorderLayout.CENTER);
+        mainWindow.getFrameContainer().add(new BusinessTaskPanel(mainWindow), BorderLayout.CENTER);
         mainWindow.printAll(mainWindow.getGraphics());
     }
 

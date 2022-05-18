@@ -13,15 +13,17 @@ public class SelectEventTypeListener implements ActionListener {
 
 
     private SearchEventTypePanel searchEventTypePanel;
-    public SelectEventTypeListener(SearchEventTypePanel searchEventTypePanel) {
+    private MainWindow mainWindow;
+    public SelectEventTypeListener(SearchEventTypePanel searchEventTypePanel, MainWindow mainWindow) {
         this.searchEventTypePanel = searchEventTypePanel;
+        this.mainWindow = mainWindow;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
             int idEventType = searchEventTypePanel.getEventTypeModelArrayList().get(searchEventTypePanel.getEventTypes().getSelectedIndex()).getIdEventType();
-            SearchEventTypeTableModel  searchEventTypeTableModel = new SearchEventTypeTableModel(MainWindow.getController().getSearchByEventType(idEventType));
+            SearchEventTypeTableModel  searchEventTypeTableModel = new SearchEventTypeTableModel(mainWindow.getEventsManagementController().getSearchByEventType(idEventType));
             searchEventTypePanel.setJTable(searchEventTypeTableModel);
         } catch (DataAccessException ex) {
             JOptionPane.showMessageDialog(searchEventTypePanel, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);

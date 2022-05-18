@@ -12,16 +12,17 @@ import java.awt.event.ActionListener;
 public class SearchPromotionListener  implements ActionListener {
 
     private SearchPromotionPanel searchPromotionPanel;
-
-    public SearchPromotionListener(SearchPromotionPanel searchPromotionPanel) {
+    private MainWindow mainWindow;
+    public SearchPromotionListener(SearchPromotionPanel searchPromotionPanel, MainWindow mainWindow) {
         this.searchPromotionPanel = searchPromotionPanel;
+        this.mainWindow = mainWindow;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
             int idUserType = searchPromotionPanel.getUserTypeModelArrayList().get(searchPromotionPanel.getUserType().getSelectedIndex()).getIdusertype();
-            SearchPromotionTableModel searchPromotionTableModel = new SearchPromotionTableModel(MainWindow.getController().getSearchByUserType(idUserType));
+            SearchPromotionTableModel searchPromotionTableModel = new SearchPromotionTableModel(mainWindow.getEventsManagementController().getSearchByUserType(idUserType));
             searchPromotionPanel.setJTable(searchPromotionTableModel);
         } catch (DataAccessException ex) {
             JOptionPane.showMessageDialog(searchPromotionPanel, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);

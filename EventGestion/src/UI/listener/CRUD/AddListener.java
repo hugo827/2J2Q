@@ -12,6 +12,7 @@ import UI.panel.EventListingPanel;
 import UI.window.MainWindow;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
@@ -21,8 +22,11 @@ public class AddListener implements ActionListener {
     private EventFormPanel eventFormPanel;
     private EventModel eventModel;
 
-    public AddListener(EventFormPanel eventFormPanel) {
+    private MainWindow mainWindow;
+
+    public AddListener(EventFormPanel eventFormPanel, MainWindow mainWindow) {
         this.eventFormPanel = eventFormPanel;
+        this.mainWindow = mainWindow;
     }
 
     @Override
@@ -97,15 +101,13 @@ public class AddListener implements ActionListener {
 
             try {
                 eventModel = new EventModel(title, description, additionalInformation, isImportant, startDate, endDate, price, nbParticipant, isPrivate, creator.getIduser(), eventType.getIdEventType(), address.getIdAddress());
-                MainWindow.getController().addEvent(eventModel);
+                mainWindow.getEventsManagementController().addEvent(eventModel);
 
-
-                MainWindow.refreshPanel(new EventListingPanel(), "Listing events");
-//                MainWindow.getMainWindow().getFrameContainer().removeAll();
-//                MainWindow.getMainWindow().getFrameContainer().setLayout(new BorderLayout());
-//                MainWindow.getMainWindow().getFrameContainer().add(new EventListingPanel(), BorderLayout.CENTER);
-//                MainWindow.getMainWindow().repaint();
-//                MainWindow.getMainWindow().printAll(MainWindow.getMainWindow().getGraphics());
+                //TODO: mainWindow
+                mainWindow.getFrameContainer().removeAll();
+                mainWindow.getFrameContainer().add(new EventListingPanel(mainWindow), BorderLayout.CENTER);
+                mainWindow.repaint();
+                mainWindow.printAll(mainWindow.getGraphics());
 
             } catch (AddEventException | DataAccessException | EventException ex) {
                 JOptionPane.showMessageDialog(eventFormPanel, ex.getMessage(), "Error add event", JOptionPane.ERROR_MESSAGE);

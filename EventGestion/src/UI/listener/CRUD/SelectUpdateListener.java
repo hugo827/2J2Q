@@ -13,8 +13,11 @@ import java.awt.event.ActionListener;
 public class SelectUpdateListener implements ActionListener {
 
     private EventListingPanel eventListingPanel;
-    public SelectUpdateListener(EventListingPanel eventListingPanel) {
+    private MainWindow mainWindow;
+
+    public SelectUpdateListener(EventListingPanel eventListingPanel, MainWindow mainWindow) {
         this.eventListingPanel = eventListingPanel;
+        this.mainWindow = mainWindow;
     }
 
     @Override
@@ -29,8 +32,13 @@ public class SelectUpdateListener implements ActionListener {
 
             try {
                 int idEvent = (int) jTable.getValueAt(jTable.getSelectedRow(), 0);
-                EventModel eventUpdate =  MainWindow.getController().getEvent(idEvent);
-                MainWindow.refreshPanel(new EventFormPanel(eventUpdate), " Update event");
+                EventModel eventUpdate =  mainWindow.getEventsManagementController().getEvent(idEvent);
+
+                mainWindow.getFrameContainer().removeAll();
+                mainWindow.getFrameContainer().add(new EventFormPanel(eventUpdate, mainWindow));
+                mainWindow.printAll(mainWindow.getGraphics());
+
+
             } catch (DataAccessException ex) {
                 JOptionPane.showMessageDialog(eventListingPanel, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }

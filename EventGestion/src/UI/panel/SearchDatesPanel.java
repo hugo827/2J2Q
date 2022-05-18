@@ -2,6 +2,7 @@ package UI.panel;
 
 import UI.listener.Search.SearchDatesListener;
 import UI.panel.TableModels.SearchDatesTableModel;
+import UI.window.MainWindow;
 import org.jdesktop.swingx.JXDatePicker;
 
 import javax.swing.*;
@@ -18,7 +19,7 @@ public class SearchDatesPanel extends JPanel {
     private JTable jTable;
     private JScrollPane jScrollPane;
 
-    public SearchDatesPanel() {
+    public SearchDatesPanel(MainWindow mainWindow) {
         this.setLayout(new BorderLayout());
         label = new JLabel("Search dates panel");
         label.setHorizontalAlignment(JLabel.CENTER);
@@ -33,7 +34,7 @@ public class SearchDatesPanel extends JPanel {
         endDateLabel = new JLabel("Select end date :");
         endDate = new JXDatePicker();
         validate = new JButton("Search");
-        validate.addActionListener(new SearchDatesListener(this));
+        validate.addActionListener(new SearchDatesListener(this, mainWindow));
 
         datesPanel.add(startDateLabel);
         datesPanel.add(startDate);

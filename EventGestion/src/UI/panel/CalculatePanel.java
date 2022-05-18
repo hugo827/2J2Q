@@ -21,9 +21,13 @@ public class CalculatePanel extends JPanel {
     private JPanel panel, listButtonPanel;
     private ArrayList <ReductionPanel> jPanelArrayList;
 
-    private  static int i = 1;
+   private MainWindow mainWindow;
 
-    public CalculatePanel() {
+    public CalculatePanel(MainWindow mainWindow) {
+
+        //TODO : mainWindow
+        this.mainWindow = mainWindow;
+
         this.setLayout(new GridBagLayout());
 
         jPanelArrayList = new ArrayList<>();
@@ -44,7 +48,7 @@ public class CalculatePanel extends JPanel {
         priceField.addKeyListener(new VerificationDoubleListener(priceField));
 
         calculateButton = new JButton("Calculate");
-        calculateButton.addActionListener(new CalculateListener(this));
+        calculateButton.addActionListener(new CalculateListener(this, mainWindow));
 
         plusButton = new JButton("+");
         plusButton.addActionListener(new plusListener(this));
@@ -94,6 +98,12 @@ public class CalculatePanel extends JPanel {
         return jPanelArrayList;
     }
 
+    public void refresh() {
+        mainWindow.getFrameContainer().removeAll();
+        mainWindow.getFrameContainer().add(this);
+        mainWindow.printAll(mainWindow.getGraphics());
+    }
+
     private static class plusListener implements ActionListener {
 
         private CalculatePanel calculatePanel;
@@ -106,7 +116,7 @@ public class CalculatePanel extends JPanel {
         public void actionPerformed(ActionEvent e) {
             calculatePanel.addJPanel();
             calculatePanel.viewPanel();
-            MainWindow.refreshPanel(calculatePanel, "Calculate");
+            calculatePanel.refresh();
         }
     }
 }

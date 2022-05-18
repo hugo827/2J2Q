@@ -20,7 +20,7 @@ public class EventCreateListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         mainWindow.setTitle("Events Management - Add new event");
         mainWindow.getFrameContainer().removeAll();
-        mainWindow.getFrameContainer().add(new EventFormPanel(), BorderLayout.CENTER);
+        mainWindow.getFrameContainer().add(new EventFormPanel(mainWindow), BorderLayout.CENTER);
         mainWindow.printAll(mainWindow.getGraphics());
     }
 

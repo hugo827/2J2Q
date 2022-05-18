@@ -25,7 +25,10 @@ public class SearchPromotionPanel extends JPanel {
 
     private JTable jTable;
     private JScrollPane jScrollPane;
-    public SearchPromotionPanel() {
+
+
+    public SearchPromotionPanel(MainWindow mainWindow) {
+
         this.setLayout(new BorderLayout());
         label = new JLabel("Search promotion panel");
         label.setHorizontalAlignment(JLabel.CENTER);
@@ -38,10 +41,10 @@ public class SearchPromotionPanel extends JPanel {
         promotionLabel = new JLabel("Select user types : ");
         promotionPanel.add(promotionLabel);
 
-        userTypeModelArrayList = MainWindow.getController().getUserTypeList();
+        userTypeModelArrayList = mainWindow.getEventsManagementController().getUserTypeList();
         userType = new JComboBox(userTypeModelArrayList.toArray());
         userType.setSelectedIndex(-1);
-        userType.addActionListener(new SearchPromotionListener(this));
+        userType.addActionListener(new SearchPromotionListener(this, mainWindow));
         promotionPanel.add(userType);
         searchPanel.add(promotionPanel, BorderLayout.NORTH);
 

@@ -13,6 +13,7 @@ import UI.window.MainWindow;
 
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
@@ -22,10 +23,12 @@ public class UpdateListener implements ActionListener {
     private EventFormPanel eventFormPanel;
 
     private EventModel event;
+    private MainWindow mainWindow;
 
-    public UpdateListener(EventFormPanel eventFormPanel, EventModel event) {
+    public UpdateListener(EventFormPanel eventFormPanel, EventModel event,MainWindow mainWindow) {
         this.eventFormPanel = eventFormPanel;
         this.event = event;
+        this.mainWindow = mainWindow;
     }
 
     @Override
@@ -57,18 +60,14 @@ public class UpdateListener implements ActionListener {
             event.setFk_address(address.getIdAddress());
             event.setFk_creator(creator.getIduser());
 
-            MainWindow.getController().updateEvent(event);
+           mainWindow.getEventsManagementController().updateEvent(event);
 
-            //TODO voir si on peut pas faire autrement le retour !
+            //TODO : mainWindow
 
-            MainWindow.refreshPanel(new EventListingPanel(), "Listing Event");
-
-//            MainWindow.getMainWindow().setTitle("Events Management - Listing Event");
-//            MainWindow.getMainWindow().getFrameContainer().removeAll();
-//            MainWindow.getMainWindow().getFrameContainer().setLayout(new BorderLayout());
-//            MainWindow.getMainWindow().getFrameContainer().add(new EventListingPanel(), BorderLayout.CENTER);
-//            MainWindow.getMainWindow().repaint();
-//            MainWindow.getMainWindow().printAll(MainWindow.getMainWindow().getGraphics());
+            mainWindow.setTitle("Events Management - Listing Event");
+            mainWindow.getFrameContainer().removeAll();
+            mainWindow.getFrameContainer().add(new EventListingPanel(mainWindow), BorderLayout.CENTER);
+            mainWindow.printAll(mainWindow.getGraphics());
 
         } catch (EventException ex) {
             JOptionPane.showMessageDialog(eventFormPanel,ex.getMessage(), ex.getTitleError(),JOptionPane.ERROR_MESSAGE);

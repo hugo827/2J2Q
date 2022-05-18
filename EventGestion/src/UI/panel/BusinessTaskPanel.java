@@ -24,8 +24,9 @@ public class BusinessTaskPanel extends JPanel {
     private EventTableModel eventTableModel;
     private JScrollPane userJscrollpane, eventJScrollpane;
 
-
-    public BusinessTaskPanel() {
+    private MainWindow mainWindow;
+    public BusinessTaskPanel(MainWindow mainWindow) {
+        this.mainWindow = mainWindow;
         this.setLayout(new BorderLayout());
         label = new JLabel("Business task panel");
         label.setHorizontalAlignment(JLabel.CENTER);
@@ -40,7 +41,7 @@ public class BusinessTaskPanel extends JPanel {
         listEventPanel.setBounds(200,50,900,550);
         calculateButton.setBounds(600,625,100,25);
 
-        userNameTableModel = new UserNameTableModel(MainWindow.getController().getUserList());
+        userNameTableModel = new UserNameTableModel(mainWindow.getEventsManagementController().getUserList());
         userJTable = new JTable(userNameTableModel);
         userJTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         userJTable.getTableHeader().setReorderingAllowed(false);
@@ -72,7 +73,7 @@ public class BusinessTaskPanel extends JPanel {
     public void setNewEventPanel() throws DataAccessException {
         int line = userJTable.getSelectedRow();
         UserModel selectUser = (UserModel) userJTable.getValueAt(line, 0);
-        eventTableModel = new EventTableModel(MainWindow.getController().getUserEventList(selectUser.getIduser()));
+        eventTableModel = new EventTableModel(mainWindow.getEventsManagementController().getUserEventList(selectUser.getIduser()));
         eventJTable = new JTable(eventTableModel);
         eventJTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         eventJTable.getTableHeader().setReorderingAllowed(false);
@@ -87,7 +88,7 @@ public class BusinessTaskPanel extends JPanel {
     }
 
     public void showInformation() throws DataAccessException, SQLException {
-        String msg = MainWindow.getController().getInformationEvent((Integer) eventJTable.getValueAt(eventJTable.getSelectedRow(), 0));
+        String msg = mainWindow.getEventsManagementController().getInformationEvent((Integer) eventJTable.getValueAt(eventJTable.getSelectedRow(), 0));
         JOptionPane.showMessageDialog(this, msg, "Information Event", JOptionPane.PLAIN_MESSAGE);
     }
 }

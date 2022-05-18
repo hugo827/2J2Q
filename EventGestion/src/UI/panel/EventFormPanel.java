@@ -64,8 +64,10 @@ public class EventFormPanel extends JPanel {
             1 //pas
     );
 
+    private MainWindow mainWindow;
 
-    private EventFormPanel(Boolean isUpdate, EventModel eventUpdate) {
+    private EventFormPanel(Boolean isUpdate, EventModel eventUpdate, MainWindow mainWindow) {
+        this.mainWindow = mainWindow;
         this.setLayout(new BorderLayout());
         label = new JLabel( isUpdate ? "Event update panel" : "Event add panel");
         label.setHorizontalAlignment(JLabel.CENTER);
@@ -148,20 +150,20 @@ public class EventFormPanel extends JPanel {
         creatorLabel = new JLabel("*Creator of Event ? ");
         creatorLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 
-        userModelArrayList = MainWindow.getController().getUserList();
+        userModelArrayList = mainWindow.getEventsManagementController().getUserList();
         creator = new JComboBox(userModelArrayList.toArray());
         creator.setSelectedIndex(-1);
 
         typeLabel = new JLabel("*Type of Event ? ");
         typeLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-        eventTypeModelArrayList = MainWindow.getController().getEventTypeList();
+        eventTypeModelArrayList = mainWindow.getEventsManagementController().getEventTypeList();
         eventType = new JComboBox(eventTypeModelArrayList.toArray());
         eventType.setSelectedIndex(-1);
 
         addressLabel = new JLabel("*Address of Event ? ");
         addressLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 
-        addressModelArrayList = MainWindow.getController().getAddressList();
+        addressModelArrayList = mainWindow.getEventsManagementController().getAddressList();
         address = new JComboBox(addressModelArrayList.toArray());
         address.setSelectedIndex(-1);
 
@@ -172,9 +174,9 @@ public class EventFormPanel extends JPanel {
         add = new JButton(isUpdate ? "Update event" : "Add new event");
 
         if(isUpdate) {
-            cancel.addActionListener(new EventReadListener(MainWindow.getInstance()));
-            add.addActionListener(new UpdateListener(this, eventUpdate));
-            //TODO modifie ce -1
+            cancel.addActionListener(new EventReadListener(mainWindow));
+            add.addActionListener(new UpdateListener(this, eventUpdate, mainWindow));
+            //TODO : modifie ce -1
             address.setSelectedIndex(eventUpdate.getFk_address()-1);
             creator.setSelectedIndex(eventUpdate.getFk_creator()-1);
             eventType.setSelectedIndex(eventUpdate.getFk_eventType()-1);
@@ -183,8 +185,8 @@ public class EventFormPanel extends JPanel {
             endHour.setValue(eventUpdate.getEndDate().getHours());
             endMinutes.setValue(eventUpdate.getEndDate().getMinutes());
         } else {
-            cancel.addActionListener(new CancelListener());
-            add.addActionListener(new AddListener(this));
+            cancel.addActionListener(new CancelListener(mainWindow));
+            add.addActionListener(new AddListener(this, mainWindow));
         }
 
         form.add(titleLabel);
@@ -224,11 +226,11 @@ public class EventFormPanel extends JPanel {
         this.add(listButton, BorderLayout.SOUTH);
 
     }
-    public EventFormPanel() {
-        this(false, null);
+    public EventFormPanel(MainWindow mainWindow) {
+        this(false, null, mainWindow);
     }
-    public EventFormPanel(EventModel eventUpdate) {
-        this(true, eventUpdate);
+    public EventFormPanel(EventModel eventUpdate, MainWindow mainWindow) {
+        this(true, eventUpdate, mainWindow);
     }
     public void setBorderObject(char caract) {
 
