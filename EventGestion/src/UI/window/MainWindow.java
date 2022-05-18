@@ -30,8 +30,7 @@ public class MainWindow extends JFrame {
 
     private AnimationPanel animationPanel;
 
-    private static EventsManagementController eventsManagementController;
-    private static MainWindow mainWindow;
+    private EventsManagementController eventsManagementController;
 
     public MainWindow() {
         super("Events Management");
@@ -68,7 +67,6 @@ public class MainWindow extends JFrame {
         frameContainer.add(new HomePanel(), BorderLayout.CENTER);
 
         setVisible(true);
-        mainWindow = this;
     }
 
     private void setMenu() {
