@@ -6,6 +6,6 @@ public class CalculateReductionException extends Exception {
     }
 
     public String getMessage() {
-        return "An error occur, check that all reduction fields are completed";
+        return "There was an error, make sure all reduction fields are filled out";
     }
 }
