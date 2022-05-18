@@ -1892,7 +1892,7 @@ Version 6.0.6
  
     - Fix for BUG#49607 - Provide Connection context in ExceptionInterceptor.
  
-    - Fix for BUG#48605 - Ping leaves closed connections in liveConnections, causing subsequent Exceptions when
+    - Fix for BUG#48605 - Ping leaves closed connections in liveConnections, causing subsequent exception when
       that connection is used.
  
     - Fix for BUG#48442 - Load-balanced Connection object returns inconsistent results for hashCode() and equals()
@@ -2004,7 +2004,7 @@ Version 6.0.6
     - Modified/fixed test cases using UnreliableSocketFactory.
 
     - Fixed BUG#43421 - Made doPing() global blacklist-aware, so that it does not
-      throw Exceptions when at least a single load-balanced server is available.
+      throw exception when at least a single load-balanced server is available.
 
     - Fixed BUG#43071 - Specifying ASCII encoding for converting seed String to
       byte array; allowing system default encoding to be used causes auth failures

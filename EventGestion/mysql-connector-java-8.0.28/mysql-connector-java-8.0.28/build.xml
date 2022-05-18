@@ -1360,7 +1360,7 @@ See also com.mysql.cj.conf.PropertyDefinitions.SYSP_* variables for other test o
         </junitreport>
 
         <!-- Don't fail the build if we're doing coverage test. -->
-        <fail message="Tests failed. Check logs and/or reports in '${com.mysql.cj.testsuite.junit.results}'.">
+        <fail message="test failed. Check logs and/or reports in '${com.mysql.cj.testsuite.junit.results}'.">
             <condition>
                 <and>
                     <isset property="com.mysql.cj.testsuite.junit.fail" />
