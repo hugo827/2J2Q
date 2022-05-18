@@ -26,10 +26,10 @@ public class DeleteListener implements ActionListener {
 
 
         if (jTable.getSelectedRow() == -1) {
-            JOptionPane.showMessageDialog(eventListingPanel, "To deleted an event, you need to select him !", "Information Delete", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(eventListingPanel, "Delete an event by selecting it!", "Information Delete", JOptionPane.ERROR_MESSAGE);
         } else {
             int idEvent = (int) jTable.getValueAt(jTable.getSelectedRow(), 0);
-            int reply = JOptionPane.showConfirmDialog(eventListingPanel, "Confirm deleting event", "Delete confirmation", JOptionPane.OK_CANCEL_OPTION);
+            int reply = JOptionPane.showConfirmDialog(eventListingPanel, "Confirm deleting the event", "Delete confirmation", JOptionPane.OK_CANCEL_OPTION);
             if(reply == 0) {
                 try {
                     mainWindow.getEventsManagementController().deleteEvent(idEvent);
