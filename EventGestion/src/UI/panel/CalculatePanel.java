@@ -37,8 +37,8 @@ public class CalculatePanel extends JPanel {
         listButtonPanel = new JPanel();
         listButtonPanel.setLayout(new GridBagLayout());
 
-        numberPersonLabel = new JLabel("Nombre de participant (ex: 100) : ");
-        priceLabel = new JLabel("Price of event (ex: 9.99) : ");
+        numberPersonLabel = new JLabel("Number of participants (ex: 100) : ");
+        priceLabel = new JLabel("Price of the event (ex: 9.99) : ");
 
 
         numberPersonField = new JTextField();
