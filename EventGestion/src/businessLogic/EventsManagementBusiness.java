@@ -69,7 +69,7 @@ public class EventsManagementBusiness {
 
     public void deleteEvent(int idEvent) throws SQLException, DataAccessException {
         if(idEvent <= 0) {
-            throw new DataAccessException("This value " + idEvent + " isn't correct !");
+            throw new DataAccessException("The value '" + idEvent + "' isn't correct !");
         } else {
             eventDataAccess.deleteEvent(idEvent);
         }
@@ -84,7 +84,7 @@ public class EventsManagementBusiness {
 
     public EventModel getEvent(int idEvent) throws DataAccessException {
         if(idEvent <= 0) {
-            throw new DataAccessException("This value " + idEvent + " isn't correct !");
+            throw new DataAccessException("The value '" + idEvent + "' isn't correct !");
         }
         return eventDataAccess.getEvent(idEvent);
     }
@@ -101,7 +101,7 @@ public class EventsManagementBusiness {
 
     public ArrayList<SearchEventTypeModel> getSearchByEventType(int idEventType) throws DataAccessException {
         if(idEventType <= 0) {
-            throw new DataAccessException("This value " + idEventType + " isn't correct !");
+            throw new DataAccessException("The value '" + idEventType + "' isn't correct !");
         }
         return  searchEventTypeDataAccess.getSearchByEventType(idEventType);
     }
@@ -135,7 +135,7 @@ public class EventsManagementBusiness {
 
     public ArrayList<SearchPromotionModel> getSearchByUserType(int idUserType) throws DataAccessException {
         if(idUserType <= 0) {
-            throw new DataAccessException("The value : " + idUserType + " isn't correct for find an user type");
+            throw new DataAccessException("The value '" + idUserType + "' isn't correct for find an user type");
         } else {
             return searchByUserTypeDataAccess.getSearchUsertype(idUserType);
         }
@@ -143,7 +143,7 @@ public class EventsManagementBusiness {
 
     public ArrayList<EventModel> getUserEventsList(int idUser) throws DataAccessException {
         if(idUser <= 0) {
-            throw new DataAccessException("This value " + idUser + " isn't correct for finding user's event");
+            throw new DataAccessException("The value '" + idUser + "' isn't correct for finding user's event");
         } else {
             return  eventDataAccess.getUserEventsList(idUser);
         }
@@ -151,7 +151,7 @@ public class EventsManagementBusiness {
 
     public String getInformationEvent(int idEvent) throws DataAccessException, SQLException {
         if(idEvent <=  0) {
-            throw new DataAccessException("This value " + idEvent + " isn't correct for finding an event");
+            throw new DataAccessException("The value '" + idEvent + "' isn't correct for finding an event");
         } else {
             BusinessTaskModel businessTaskModel = businessTaskDataAccess.getDataEvent(idEvent);
 
