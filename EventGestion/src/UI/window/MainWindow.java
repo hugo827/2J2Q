@@ -17,7 +17,7 @@ public class MainWindow extends JFrame {
     private Container mainContainer, frameContainer;
     private JMenuBar jMenuBar;
     private JMenu event, search, home, businessTask, calculate;
-    private JMenuItem  eventCreate, eventRead, search1, search2, search3;
+    private JMenuItem  eventCreate, eventRead, search1, search2, search3, quit;
     private HomeListener homeListener;
     private BusinessTaskListener btListener;
     private EventCreateListener eventCreateListener;
@@ -27,6 +27,7 @@ public class MainWindow extends JFrame {
     private SearchEventTypeListener searchEventTypeListener;
     private SearchPromotionListener searchPromotionListener;
     private CalculateListener calculateListener;
+    private QuitListener quitListener;
 
     private AnimationPanel animationPanel;
 
@@ -83,6 +84,7 @@ public class MainWindow extends JFrame {
         search1 = new JMenuItem("Search by dates");
         search2 = new JMenuItem("Search promotion");
         search3 = new JMenuItem("Search by event types");
+        quit = new JMenuItem("Quit the program");
 
         jMenuBar.add(home);
         jMenuBar.add(event);
@@ -90,6 +92,8 @@ public class MainWindow extends JFrame {
         jMenuBar.add(businessTask);
         jMenuBar.add(calculate);
 
+        home.add(quit);
+        
         event.add(eventRead);
         event.add(eventCreate);
 
@@ -107,6 +111,7 @@ public class MainWindow extends JFrame {
         searchPromotionListener = new SearchPromotionListener(this);
         searchEventTypeListener = new SearchEventTypeListener(this);
         calculateListener = new CalculateListener(this);
+        quitListener = new QuitListener(this);
 
         home.addMouseListener(homeListener);
         businessTask.addMouseListener(btListener);
@@ -116,6 +121,7 @@ public class MainWindow extends JFrame {
         search2.addActionListener(searchPromotionListener);
         search3.addActionListener(searchEventTypeListener);
         calculate.addMouseListener(calculateListener);
+        quitListener.addMouseListener(quitListener);
     }
 
 
