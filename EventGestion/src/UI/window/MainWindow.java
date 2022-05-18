@@ -121,7 +121,7 @@ public class MainWindow extends JFrame {
         search2.addActionListener(searchPromotionListener);
         search3.addActionListener(searchEventTypeListener);
         calculate.addMouseListener(calculateListener);
-        quitListener.addMouseListener(quitListener);
+        quit.addMouseListener(quitListener);
     }
 
 
