@@ -4,6 +4,7 @@ import UI.listener.Business.CalculateListener;
 import UI.listener.CRUD.VerificationIntegerListener;
 import UI.listener.CRUD.VerificationDoubleListener;
 import UI.window.MainWindow;
+import model.TestModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,6 +21,7 @@ public class CalculatePanel extends JPanel {
     private JButton calculateButton, plusButton;
     private JPanel panel, listButtonPanel;
     private ArrayList <ReductionPanel> jPanelArrayList;
+    private ArrayList <TestModel> testArrayList;
 
    private MainWindow mainWindow;
 
@@ -94,8 +96,18 @@ public class CalculatePanel extends JPanel {
         return priceField.getText().trim();
     }
 
-    public ArrayList<ReductionPanel> getListPanel() {
-        return jPanelArrayList;
+
+    //Methode qui renvoie une list de type TestModel(oui je sais a changer de nom), pour la faire on va boucler sur notre liste de panel...
+    public ArrayList<TestModel> getReducList() {
+        testArrayList = new ArrayList<>();
+        Double tempReduc = null;
+        Integer tempNumberPerson = null;
+        for(ReductionPanel reduc : jPanelArrayList) {
+            if(!reduc.getReducField().trim().isEmpty()) tempReduc = Double.parseDouble(reduc.getReducField());
+            if(!reduc.getNumberPersonField().trim().isEmpty()) tempNumberPerson = Integer.parseInt(reduc.getNumberPersonField());
+            testArrayList.add(new TestModel(tempNumberPerson, tempReduc ));
+        }
+        return  testArrayList;
     }
 
     public void refresh() {

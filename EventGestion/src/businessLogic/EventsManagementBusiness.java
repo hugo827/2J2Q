@@ -4,7 +4,6 @@ import dataAccess.*;
 import dataAccess.Interfaces.*;
 import exception.*;
 import model.*;
-import UI.panel.ReductionPanel;
 
 
 import java.sql.SQLException;
@@ -162,22 +161,22 @@ public class EventsManagementBusiness {
         }
     }
 
-    public BusinessTaskModel calculateReduction(int numberPerson, double price, ArrayList<ReductionPanel> listPanel) throws CalculateReductionException, ReductionBetweenException {
+    public BusinessTaskModel calculateReduction(int numberPerson, double price, ArrayList<TestModel> testModelArrayList) throws CalculateReductionException, ReductionBetweenException {
         BusinessTaskModel businessTaskModel = null;
         double totalPromotion = 0;
         double totalWithoutPromotion = numberPerson * price;
         int totalPersonHavePromotion = 0;
 
-        for(ReductionPanel p : listPanel) {
-            if((p.getReducField() == null || p.getReducField().trim().isEmpty())){
+        for(TestModel p : testModelArrayList) {
+            if(p.getReduc() == null) {
                 throw new CalculateReductionException();
             } else {
-                if(Double.parseDouble(p.getReducField()) > 100 || Double.parseDouble(p.getReducField()) <= 0) {
+                if(p.getReduc() > 100 || p.getReduc() <= 0) {
                     throw  new ReductionBetweenException();
                 } else {
-                    if (p.getNumberPersonField() != null && !p.getNumberPersonField().trim().isEmpty() && !(Integer.parseInt(p.getNumberPersonField()) == 0)) {
-                        totalPromotion += (price * Double.parseDouble(p.getReducField()) / 100) * Double.parseDouble(p.getNumberPersonField());
-                        totalPersonHavePromotion += Integer.parseInt(p.getNumberPersonField());
+                    if (p.getNumberPerson() != null  && p.getNumberPerson() > 0) {
+                        totalPromotion += ((price * p.getReduc() / 100) * p.getNumberPerson());
+                        totalPersonHavePromotion += p.getNumberPerson();
                     }
                 }
             }

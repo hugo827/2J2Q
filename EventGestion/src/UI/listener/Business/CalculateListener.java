@@ -26,13 +26,10 @@ public class CalculateListener implements ActionListener {
         } else if (calculatePanel.getPriceSTR() == null || calculatePanel.getPriceSTR().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Price needed", "Error", JOptionPane.ERROR_MESSAGE);
         }  else {
-
-
             BusinessTaskModel res = null;
             try {
-
                 res = mainWindow.getEventsManagementController().calculateReduction(Integer.parseInt(calculatePanel.getNumberPersonSTR()),
-                       Double.parseDouble(calculatePanel.getPriceSTR()), calculatePanel.getListPanel());
+                       Double.parseDouble(calculatePanel.getPriceSTR()), calculatePanel.getReducList());
                 String message = " - Number of participants : " + res.getNbParticipant() + "\n"
                         + " - Number of participants who had a promotion: "  + res.getTotalPersonHavePromotion() + "\n"
                         + " - Total sum : " + res.getSumTotalWithOutPromotion() + "\n"

@@ -6,6 +6,7 @@ import exception.CalculateReductionException;
 import exception.DataAccessException;
 import exception.ReductionBetweenException;
 import model.BusinessTaskModel;
+import model.TestModel;
 import org.junit.jupiter.api.*;
 
 import java.sql.SQLException;
@@ -88,10 +89,14 @@ public class EventManagementTest {
     /* exemple voir si correct */
     @Test
     public void test() throws CalculateReductionException, ReductionBetweenException {
-        ArrayList<ReductionPanel> reductionPanels = new ArrayList<>();
-        BusinessTaskModel actual = eventsManagementBusiness.calculateReduction(100, 9.99, reductionPanels);
-        BusinessTaskModel expected = new BusinessTaskModel(100,999.0,999.0,0.0);
-        Assertions.assertEquals(100, actual.getNbParticipant());
+
+        // Du coup ici au lieau d'avoir une liste JPanel, on a une liste d'objet et ce sera plus simple de recuper nos données d'ajouter des données ...
+        ArrayList<TestModel> testModels = new ArrayList<>();
+        testModels.add(new TestModel(50,100.0));
+        testModels.add(new TestModel(10, 10.0));
+        BusinessTaskModel actual = eventsManagementBusiness.calculateReduction(100, 9.99, testModels);
+        BusinessTaskModel expected = new BusinessTaskModel(100,489.51,999.0,509.49);
+        Assertions.assertEquals(489.51, actual.getSumFinal());
     }
 
 }
