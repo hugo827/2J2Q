@@ -1,10 +1,15 @@
 package test;
 
+import UI.panel.ReductionPanel;
 import businessLogic.EventsManagementBusiness;
+import exception.CalculateReductionException;
 import exception.DataAccessException;
+import exception.ReductionBetweenException;
+import model.BusinessTaskModel;
 import org.junit.jupiter.api.*;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 
 public class EventManagementTest {
@@ -35,7 +40,7 @@ public class EventManagementTest {
         i++;
     }
 
-
+    /* ----------------------------- a supprimer apres nouveau test ------------*/
     @Test
     @DisplayName("throws DataAccessException")
     public void testException() {
@@ -76,6 +81,17 @@ public class EventManagementTest {
                 + " - Total promotion : 0.0\n"
                 + " - Final sum : 0.0\n";
         Assertions.assertEquals ( expected, res);
+    }
+
+    /* -------------------------------------------------------------------------------*/
+
+    /* exemple voir si correct */
+    @Test
+    public void test() throws CalculateReductionException, ReductionBetweenException {
+        ArrayList<ReductionPanel> reductionPanels = new ArrayList<>();
+        BusinessTaskModel actual = eventsManagementBusiness.calculateReduction(100, 9.99, reductionPanels);
+        BusinessTaskModel expected = new BusinessTaskModel(100,999.0,999.0,0.0);
+        Assertions.assertEquals(100, actual.getNbParticipant());
     }
 
 }

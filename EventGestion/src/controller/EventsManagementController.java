@@ -42,8 +42,6 @@ public class EventsManagementController {
         return eventsManagementBusiness.getEvent(idEvent);
     }
 
-    /*-------------------------------------------------*/
-
 
     /*-------------------------- SEARCH EVENT TYPE -------------*/
 
