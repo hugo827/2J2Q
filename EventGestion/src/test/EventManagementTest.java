@@ -42,17 +42,17 @@ public class EventManagementTest {
         DataAccessException thrown = Assertions.assertThrows(DataAccessException.class, () -> {
             eventsManagementBusiness.getEvent(-1);
         });
-        Assertions.assertEquals("This value -1 isn't correct !", thrown.getMessage());
+        Assertions.assertEquals("The value -1 isn't correct !", thrown.getMessage());
     }
 
     @Test
     @DisplayName("correct value with promotion")
     public void test_correct_value() throws DataAccessException, SQLException {
         String res = eventsManagementBusiness.getInformationEvent(1);
-        String expected = " - Nombre de participant : 5\n"
-                    + " - Somme total : 37.5\n"
-                    + " - Somme total prommotion : 20.625\n"
-                    + " - Somme final : 16.875\n";
+        String expected = " - Number of participants : 5\n"
+                    + " - Total sum : 37.5\n"
+                    + " - Total promotion : 20.625\n"
+                    + " - Final sum : 16.875\n";
         Assertions.assertEquals( expected, res);
     }
 
@@ -60,10 +60,10 @@ public class EventManagementTest {
     @DisplayName("correct value without promotion")
     public void test_correct_value_2() throws DataAccessException, SQLException {
         String res = eventsManagementBusiness.getInformationEvent(5);
-        String expected = " - Nombre de participant : 4\n"
-                + " - Somme total : 60.0\n"
-                + " - Somme total prommotion : 0.0\n"
-                + " - Somme final : 60.0\n";
+        String expected = " - Number of participants : 4\n"
+                + " - Total sum : 60.0\n"
+                + " - Total promotion : 0.0\n"
+                + " - Final sum : 60.0\n";
         Assertions.assertEquals( expected, res);
     }
 
@@ -71,10 +71,10 @@ public class EventManagementTest {
     @DisplayName("event not exist")
     public void no_existent_line() throws DataAccessException, SQLException {
         String res = eventsManagementBusiness.getInformationEvent(25);
-        String expected = " - Nombre de participant : 0\n"
-                + " - Somme total : 0.0\n"
-                + " - Somme total prommotion : 0.0\n"
-                + " - Somme final : 0.0\n";
+        String expected = " - Number of participants : 0\n"
+                + " - Total sum : 0.0\n"
+                + " - Total promotion : 0.0\n"
+                + " - Final sum : 0.0\n";
         Assertions.assertEquals ( expected, res);
     }
 
