@@ -14,13 +14,13 @@ public class SearchDateException extends Exception {
         String message;
 
         if(startDate == null) {
-            message = "Start date can't be null, please enter a date";
+            message = "Start date can't be null, please enter a valid date";
         } else {
             if(endDate == null) {
                 message = "End date can't be null, please enter a valid end date";
             } else {
                 if(endDate.before(startDate)) {
-                    message = "Start date can't be before end date";
+                    message = "Start date can't be before the end date";
                 } else {
                     message = "Unknow error";
                 }
