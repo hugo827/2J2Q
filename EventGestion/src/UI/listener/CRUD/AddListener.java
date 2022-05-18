@@ -84,7 +84,7 @@ public class AddListener implements ActionListener {
             }
         }
         if(creator == null || eventType == null || address == null) {
-            message += " - All combobox is required \n";
+            message += " - All comboboxes are required \n";
             eventFormPanel.setBorderObject('c');
         }
 
