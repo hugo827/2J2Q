@@ -10,7 +10,6 @@ import UI.panel.ReductionPanel;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-
 import java.util.Date;
 
 
@@ -51,6 +50,8 @@ public class EventsManagementBusiness {
         loadEventTypeList();
         loadAddressList();
         loadUserTypeList();
+
+
     }
 
     /* ---------------------- CRUD ----------------------*/

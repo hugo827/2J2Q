@@ -108,7 +108,7 @@ public class MainWindow extends JFrame {
         searchDatesListener = new SearchDatesListener(this);
         searchPromotionListener = new SearchPromotionListener(this);
         searchEventTypeListener = new SearchEventTypeListener(this);
-        calculateListener = new CalculateListener();
+        calculateListener = new CalculateListener(this);
 
         home.addMouseListener(homeListener);
         businessTask.addMouseListener(btListener);

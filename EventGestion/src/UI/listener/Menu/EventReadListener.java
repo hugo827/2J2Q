@@ -4,6 +4,7 @@ package UI.listener.Menu;
 import UI.panel.EventListingPanel;
 import UI.window.MainWindow;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -17,12 +18,9 @@ public class EventReadListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        MainWindow.refreshPanel(new EventListingPanel(), "Listing Event");
-//        mainWindow.setTitle("Events Management - Listing Event");
-//        mainWindow.getFrameContainer().removeAll();
-//        mainWindow.getFrameContainer().setLayout(new BorderLayout());
-//        mainWindow.getFrameContainer().add(new EventListingPanel(), BorderLayout.CENTER);
-//        mainWindow.repaint();
-//        mainWindow.printAll(mainWindow.getGraphics());
+        mainWindow.setTitle("Events Management - Listing Event");
+        mainWindow.getFrameContainer().removeAll();
+        mainWindow.getFrameContainer().add(new EventListingPanel(), BorderLayout.CENTER);
+        mainWindow.printAll(mainWindow.getGraphics());
     }
 }

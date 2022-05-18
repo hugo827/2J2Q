@@ -1,8 +1,10 @@
 package UI.listener.Menu;
 
 
+import UI.panel.HomePanel;
 import UI.window.MainWindow;
 
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -15,13 +17,10 @@ public class HomeListener implements MouseListener {
     }
     @Override
     public void mouseClicked(MouseEvent e) {
-        MainWindow.refreshPanel(null, null);
-//        mainWindow.setTitle("Events Management");
-//        mainWindow.getFrameContainer().removeAll();
-//        mainWindow.getFrameContainer().setLayout(new BorderLayout());
-//        mainWindow.getFrameContainer().add(new HomePanel(), BorderLayout.CENTER);
-//        mainWindow.repaint();
-//        mainWindow.printAll(mainWindow.getGraphics());
+        mainWindow.setTitle("Events Management");
+        mainWindow.getFrameContainer().removeAll();
+        mainWindow.getFrameContainer().add(new HomePanel(), BorderLayout.CENTER);
+        mainWindow.printAll(mainWindow.getGraphics());
     }
 
     @Override

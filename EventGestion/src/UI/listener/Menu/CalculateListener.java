@@ -1,15 +1,26 @@
 package UI.listener.Menu;
 
 import UI.panel.CalculatePanel;
+import UI.panel.HomePanel;
 import UI.window.MainWindow;
 
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class CalculateListener implements MouseListener {
+
+    private MainWindow mainWindow;
+    public CalculateListener(MainWindow mainWindow) {
+        this.mainWindow = mainWindow;
+    }
+
     @Override
     public void mouseClicked(MouseEvent e) {
-        MainWindow.refreshPanel(new CalculatePanel(), "Calculate");
+        mainWindow.setTitle( "Events Management - Calculate ");
+        mainWindow.getFrameContainer().removeAll();
+        mainWindow.getFrameContainer().add(new CalculatePanel(), BorderLayout.CENTER);
+        mainWindow.printAll(mainWindow.getGraphics());
     }
 
     @Override

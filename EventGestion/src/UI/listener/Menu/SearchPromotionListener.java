@@ -3,6 +3,7 @@ package UI.listener.Menu;
 import UI.panel.SearchPromotionPanel;
 import UI.window.MainWindow;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -15,12 +16,10 @@ public class SearchPromotionListener implements ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        MainWindow.refreshPanel(new SearchPromotionPanel(), "Search promotions");
-//        mainWindow.setTitle("Events Management - Search promotions");
-//        mainWindow.getFrameContainer().removeAll();
-//        mainWindow.getFrameContainer().setLayout(new BorderLayout());
-//        mainWindow.getFrameContainer().add(new SearchPromotionPanel(), BorderLayout.CENTER);
-//        mainWindow.repaint();
-//        mainWindow.printAll(mainWindow.getGraphics());
+        mainWindow.setTitle("Events Management - Search promotions");
+        mainWindow.getFrameContainer().removeAll();
+        mainWindow.getFrameContainer().add(new SearchPromotionPanel(), BorderLayout.CENTER);
+        mainWindow.repaint();
+        mainWindow.printAll(mainWindow.getGraphics());
     }
 }
