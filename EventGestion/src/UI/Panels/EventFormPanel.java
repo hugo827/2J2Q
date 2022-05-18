@@ -136,7 +136,7 @@ public class EventFormPanel extends JPanel {
         priceTF = new JTextField(isUpdate ? Double.toString(eventUpdate.getPrice()) : "");
         priceTF.addKeyListener(new VerificationPriceListener(priceTF));
 
-        nbParticipantLabel = new JLabel("*Number of participant : ");
+        nbParticipantLabel = new JLabel("*Max Number of participant : ");
         nbParticipantLabel.setHorizontalAlignment(SwingConstants.RIGHT);
         nbParticipantTF = new JTextField(isUpdate ? Integer.toString(eventUpdate.getParticipantNbMax()) : "");
         nbParticipantTF.addKeyListener(new VerificationNbParticipantsListener(nbParticipantTF));
@@ -173,6 +173,7 @@ public class EventFormPanel extends JPanel {
         if(isUpdate) {
             cancel.addActionListener(new EventReadListener(MainWindow.getInstance()));
             add.addActionListener(new UpdateListener(this, eventUpdate));
+            //TODO modifie ce -1
             address.setSelectedIndex(eventUpdate.getFk_address()-1);
             creator.setSelectedIndex(eventUpdate.getFk_creator()-1);
             eventType.setSelectedIndex(eventUpdate.getFk_eventType()-1);
@@ -228,17 +229,17 @@ public class EventFormPanel extends JPanel {
     public EventFormPanel(EventModel eventUpdate) {
         this(true, eventUpdate);
     }
-    public void setBorderObject(char c) {
+    public void setBorderObject(char caract) {
 
 
-        switch (c) {
+        switch (caract) {
             case 't' -> titleTF.setBorder(lineBorder);
             case 'd' -> descriptionTF.setBorder(lineBorder);
             case 'p' -> priceTF.setBorder(lineBorder);
             case 'n' -> nbParticipantTF.setBorder(lineBorder);
             case 's' -> startDate.setBorder(lineBorder);
             case 'e' -> endDate.setBorder(lineBorder);
-            case 'b' -> {
+            case 'c' -> {
                 creator.setBorder(lineBorder);
                 address.setBorder(lineBorder);
                 eventType.setBorder(lineBorder);

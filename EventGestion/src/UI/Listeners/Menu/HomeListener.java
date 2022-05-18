@@ -28,7 +28,7 @@ public class HomeListener implements MouseListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-
+        mouseClicked(e);
     }
 
     @Override

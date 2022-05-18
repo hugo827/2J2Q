@@ -14,7 +14,7 @@ public class CalculateListener implements MouseListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-
+        mouseClicked(e);
     }
 
     @Override

@@ -29,7 +29,9 @@ public class BusinessTaskListener implements MouseListener {
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {}
+    public void mousePressed(MouseEvent e) {
+        mouseClicked(e);
+    }
 
     @Override
     public void mouseReleased(MouseEvent e) {}
