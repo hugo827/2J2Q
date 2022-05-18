@@ -22,9 +22,9 @@ public class CalculateListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (calculatePanel.getNumberPersonSTR() == null || calculatePanel.getNumberPersonSTR().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Need number of person", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Number of person needed", "Error", JOptionPane.ERROR_MESSAGE);
         } else if (calculatePanel.getPriceSTR() == null || calculatePanel.getPriceSTR().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Need price", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Price needed", "Error", JOptionPane.ERROR_MESSAGE);
         }  else {
 
 
@@ -33,11 +33,11 @@ public class CalculateListener implements ActionListener {
 
                 res = mainWindow.getEventsManagementController().calculateReduction(Integer.parseInt(calculatePanel.getNumberPersonSTR()),
                        Double.parseDouble(calculatePanel.getPriceSTR()), calculatePanel.getListPanel());
-                String message = " - Nombre de participant : " + res.getNbParticipant() + "\n"
-                        + " - Nombre de participant ayant eu une promotion : "  + res.getTotalPersonHavePromotion() + "\n"
-                        + " - Somme total : " + res.getSumTotalWithOutPromotion() + "\n"
-                        + " - Somme total prommotion : " + res.getSumTotalPromotion() + "\n"
-                        + " - Somme final : " + res.getSumFinal() + "\n";
+                String message = " - Number of participants : " + res.getNbParticipant() + "\n"
+                        + " - Number of participants who had a promotion: "  + res.getTotalPersonHavePromotion() + "\n"
+                        + " - Total sum : " + res.getSumTotalWithOutPromotion() + "\n"
+                        + " - Total promotion : " + res.getSumTotalPromotion() + "\n"
+                        + " - Final sum : " + res.getSumFinal() + "\n";
                 JOptionPane.showMessageDialog(null, message, "Information", JOptionPane.PLAIN_MESSAGE );
 
             } catch (CalculateReductionException |ReductionBetweenException  ex) {
