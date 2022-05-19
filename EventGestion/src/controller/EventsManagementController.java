@@ -3,7 +3,6 @@ package controller;
 import businessLogic.EventsManagementBusiness;
 import exception.*;
 import model.*;
-import UI.panel.ReductionPanel;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -78,7 +77,7 @@ public class EventsManagementController {
         return eventsManagementBusiness.getInformationEvent( idEvent);
     }
 
-    public BusinessTaskModel calculateReduction(int numberPerson, double price, ArrayList<TestModel> testModelArrayList) throws CalculateReductionException, ReductionBetweenException {
-        return eventsManagementBusiness.calculateReduction(numberPerson, price, testModelArrayList);
+    public BusinessTaskModel calculateReduction(int numberPerson, double price, ArrayList<ReductionModel> reductionModelArrayList) throws CalculateReductionException, ReductionBetweenException {
+        return eventsManagementBusiness.calculateReduction(numberPerson, price, reductionModelArrayList);
     }
 }

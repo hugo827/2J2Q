@@ -25,10 +25,6 @@ public class EventsManagementBusiness {
     private IUserType userTypeDataAccess;
 
 
-    private ArrayList<EventTypeModel> eventType;
-    private ArrayList<UserModel> users;
-    private ArrayList<UserTypeModel> userType;
-    private ArrayList<AddressModel> address;
 
     public EventsManagementBusiness() {
         eventDataAccess = new EventDataAccess();
@@ -43,28 +39,17 @@ public class EventsManagementBusiness {
 
         searchEventTypeDataAccess = new SearchByEventTypeDataAccess();
 
-        //TODO : supprimer c'est ligne -> faire appelle direct a la  base de données ...
-
-        loadUserList();
-        loadEventTypeList();
-        loadAddressList();
-        loadUserTypeList();
-
-
     }
 
     /* ---------------------- CRUD ----------------------*/
     public ArrayList<EventModel> getEvents() {
         return eventDataAccess.getAllEvent();
     }
-    public ArrayList<UserModel> getUsers() { return users; }
-    public ArrayList<EventTypeModel> getEventType() { return eventType; }
-    public ArrayList<AddressModel> getAddressList() { return address; }
+    public ArrayList<UserModel> getUsers() { return userDataAccess.getUsers(); }
+    public ArrayList<EventTypeModel> getEventType() { return eventTypeDataAccess.getEventType(); }
+    public ArrayList<AddressModel> getAddressList() { return addressDataAccess.getAddressList(); }
 
 
-    public void loadUserList() { users = userDataAccess.getUsers(); }
-    public void loadEventTypeList() { eventType = eventTypeDataAccess.getEventType();}
-    public void loadAddressList() { address = addressDataAccess.getAddressList(); }
 
     public void deleteEvent(int idEvent) throws SQLException, DataAccessException {
         if(idEvent <= 0) {
@@ -126,11 +111,9 @@ public class EventsManagementBusiness {
     /*-------------------------------- SEARCH promotion -------------------------------------*/
 
     public ArrayList<UserTypeModel> getUserType() {
-        return userType;
+        return userTypeDataAccess.getUserTypeList();
     }
-    public void loadUserTypeList(){
-        userType = userTypeDataAccess.getUserTypeList();
-    }
+
 
     public ArrayList<SearchPromotionModel> getSearchByUserType(int idUserType) throws DataAccessException {
         if(idUserType <= 0) {
@@ -161,13 +144,13 @@ public class EventsManagementBusiness {
         }
     }
 
-    public BusinessTaskModel calculateReduction(int numberPerson, double price, ArrayList<TestModel> testModelArrayList) throws CalculateReductionException, ReductionBetweenException {
+    public BusinessTaskModel calculateReduction(int numberPerson, double price, ArrayList<ReductionModel> reductionModelArrayList) throws CalculateReductionException, ReductionBetweenException {
         BusinessTaskModel businessTaskModel = null;
         double totalPromotion = 0;
         double totalWithoutPromotion = numberPerson * price;
         int totalPersonHavePromotion = 0;
 
-        for(TestModel p : testModelArrayList) {
+        for(ReductionModel p : reductionModelArrayList) {
             if(p.getReduc() == null) {
                 throw new CalculateReductionException();
             } else {
