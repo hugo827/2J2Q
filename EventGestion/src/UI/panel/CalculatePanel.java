@@ -99,11 +99,9 @@ public class CalculatePanel extends JPanel {
 
     public ArrayList<ReductionModel> getReducList() {
         testArrayList = new ArrayList<>();
-
         for(ReductionPanel reduc : jPanelArrayList) {
             Double tempReduc = null;
             Integer tempNumberPerson = null;
-            System.out.println(reduc.getReducField().trim().isEmpty());
             if(reduc.getReducField() != null && !reduc.getReducField().trim().isEmpty()) tempReduc = Double.parseDouble(reduc.getReducField());
             if(reduc.getReducField() != null && !reduc.getNumberPersonField().trim().isEmpty()) tempNumberPerson = Integer.parseInt(reduc.getNumberPersonField());
             testArrayList.add(new ReductionModel(tempNumberPerson, tempReduc ));
