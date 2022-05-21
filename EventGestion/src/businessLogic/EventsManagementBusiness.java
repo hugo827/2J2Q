@@ -144,7 +144,7 @@ public class EventsManagementBusiness {
         }
     }
 
-    public BusinessTaskModel calculateReduction(int numberPerson, double price, ArrayList<ReductionModel> reductionModelArrayList) throws CalculateReductionException, ReductionBetweenException {
+    public BusinessTaskModel calculateReduction(int numberPerson, double price, ArrayList<ReductionModel> reductionModelArrayList) throws CalculateReductionException, ReductionBetweenException, NumberPersonException {
         BusinessTaskModel businessTaskModel = null;
         double totalPromotion = 0;
         double totalWithoutPromotion = numberPerson * price;
@@ -164,7 +164,9 @@ public class EventsManagementBusiness {
                 }
             }
         }
-
+        if(numberPerson < totalPersonHavePromotion) {
+            throw new NumberPersonException(numberPerson, totalPersonHavePromotion);
+        }
         double total = totalWithoutPromotion - totalPromotion;
 
         businessTaskModel = new BusinessTaskModel(numberPerson, total, totalWithoutPromotion, totalPromotion, totalPersonHavePromotion);

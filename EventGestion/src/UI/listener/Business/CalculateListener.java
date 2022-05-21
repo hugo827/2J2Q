@@ -1,6 +1,7 @@
 package UI.listener.Business;
 
 import exception.CalculateReductionException;
+import exception.NumberPersonException;
 import exception.ReductionBetweenException;
 import model.BusinessTaskModel;
 import UI.panel.CalculatePanel;
@@ -37,7 +38,7 @@ public class CalculateListener implements ActionListener {
                         + " - Final sum : " + res.getSumFinal() + "\n";
                 JOptionPane.showMessageDialog(null, message, "Information", JOptionPane.PLAIN_MESSAGE );
 
-            } catch (CalculateReductionException |ReductionBetweenException  ex) {
+            } catch (CalculateReductionException |ReductionBetweenException | NumberPersonException ex) {
                 JOptionPane.showMessageDialog(calculatePanel, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
 

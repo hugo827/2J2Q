@@ -77,7 +77,7 @@ public class EventsManagementController {
         return eventsManagementBusiness.getInformationEvent( idEvent);
     }
 
-    public BusinessTaskModel calculateReduction(int numberPerson, double price, ArrayList<ReductionModel> reductionModelArrayList) throws CalculateReductionException, ReductionBetweenException {
+    public BusinessTaskModel calculateReduction(int numberPerson, double price, ArrayList<ReductionModel> reductionModelArrayList) throws CalculateReductionException, ReductionBetweenException, NumberPersonException {
         return eventsManagementBusiness.calculateReduction(numberPerson, price, reductionModelArrayList);
     }
 }
