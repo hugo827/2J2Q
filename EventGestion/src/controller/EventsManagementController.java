@@ -20,7 +20,7 @@ public class EventsManagementController {
     public void addEvent(EventModel event) throws AddEventException, DataAccessException {
         eventsManagementBusiness.addEvent(event);
     }
-    public ArrayList<EventModel> getEventList() {
+    public ArrayList<EventModel> getEventList() throws DataAccessException {
         return eventsManagementBusiness.getEvents();
     }
     public ArrayList<UserModel> getUserList() throws DataAccessException { return eventsManagementBusiness.getUsers(); }

@@ -4,6 +4,7 @@ import UI.listener.CRUD.DeleteListener;
 import UI.listener.CRUD.SelectUpdateListener;
 import UI.panel.TableModels.EventTableModel;
 import UI.window.MainWindow;
+import exception.DataAccessException;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,7 +22,7 @@ public class EventListingPanel extends JPanel {
     private JPanel panelSouth = new JPanel();
 
 
-    public EventListingPanel(MainWindow mainWindow) {
+    public EventListingPanel(MainWindow mainWindow) throws DataAccessException {
         this.setLayout(new BorderLayout());
         label = new JLabel("Event listing panel");
         label.setHorizontalAlignment(JLabel.CENTER);

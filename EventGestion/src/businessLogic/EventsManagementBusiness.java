@@ -42,7 +42,7 @@ public class EventsManagementBusiness {
     }
 
     /* ---------------------- CRUD ----------------------*/
-    public ArrayList<EventModel> getEvents() {
+    public ArrayList<EventModel> getEvents() throws DataAccessException {
         return eventDataAccess.getAllEvent();
     }
     public ArrayList<UserModel> getUsers() throws DataAccessException { return userDataAccess.getUsers(); }

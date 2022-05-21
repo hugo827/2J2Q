@@ -50,7 +50,7 @@ public class EventDataAccess implements IEvent {
         }
     }
 
-    public ArrayList<EventModel> getAllEvent() {
+    public ArrayList<EventModel> getAllEvent() throws DataAccessException {
 
         ArrayList<EventModel> eventList = new ArrayList<>();
 
@@ -86,7 +86,7 @@ public class EventDataAccess implements IEvent {
             }
 
         } catch(SQLException throwable) {
-            throwable.printStackTrace();
+            throw new DataAccessException(throwable.getMessage());
         } catch (EventException e) {
             throw new RuntimeException(e);
         }
@@ -131,7 +131,7 @@ public class EventDataAccess implements IEvent {
         }
     }
 
-    public EventModel getEvent(int idEvent) {
+    public EventModel getEvent(int idEvent) throws DataAccessException {
         EventModel event = null;
 
         try {
@@ -160,7 +160,7 @@ public class EventDataAccess implements IEvent {
             }
 
         } catch(SQLException throwable) {
-            throwable.printStackTrace();
+            throw new DataAccessException(throwable.getMessage());
         } catch (EventException e) {
             throw new RuntimeException(e);
         }
@@ -168,7 +168,7 @@ public class EventDataAccess implements IEvent {
     }
 
     @Override
-    public void deleteEvent(int idEvent) throws SQLException {
+    public void deleteEvent(int idEvent) throws SQLException, DataAccessException {
         Connection connectionDB = ConnectionDB.getInstance();
         try {
             connectionDB.setAutoCommit(false);
@@ -192,8 +192,8 @@ public class EventDataAccess implements IEvent {
             connectionDB.commit();
 
         } catch (SQLException throwable) {
-            throwable.printStackTrace();
             connectionDB.rollback();
+            throw new DataAccessException(throwable.getMessage());
         }
     }
 
