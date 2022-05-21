@@ -2,7 +2,9 @@ package UI.listener.Menu;
 
 import UI.panel.BusinessTaskPanel;
 import UI.window.MainWindow;
+import exception.DataAccessException;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -17,10 +19,16 @@ public class BusinessTaskListener implements MouseListener {
     }
     @Override
     public void mouseClicked(MouseEvent e) {
-        mainWindow.setTitle("Events Management - Business task");
-        mainWindow.getFrameContainer().removeAll();
-        mainWindow.getFrameContainer().add(new BusinessTaskPanel(mainWindow), BorderLayout.CENTER);
-        mainWindow.printAll(mainWindow.getGraphics());
+
+        try {
+            mainWindow.setTitle("Events Management - Business task");
+            mainWindow.getFrameContainer().removeAll();
+            mainWindow.getFrameContainer().add(new BusinessTaskPanel(mainWindow), BorderLayout.CENTER);
+            mainWindow.printAll(mainWindow.getGraphics());
+        } catch (DataAccessException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
     }
 
     @Override

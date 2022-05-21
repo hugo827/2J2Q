@@ -23,10 +23,10 @@ public class EventsManagementController {
     public ArrayList<EventModel> getEventList() {
         return eventsManagementBusiness.getEvents();
     }
-    public ArrayList<UserModel> getUserList() { return eventsManagementBusiness.getUsers(); }
-    public ArrayList<EventTypeModel> getEventTypeList() { return eventsManagementBusiness.getEventType(); }
+    public ArrayList<UserModel> getUserList() throws DataAccessException { return eventsManagementBusiness.getUsers(); }
+    public ArrayList<EventTypeModel> getEventTypeList() throws DataAccessException { return eventsManagementBusiness.getEventType(); }
 
-    public ArrayList<AddressModel> getAddressList() { return eventsManagementBusiness.getAddressList(); }
+    public ArrayList<AddressModel> getAddressList() throws DataAccessException { return eventsManagementBusiness.getAddressList(); }
 
 
     public void deleteEvent(int idEvent) throws SQLException, DataAccessException {
@@ -51,14 +51,14 @@ public class EventsManagementController {
 
     /*------------------------- SEARCH By Dates --------------*/
 
-    public ArrayList<SearchDateModel> getSearchByDates(Date startDate, Date endDate) throws SearchDateException {
+    public ArrayList<SearchDateModel> getSearchByDates(Date startDate, Date endDate) throws SearchDateException, DataAccessException {
         return eventsManagementBusiness.getSearchByDates(startDate, endDate);
     }
 
 
     /* ------------------------SEARCH promotion------------------------ */
 
-    public ArrayList<UserTypeModel> getUserTypeList() {
+    public ArrayList<UserTypeModel> getUserTypeList() throws DataAccessException {
         return eventsManagementBusiness.getUserType();
     }
 

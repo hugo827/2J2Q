@@ -2,7 +2,10 @@ package UI.listener.Menu;
 
 import UI.panel.SearchPromotionPanel;
 import UI.window.MainWindow;
+import exception.DataAccessException;
 
+import javax.swing.*;
+import javax.xml.crypto.Data;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,10 +19,14 @@ public class SearchPromotionListener implements ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        mainWindow.setTitle("Events Management - Search promotions");
-        mainWindow.getFrameContainer().removeAll();
-        mainWindow.getFrameContainer().add(new SearchPromotionPanel(mainWindow), BorderLayout.CENTER);
-        mainWindow.repaint();
-        mainWindow.printAll(mainWindow.getGraphics());
+        try {
+            mainWindow.setTitle("Events Management - Search promotions");
+            mainWindow.getFrameContainer().removeAll();
+            mainWindow.getFrameContainer().add(new SearchPromotionPanel(mainWindow), BorderLayout.CENTER);
+            mainWindow.repaint();
+            mainWindow.printAll(mainWindow.getGraphics());
+        } catch (DataAccessException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 }

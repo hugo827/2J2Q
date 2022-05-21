@@ -3,30 +3,19 @@ package UI.listener.Menu;
 
 import UI.window.MainWindow;
 
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class QuitListener implements MouseListener {
+
+public class QuitListener implements ActionListener {
 
     private MainWindow mainWindow;
 
     public  QuitListener(MainWindow mainWindow){this.mainWindow=mainWindow;}
 
-    public void mouseClicked(MouseEvent e){
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
         System.exit(0);
     }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-        mouseClicked(e);
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {}
-
-    @Override
-    public void mouseEntered(MouseEvent e) {}
-
-    @Override
-    public void mouseExited(MouseEvent e) {}
 }

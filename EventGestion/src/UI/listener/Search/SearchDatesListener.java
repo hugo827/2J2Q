@@ -1,5 +1,6 @@
 package UI.listener.Search;
 
+import exception.DataAccessException;
 import exception.SearchDateException;
 import UI.panel.SearchDatesPanel;
 import UI.panel.TableModels.SearchDatesTableModel;
@@ -24,8 +25,8 @@ public class SearchDatesListener implements ActionListener {
         SearchDatesTableModel searchDatesTableModel = null;
         try {
             searchDatesTableModel = new SearchDatesTableModel(mainWindow.getEventsManagementController().getSearchByDates(searchDatesPanel.getStartDate(), searchDatesPanel.getEndDate()));
-        } catch (SearchDateException ex) {
-            JOptionPane.showMessageDialog(searchDatesPanel, ex.getMessage(), "Error dates", JOptionPane.ERROR_MESSAGE);
+        } catch (SearchDateException | DataAccessException ex) {
+            JOptionPane.showMessageDialog(searchDatesPanel, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
         searchDatesPanel.setTable(searchDatesTableModel);
     }

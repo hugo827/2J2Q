@@ -84,7 +84,7 @@ public class MainWindow extends JFrame {
         search1 = new JMenuItem("Search by dates");
         search2 = new JMenuItem("Search promotion");
         search3 = new JMenuItem("Search by event types");
-        quit = new JMenuItem("Quit the program");
+        quit = new JMenuItem("Exit");
 
         jMenuBar.add(home);
         jMenuBar.add(event);
@@ -121,7 +121,7 @@ public class MainWindow extends JFrame {
         search2.addActionListener(searchPromotionListener);
         search3.addActionListener(searchEventTypeListener);
         calculate.addMouseListener(calculateListener);
-        quit.addMouseListener(quitListener);
+        quit.addActionListener(quitListener);
     }
 
 

@@ -6,6 +6,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Date;
 
+import exception.DataAccessException;
 import model.AddressModel;
 import model.EventModel;
 import model.EventTypeModel;
@@ -66,7 +67,7 @@ public class EventFormPanel extends JPanel {
 
     private MainWindow mainWindow;
 
-    private EventFormPanel(Boolean isUpdate, EventModel eventUpdate, MainWindow mainWindow) {
+    private EventFormPanel(Boolean isUpdate, EventModel eventUpdate, MainWindow mainWindow) throws DataAccessException {
         this.mainWindow = mainWindow;
         this.setLayout(new BorderLayout());
         label = new JLabel( isUpdate ? "Event update panel" : "Event add panel");
@@ -226,10 +227,10 @@ public class EventFormPanel extends JPanel {
         this.add(listButton, BorderLayout.SOUTH);
 
     }
-    public EventFormPanel(MainWindow mainWindow) {
+    public EventFormPanel(MainWindow mainWindow) throws DataAccessException {
         this(false, null, mainWindow);
     }
-    public EventFormPanel(EventModel eventUpdate, MainWindow mainWindow) {
+    public EventFormPanel(EventModel eventUpdate, MainWindow mainWindow) throws DataAccessException {
         this(true, eventUpdate, mainWindow);
     }
     public void setBorderObject(char caract) {

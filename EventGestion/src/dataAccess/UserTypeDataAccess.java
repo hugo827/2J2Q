@@ -1,6 +1,7 @@
 package dataAccess;
 
 import dataAccess.Interfaces.IUserType;
+import exception.DataAccessException;
 import model.UserTypeModel;
 
 import java.sql.Connection;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 
 public class UserTypeDataAccess implements IUserType {
 
-    public ArrayList<UserTypeModel> getUserTypeList() {
+    public ArrayList<UserTypeModel> getUserTypeList() throws DataAccessException {
 
         ArrayList<UserTypeModel> userType = new ArrayList<>();
 
@@ -28,7 +29,7 @@ public class UserTypeDataAccess implements IUserType {
             }
 
         } catch(SQLException throwable) {
-            throwable.printStackTrace();
+            throw new DataAccessException(throwable.getMessage());
         }
 
 

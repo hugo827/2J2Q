@@ -1,6 +1,7 @@
 package dataAccess;
 
 import dataAccess.Interfaces.IBusinessTask;
+import exception.DataAccessException;
 import model.BusinessTaskModel;
 
 import java.sql.Connection;
@@ -10,7 +11,7 @@ import java.sql.SQLException;
 
 public class BusinessTaskDataAccess implements IBusinessTask {
 
-    public BusinessTaskModel getDataEvent(int idEvent) throws SQLException {
+    public BusinessTaskModel getDataEvent(int idEvent) throws SQLException, DataAccessException {
 
 
         int nbParticipant = 0;
@@ -54,8 +55,8 @@ public class BusinessTaskDataAccess implements IBusinessTask {
             connectionDB.commit();
 
         } catch(SQLException throwable) {
-            throwable.printStackTrace();
             connectionDB.rollback();
+            throw  new DataAccessException(throwable.getMessage());
         }
 
         return res;

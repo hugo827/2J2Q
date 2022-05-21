@@ -1,6 +1,7 @@
 package dataAccess;
 
 import dataAccess.Interfaces.IEventType;
+import exception.DataAccessException;
 import model.EventTypeModel;
 
 import java.sql.Connection;
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 public class EventTypeDataAccess implements IEventType {
 
     @Override
-    public ArrayList<EventTypeModel> getEventType() {
+    public ArrayList<EventTypeModel> getEventType() throws DataAccessException {
 
         ArrayList<EventTypeModel> eventTypeList = new ArrayList<>();
 
@@ -29,7 +30,7 @@ public class EventTypeDataAccess implements IEventType {
             }
 
         } catch(SQLException throwable) {
-            throwable.printStackTrace();
+            throw new DataAccessException(throwable.getMessage());
         }
         return eventTypeList;
     }

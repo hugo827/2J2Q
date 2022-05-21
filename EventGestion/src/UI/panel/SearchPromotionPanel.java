@@ -1,6 +1,7 @@
 package UI.panel;
 
 
+import exception.DataAccessException;
 import model.SearchPromotionModel;
 import model.UserTypeModel;
 import UI.listener.Search.SearchPromotionListener;
@@ -27,7 +28,7 @@ public class SearchPromotionPanel extends JPanel {
     private JScrollPane jScrollPane;
 
 
-    public SearchPromotionPanel(MainWindow mainWindow) {
+    public SearchPromotionPanel(MainWindow mainWindow) throws DataAccessException {
 
         this.setLayout(new BorderLayout());
         label = new JLabel("Search promotion panel");

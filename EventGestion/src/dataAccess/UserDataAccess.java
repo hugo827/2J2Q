@@ -1,6 +1,7 @@
 package dataAccess;
 
 import dataAccess.Interfaces.IUser;
+import exception.DataAccessException;
 import model.UserModel;
 
 import java.sql.Connection;
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 public class UserDataAccess implements IUser {
 
     @Override
-    public ArrayList<UserModel> getUsers() {
+    public ArrayList<UserModel> getUsers() throws DataAccessException {
         ArrayList<UserModel> UserList = new ArrayList<>();
 
         try {
@@ -29,7 +30,7 @@ public class UserDataAccess implements IUser {
             }
 
         } catch(SQLException throwable) {
-            throwable.printStackTrace();
+           throw new DataAccessException(throwable.getMessage());
         }
 
         return UserList;

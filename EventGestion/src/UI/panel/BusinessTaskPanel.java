@@ -25,7 +25,7 @@ public class BusinessTaskPanel extends JPanel {
     private JScrollPane userJscrollpane, eventJScrollpane;
 
     private MainWindow mainWindow;
-    public BusinessTaskPanel(MainWindow mainWindow) {
+    public BusinessTaskPanel(MainWindow mainWindow) throws DataAccessException {
         this.mainWindow = mainWindow;
         this.setLayout(new BorderLayout());
         label = new JLabel("Business task panel");

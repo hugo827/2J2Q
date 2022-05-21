@@ -1,5 +1,6 @@
 package UI.panel;
 
+import exception.DataAccessException;
 import model.EventTypeModel;
 import UI.listener.Search.SelectEventTypeListener;
 import UI.panel.TableModels.SearchEventTypeTableModel;
@@ -22,7 +23,7 @@ public class SearchEventTypePanel extends JPanel {
     private JScrollPane jScrollPane;
     private SearchEventTypeTableModel searchEventTypeTableModel;
 
-    public SearchEventTypePanel(MainWindow mainWindow) {
+    public SearchEventTypePanel(MainWindow mainWindow) throws DataAccessException {
         this.setLayout(new BorderLayout());
         label = new JLabel("Search event type panel");
         label.setHorizontalAlignment(JLabel.CENTER);

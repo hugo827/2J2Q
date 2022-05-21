@@ -45,9 +45,9 @@ public class EventsManagementBusiness {
     public ArrayList<EventModel> getEvents() {
         return eventDataAccess.getAllEvent();
     }
-    public ArrayList<UserModel> getUsers() { return userDataAccess.getUsers(); }
-    public ArrayList<EventTypeModel> getEventType() { return eventTypeDataAccess.getEventType(); }
-    public ArrayList<AddressModel> getAddressList() { return addressDataAccess.getAddressList(); }
+    public ArrayList<UserModel> getUsers() throws DataAccessException { return userDataAccess.getUsers(); }
+    public ArrayList<EventTypeModel> getEventType() throws DataAccessException { return eventTypeDataAccess.getEventType(); }
+    public ArrayList<AddressModel> getAddressList() throws DataAccessException { return addressDataAccess.getAddressList(); }
 
 
 
@@ -94,7 +94,7 @@ public class EventsManagementBusiness {
 
     /*-------------------------- SEARCH by dates -------------*/
 
-    public ArrayList<SearchDateModel> getSearchByDates(Date startDate, Date endDate) throws SearchDateException {
+    public ArrayList<SearchDateModel> getSearchByDates(Date startDate, Date endDate) throws SearchDateException, DataAccessException {
         if(startDate == null || endDate == null || endDate.before(startDate)) {
             throw new SearchDateException(startDate, endDate);
         } else {
@@ -110,7 +110,7 @@ public class EventsManagementBusiness {
 
     /*-------------------------------- SEARCH promotion -------------------------------------*/
 
-    public ArrayList<UserTypeModel> getUserType() {
+    public ArrayList<UserTypeModel> getUserType() throws DataAccessException {
         return userTypeDataAccess.getUserTypeList();
     }
 

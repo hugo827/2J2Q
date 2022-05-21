@@ -2,6 +2,7 @@ package dataAccess;
 
 
 import dataAccess.Interfaces.ISearchUserType;
+import exception.DataAccessException;
 import model.SearchPromotionModel;
 
 import java.sql.Connection;
@@ -13,7 +14,7 @@ import java.util.Date;
 
 public class SearchByUserTypeDataAccess implements ISearchUserType {
 
-    public ArrayList<SearchPromotionModel> getSearchUsertype(int idUserType) {
+    public ArrayList<SearchPromotionModel> getSearchUsertype(int idUserType) throws DataAccessException {
 
         ArrayList<SearchPromotionModel> searchPromotionList = new ArrayList<>();
         try {
@@ -36,7 +37,7 @@ public class SearchByUserTypeDataAccess implements ISearchUserType {
             }
 
         } catch(SQLException throwable) {
-            throwable.printStackTrace();
+            throw new DataAccessException(throwable.getMessage());
         }
         return searchPromotionList;
     }

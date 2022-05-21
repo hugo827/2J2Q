@@ -1,6 +1,7 @@
 package dataAccess.Interfaces;
 
 import exception.AddEventException;
+import exception.DataAccessException;
 import exception.UpdateEventException;
 import model.EventModel;
 
@@ -14,5 +15,5 @@ public interface IEvent {
      void updateEvent(EventModel event) throws UpdateEventException; // UPDATE
      void deleteEvent(int idEvent) throws SQLException; // DELETE
 
-     ArrayList<EventModel> getUserEventsList(int idUser);
+     ArrayList<EventModel> getUserEventsList(int idUser) throws DataAccessException;
 }

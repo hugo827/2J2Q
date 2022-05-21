@@ -1,6 +1,7 @@
 package dataAccess;
 
 import dataAccess.Interfaces.IAddress;
+import exception.DataAccessException;
 import model.AddressModel;
 
 
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 
 public class AddressDataAccess implements IAddress {
     @Override
-    public ArrayList<AddressModel> getAddressList() {
+    public ArrayList<AddressModel> getAddressList() throws DataAccessException {
         ArrayList<AddressModel> addressList = new ArrayList<>();
 
         try {
@@ -30,7 +31,7 @@ public class AddressDataAccess implements IAddress {
             }
 
         } catch(SQLException throwable) {
-            throwable.printStackTrace();
+            throw new DataAccessException(throwable.getMessage());
         }
 
         return addressList;

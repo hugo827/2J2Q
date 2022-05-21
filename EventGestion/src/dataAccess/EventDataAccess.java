@@ -2,6 +2,7 @@ package dataAccess;
 
 import dataAccess.Interfaces.IEvent;
 import exception.AddEventException;
+import exception.DataAccessException;
 import exception.EventException;
 import exception.UpdateEventException;
 import model.EventModel;
@@ -198,7 +199,7 @@ public class EventDataAccess implements IEvent {
 
 
     @Override
-    public ArrayList<EventModel> getUserEventsList(int idUser) {
+    public ArrayList<EventModel> getUserEventsList(int idUser) throws DataAccessException {
 
         ArrayList<EventModel> eventList = new ArrayList<>();
 
@@ -235,7 +236,7 @@ public class EventDataAccess implements IEvent {
             }
 
         } catch(SQLException throwable) {
-            throwable.printStackTrace();
+            throw new DataAccessException(throwable.getMessage());
         } catch (EventException e) {
             throw new RuntimeException(e);
         }
