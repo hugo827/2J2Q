@@ -10,7 +10,7 @@ import java.util.Date;
 
 public class EventsManagementController {
 
-    private final EventsManagementBusiness eventsManagementBusiness;
+    private EventsManagementBusiness eventsManagementBusiness;
 
     public EventsManagementController() {
         eventsManagementBusiness = new EventsManagementBusiness();

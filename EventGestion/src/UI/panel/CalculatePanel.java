@@ -72,8 +72,7 @@ public class CalculatePanel extends JPanel {
 
     public void addJPanel() {
         if(jPanelArrayList.size() < 10) {
-            ReductionPanel reductionPanel = new ReductionPanel();
-            jPanelArrayList.add(reductionPanel);
+            jPanelArrayList.add(new ReductionPanel());
         } else {
             JOptionPane.showMessageDialog(this, "No more reduction", "Information", JOptionPane.INFORMATION_MESSAGE);
         }
@@ -97,7 +96,7 @@ public class CalculatePanel extends JPanel {
     }
 
 
-    //Methode qui renvoie une list de type TestModel(oui je sais a changer de nom), pour la faire on va boucler sur notre liste de panel...
+
     public ArrayList<ReductionModel> getReducList() {
         testArrayList = new ArrayList<>();
         Double tempReduc = null;

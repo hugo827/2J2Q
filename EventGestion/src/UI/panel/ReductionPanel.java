@@ -12,6 +12,7 @@ public class ReductionPanel extends JPanel {
 
     public ReductionPanel() {
         this.setLayout(new GridLayout(1, 4, 5, 5));
+
         JLabel numberPersonLabel = new JLabel("Number of people who have a discount : ");
         JLabel reducLabel = new JLabel("Pourcent Reduction (ex: 12.50) : ");
         numberPersonField = new JTextField();
@@ -24,6 +25,9 @@ public class ReductionPanel extends JPanel {
         this.add(numberPersonField);
         this.add(reducLabel);
         this.add(reducField);
+
+        numberPersonField.setText(null);
+        reducField.setText(null);
     }
 
     public String getNumberPersonField() {

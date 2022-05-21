@@ -15,7 +15,10 @@ import java.util.ArrayList;
 public class EventManagementTest {
 
     private static EventsManagementBusiness eventsManagementBusiness;
-    private static int i = 1;
+
+    private BusinessTaskModel actual;
+
+    private  ArrayList<ReductionModel> reductionModels;
 
 
     @BeforeAll
@@ -30,72 +33,43 @@ public class EventManagementTest {
     }
     @BeforeEach
     public void setUp() throws Exception {
-        System.out.println("Setting up for test " + i);
-
+        reductionModels = new ArrayList<>();
+        reductionModels.add(new ReductionModel(50,100.0));
+        reductionModels.add(new ReductionModel(10, 10.0));
+        actual = eventsManagementBusiness.calculateReduction(100, 9.99, reductionModels);
     }
 
     @AfterEach
     public void tearDown() throws Exception {
-        System.out.println("Test ended " + i);
-        i++;
-    }
 
-    /* ----------------------------- a supprimer apres nouveau test ------------*/
-    @Test
-    @DisplayName("throws DataAccessException")
-    public void testException() {
-        DataAccessException thrown = Assertions.assertThrows(DataAccessException.class, () -> {
-            eventsManagementBusiness.getEvent(-1);
-        });
-        Assertions.assertEquals("The value -1 isn't correct !", thrown.getMessage());
     }
 
     @Test
-    @DisplayName("correct value with promotion")
-    public void test_correct_value() throws DataAccessException, SQLException {
-        String res = eventsManagementBusiness.getInformationEvent(1);
-        String expected = " - Number of participants : 5\n"
-                    + " - Total sum : 37.5\n"
-                    + " - Total promotion : 20.625\n"
-                    + " - Final sum : 16.875\n";
-        Assertions.assertEquals( expected, res);
+    @DisplayName("Test de la sum final ")
+    public void compare_sumFinal(){
+        Assertions.assertEquals(489.51, actual.getSumFinal(), 0.01);
     }
 
     @Test
-    @DisplayName("correct value without promotion")
-    public void test_correct_value_2() throws DataAccessException, SQLException {
-        String res = eventsManagementBusiness.getInformationEvent(5);
-        String expected = " - Number of participants : 4\n"
-                + " - Total sum : 60.0\n"
-                + " - Total promotion : 0.0\n"
-                + " - Final sum : 60.0\n";
-        Assertions.assertEquals( expected, res);
+    @DisplayName("Test de la reduction ")
+    public void compare_reduction() {
+        Assertions.assertEquals(509.49, actual.getSumTotalPromotion(),0.01);
     }
 
     @Test
-    @DisplayName("event not exist")
-    public void no_existent_line() throws DataAccessException, SQLException {
-        String res = eventsManagementBusiness.getInformationEvent(25);
-        String expected = " - Number of participants : 0\n"
-                + " - Total sum : 0.0\n"
-                + " - Total promotion : 0.0\n"
-                + " - Final sum : 0.0\n";
-        Assertions.assertEquals ( expected, res);
+    @DisplayName("Test exception reduction null")
+    public void verifie_exception_reduction() {
+        reductionModels.add(new ReductionModel(null,null));
+        Assertions.assertThrows(CalculateReductionException.class, () -> eventsManagementBusiness.calculateReduction(100,9.99, reductionModels));
     }
 
-    /* -------------------------------------------------------------------------------*/
-
-    /* exemple voir si correct */
     @Test
-    public void test() throws CalculateReductionException, ReductionBetweenException {
-
-        // Du coup ici au lieau d'avoir une liste JPanel, on a une liste d'objet et ce sera plus simple de recuper nos données d'ajouter des données ...
-        ArrayList<ReductionModel> reductionModels = new ArrayList<>();
-        reductionModels.add(new ReductionModel(50,100.0));
-        reductionModels.add(new ReductionModel(10, 10.0));
-        BusinessTaskModel actual = eventsManagementBusiness.calculateReduction(100, 9.99, reductionModels);
-        BusinessTaskModel expected = new BusinessTaskModel(100,489.51,999.0,509.49);
-        Assertions.assertEquals(489.51, actual.getSumFinal());
+    @DisplayName("Test exception reduction superieur a 100")
+    public void verifie_exception() {
+        reductionModels.add(new ReductionModel(10,150.0));
+        Assertions.assertThrows(ReductionBetweenException.class, () -> eventsManagementBusiness.calculateReduction(100,9.99, reductionModels));
     }
+
+
 
 }
