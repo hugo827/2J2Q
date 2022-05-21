@@ -64,7 +64,7 @@ public class EventManagementTest {
     }
 
     @Test
-    @DisplayName("Test exception reduction superieur a 100")
+    @DisplayName("Test exception reduction supérieur à 100")
     public void verifie_exception() {
         reductionModels.add(new ReductionModel(10,150.0));
         Assertions.assertThrows(ReductionBetweenException.class, () -> eventsManagementBusiness.calculateReduction(100,9.99, reductionModels));

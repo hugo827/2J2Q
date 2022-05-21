@@ -17,18 +17,15 @@ public class EventsManagementController {
     }
 
     /* -------------------CRUD-------------------- */
+
+    public ArrayList<EventModel> getEventList() throws DataAccessException { return eventsManagementBusiness.getEvents(); }
+    public ArrayList<UserModel> getUserList() throws DataAccessException { return eventsManagementBusiness.getUsers(); }
+    public ArrayList<EventTypeModel> getEventTypeList() throws DataAccessException { return eventsManagementBusiness.getEventType(); }
+    public ArrayList<AddressModel> getAddressList() throws DataAccessException { return eventsManagementBusiness.getAddressList(); }
+
     public void addEvent(EventModel event) throws AddEventException, DataAccessException {
         eventsManagementBusiness.addEvent(event);
     }
-    public ArrayList<EventModel> getEventList() throws DataAccessException {
-        return eventsManagementBusiness.getEvents();
-    }
-    public ArrayList<UserModel> getUserList() throws DataAccessException { return eventsManagementBusiness.getUsers(); }
-    public ArrayList<EventTypeModel> getEventTypeList() throws DataAccessException { return eventsManagementBusiness.getEventType(); }
-
-    public ArrayList<AddressModel> getAddressList() throws DataAccessException { return eventsManagementBusiness.getAddressList(); }
-
-
     public void deleteEvent(int idEvent) throws SQLException, DataAccessException {
         eventsManagementBusiness.deleteEvent(idEvent);
     }

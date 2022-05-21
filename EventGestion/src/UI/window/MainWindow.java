@@ -79,6 +79,7 @@ public class MainWindow extends JFrame {
         home = new JMenu("Home");
         businessTask = new JMenu("Business task");
         calculate = new JMenu("calculate");
+
         eventRead = new JMenuItem("Listing");
         eventCreate = new JMenuItem("Add Event");
         search1 = new JMenuItem("Search by dates");

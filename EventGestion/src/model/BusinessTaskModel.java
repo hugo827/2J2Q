@@ -21,20 +21,20 @@ public class BusinessTaskModel {
         this.totalPersonHavePromotion = totalPersonHavePromotion;
     }
 
-    public int getNbParticipant() {
+    public Integer getNbParticipant() {
         return nbParticipant;
     }
 
-    public double getSumFinal() {
+    public Double getSumFinal() {
         return sumFinal;
     }
 
-    public double getSumTotalWithOutPromotion() {
+    public Double getSumTotalWithOutPromotion() {
         return sumTotalWithOutPromotion;
     }
 
 
-    public double getSumTotalPromotion() {
+    public Double getSumTotalPromotion() {
         return sumTotalPromotion;
     }
 

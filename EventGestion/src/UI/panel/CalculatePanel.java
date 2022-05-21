@@ -1,6 +1,8 @@
 package UI.panel;
 
+import UI.listener.Business.AddReductionPanelListener;
 import UI.listener.Business.CalculateListener;
+import UI.listener.Business.RemoveReductionPanelListener;
 import UI.listener.CRUD.VerificationIntegerListener;
 import UI.listener.CRUD.VerificationDoubleListener;
 import UI.window.MainWindow;
@@ -18,7 +20,7 @@ public class CalculatePanel extends JPanel {
 
     private JTextField priceField, numberPersonField;
 
-    private JButton calculateButton, plusButton;
+    private JButton calculateButton, plusButton, subtractButton;
     private JPanel panel, listButtonPanel;
     private ArrayList <ReductionPanel> jPanelArrayList;
     private ArrayList <ReductionModel> testArrayList;
@@ -53,16 +55,17 @@ public class CalculatePanel extends JPanel {
         calculateButton.addActionListener(new CalculateListener(this, mainWindow));
 
         plusButton = new JButton("+");
-        plusButton.addActionListener(new plusListener(this));
+        plusButton.addActionListener(new AddReductionPanelListener(this));
+        subtractButton = new JButton("-");
+        subtractButton.addActionListener(new RemoveReductionPanelListener(this));
 
-        panel.add(numberPersonLabel);
-        panel.add(numberPersonField);
-        panel.add(priceLabel);
-        panel.add(priceField);
 
         listButtonPanel.add(calculateButton);
         listButtonPanel.add(new JLabel("     "));
+        listButtonPanel.add(subtractButton);
+        listButtonPanel.add(new JLabel("     "));
         listButtonPanel.add(plusButton);
+
 
         addJPanel();
         viewPanel();
@@ -76,10 +79,25 @@ public class CalculatePanel extends JPanel {
         } else {
             JOptionPane.showMessageDialog(this, "No more reduction", "Information", JOptionPane.INFORMATION_MESSAGE);
         }
-
     }
 
-    private void viewPanel() {
+    public void removePanel() {
+        if(jPanelArrayList.size() > 1) {
+            jPanelArrayList.remove( jPanelArrayList.size() - 1);
+
+        } else {
+            JOptionPane.showMessageDialog(this, "A reduction is required", "Information", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+
+    public void viewPanel() {
+        panel.removeAll();
+
+        panel.add(numberPersonLabel);
+        panel.add(numberPersonField);
+        panel.add(priceLabel);
+        panel.add(priceField);
+
         for(ReductionPanel p : jPanelArrayList) {
                 panel.add(p);
         }
@@ -113,21 +131,5 @@ public class CalculatePanel extends JPanel {
         mainWindow.getFrameContainer().removeAll();
         mainWindow.getFrameContainer().add(this);
         mainWindow.printAll(mainWindow.getGraphics());
-    }
-
-    private static class plusListener implements ActionListener {
-
-        private CalculatePanel calculatePanel;
-
-        public plusListener(CalculatePanel calculatePanel) {
-            this.calculatePanel = calculatePanel;
-        }
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            calculatePanel.addJPanel();
-            calculatePanel.viewPanel();
-            calculatePanel.refresh();
-        }
     }
 }
