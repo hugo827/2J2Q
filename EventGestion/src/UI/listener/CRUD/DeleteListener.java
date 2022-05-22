@@ -36,8 +36,6 @@ public class DeleteListener implements ActionListener {
                     mainWindow.getFrameContainer().removeAll();
                     mainWindow.getFrameContainer().add(new EventListingPanel(mainWindow), BorderLayout.CENTER);
                     mainWindow.printAll(mainWindow.getGraphics());
-                } catch (SQLException ex) {
-                    throw new RuntimeException(ex);
                 } catch (DataAccessException ex) {
                     JOptionPane.showMessageDialog(eventListingPanel,ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 }

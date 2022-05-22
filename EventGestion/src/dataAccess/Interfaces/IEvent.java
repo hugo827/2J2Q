@@ -13,7 +13,7 @@ public interface IEvent {
      ArrayList<EventModel> getAllEvent() throws DataAccessException; // READ
      EventModel getEvent(int idEvent) throws DataAccessException; //READ
      void updateEvent(EventModel event) throws UpdateEventException; // UPDATE
-     void deleteEvent(int idEvent) throws SQLException, DataAccessException; // DELETE
+     void deleteEvent(int idEvent) throws DataAccessException; // DELETE
 
      ArrayList<EventModel> getUserEventsList(int idUser) throws DataAccessException;
 }

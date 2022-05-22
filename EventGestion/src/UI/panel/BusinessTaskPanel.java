@@ -87,7 +87,7 @@ public class BusinessTaskPanel extends JPanel {
         calculateButton.setVisible(true);
     }
 
-    public void showInformation() throws DataAccessException, SQLException {
+    public void showInformation() throws DataAccessException {
         String msg = mainWindow.getEventsManagementController().getInformationEvent((Integer) eventJTable.getValueAt(eventJTable.getSelectedRow(), 0));
         JOptionPane.showMessageDialog(this, msg, "Information Event", JOptionPane.PLAIN_MESSAGE);
     }

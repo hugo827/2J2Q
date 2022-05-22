@@ -4,7 +4,6 @@ import businessLogic.EventsManagementBusiness;
 import exception.*;
 import model.*;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -26,7 +25,7 @@ public class EventsManagementController {
     public void addEvent(EventModel event) throws AddEventException, DataAccessException {
         eventsManagementBusiness.addEvent(event);
     }
-    public void deleteEvent(int idEvent) throws SQLException, DataAccessException {
+    public void deleteEvent(int idEvent) throws  DataAccessException {
         eventsManagementBusiness.deleteEvent(idEvent);
     }
 
@@ -70,7 +69,7 @@ public class EventsManagementController {
         return eventsManagementBusiness.getUserEventsList(idUser);
     }
 
-    public String getInformationEvent(int idEvent) throws DataAccessException, SQLException {
+    public String getInformationEvent(int idEvent) throws DataAccessException {
         return eventsManagementBusiness.getInformationEvent( idEvent);
     }
 

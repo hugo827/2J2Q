@@ -173,9 +173,10 @@ public class EventDataAccess implements IEvent {
     }
 
     @Override
-    public void deleteEvent(int idEvent) throws SQLException, DataAccessException {
-        Connection connectionDB = ConnectionDB.getInstance();
+    public void deleteEvent(int idEvent) throws DataAccessException {
+        Connection connectionDB = null;
         try {
+            connectionDB = ConnectionDB.getInstance();
             connectionDB.setAutoCommit(false);
             connectionDB.beginRequest();
             String query1 = "DELETE FROM `promotion` WHERE `fk_event` = ?";
@@ -197,8 +198,12 @@ public class EventDataAccess implements IEvent {
             connectionDB.commit();
 
         } catch (SQLException throwable) {
-            connectionDB.rollback();
-            throw new DataAccessException(throwable.getMessage());
+            try {
+                if(connectionDB != null) connectionDB.rollback();
+                throw new DataAccessException(throwable.getMessage());
+            } catch (SQLException sqlException) {
+                throw new DataAccessException(sqlException.getMessage());
+            }
         }
     }
 

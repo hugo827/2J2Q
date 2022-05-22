@@ -51,7 +51,7 @@ public class EventsManagementBusiness {
 
 
 
-    public void deleteEvent(int idEvent) throws SQLException, DataAccessException {
+    public void deleteEvent(int idEvent) throws DataAccessException {
         if(idEvent <= 0) {
             throw new DataAccessException("The value '" + idEvent + "' isn't correct !");
         } else {
@@ -131,7 +131,7 @@ public class EventsManagementBusiness {
         }
     }
 
-    public String getInformationEvent(int idEvent) throws DataAccessException, SQLException {
+    public String getInformationEvent(int idEvent) throws DataAccessException {
         if(idEvent <=  0) {
             throw new DataAccessException("The value '" + idEvent + "' isn't correct for finding an event");
         } else {

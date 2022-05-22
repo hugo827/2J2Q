@@ -11,15 +11,16 @@ import java.sql.SQLException;
 
 public class BusinessTaskDataAccess implements IBusinessTask {
 
-    public BusinessTaskModel getDataEvent(int idEvent) throws SQLException, DataAccessException {
+    public BusinessTaskModel getDataEvent(int idEvent) throws DataAccessException {
 
 
         int nbParticipant = 0;
         double sumTotal = 0, sumTotalPromotion = 0, price = 0;
         BusinessTaskModel res = null;
-        Connection connectionDB = ConnectionDB.getInstance();
+        Connection connectionDB = null;
 
         try {
+            connectionDB = ConnectionDB.getInstance();
             connectionDB.setAutoCommit(false);
             connectionDB.beginRequest();
             String query = ("SELECT  COUNT(*), price, SUM(price) FROM event e " +
@@ -55,8 +56,12 @@ public class BusinessTaskDataAccess implements IBusinessTask {
             connectionDB.commit();
 
         } catch(SQLException throwable) {
-            connectionDB.rollback();
-            throw  new DataAccessException(throwable.getMessage());
+            try {
+                if(connectionDB != null) connectionDB.rollback();
+                throw  new DataAccessException(throwable.getMessage());
+            }catch (SQLException sqlException) {
+                throw  new DataAccessException(sqlException.getMessage());
+            }
         }
 
         return res;

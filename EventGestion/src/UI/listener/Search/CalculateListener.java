@@ -4,6 +4,7 @@ import exception.DataAccessException;
 import UI.panel.BusinessTaskPanel;
 
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -20,8 +21,8 @@ public class CalculateListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         try {
             businessTaskPanel.showInformation();
-        } catch (DataAccessException | SQLException ex) {
-            throw new RuntimeException(ex);
+        } catch (DataAccessException  ex) {
+            JOptionPane.showMessageDialog(businessTaskPanel, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 }

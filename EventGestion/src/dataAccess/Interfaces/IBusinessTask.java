@@ -7,5 +7,5 @@ import java.sql.SQLException;
 
 public interface IBusinessTask {
 
-    BusinessTaskModel getDataEvent(int idEvent) throws SQLException, DataAccessException;
+    BusinessTaskModel getDataEvent(int idEvent) throws DataAccessException;
 }
