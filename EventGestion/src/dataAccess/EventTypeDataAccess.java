@@ -19,12 +19,12 @@ public class EventTypeDataAccess implements IEventType {
 
         try {
             Connection connectionDB = ConnectionDB.getInstance();
-            String query = "SELECT * FROM `eventtype`";
+            String query = "SELECT * FROM `eventtype` ORDER BY eventtype.idEventType";
             PreparedStatement statement = connectionDB.prepareStatement(query);
             ResultSet data = statement.executeQuery();
 
             while (data.next()){
-                int id = data.getInt(1);
+                Integer id = data.getInt(1);
                 String name = data.getString(2);
                 eventTypeList.add(new EventTypeModel(id,name));
             }

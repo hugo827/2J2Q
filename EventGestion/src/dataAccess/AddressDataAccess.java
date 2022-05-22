@@ -18,14 +18,14 @@ public class AddressDataAccess implements IAddress {
 
         try {
             Connection connectionDB = ConnectionDB.getInstance();
-            String query = ("SELECT a.idaddress, a.numberStreet, l.zipCode, l.name FROM address a inner join locality l ON a.fk_locality = l.idlocality");
+            String query = ("SELECT a.idaddress, a.numberStreet, l.zipCode, l.name FROM address a inner join locality l ON a.fk_locality = l.idlocality ORDER BY a.idaddress");
             PreparedStatement statement = connectionDB.prepareStatement(query);
             ResultSet data = statement.executeQuery();
 
             while (data.next()){
-                int id = data.getInt(1);
+                Integer id = data.getInt(1);
                 String numberStreet = data.getString(2);
-                int zipcode = data.getInt(3);
+                Integer zipcode = data.getInt(3);
                 String name = data.getString(4);
                 addressList.add(new AddressModel(id,zipcode, numberStreet, name));
             }

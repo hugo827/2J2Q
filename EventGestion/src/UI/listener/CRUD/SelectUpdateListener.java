@@ -34,6 +34,7 @@ public class SelectUpdateListener implements ActionListener {
                 int idEvent = (int) jTable.getValueAt(jTable.getSelectedRow(), 0);
                 EventModel eventUpdate =  mainWindow.getEventsManagementController().getEvent(idEvent);
 
+                mainWindow.setTitle("Events Management - Update event");
                 mainWindow.getFrameContainer().removeAll();
                 mainWindow.getFrameContainer().add(new EventFormPanel(eventUpdate, mainWindow));
                 mainWindow.printAll(mainWindow.getGraphics());
@@ -43,15 +44,6 @@ public class SelectUpdateListener implements ActionListener {
                 JOptionPane.showMessageDialog(eventListingPanel, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
 
-
-
-//            MainWindow.getMainWindow().setTitle("Events Management - Update event");
-//            MainWindow.getMainWindow().getFrameContainer().removeAll();
-//            MainWindow.getMainWindow().getFrameContainer().setLayout(new BorderLayout());
-//            MainWindow.getMainWindow().getFrameContainer().add(new EventFormPanel(eventUpdate), BorderLayout.CENTER);
-//            MainWindow.getMainWindow().repaint();
-//            MainWindow.getMainWindow().printAll(MainWindow.getMainWindow().getGraphics());
-//
        }
     }
 

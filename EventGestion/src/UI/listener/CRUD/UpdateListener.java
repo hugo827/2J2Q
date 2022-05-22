@@ -62,7 +62,6 @@ public class UpdateListener implements ActionListener {
 
            mainWindow.getEventsManagementController().updateEvent(event);
 
-            //TODO : mainWindow
 
             mainWindow.setTitle("Events Management - Listing Event");
             mainWindow.getFrameContainer().removeAll();

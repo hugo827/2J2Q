@@ -10,8 +10,6 @@ import model.ReductionModel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class CalculatePanel extends JPanel {
@@ -29,7 +27,6 @@ public class CalculatePanel extends JPanel {
 
     public CalculatePanel(MainWindow mainWindow) {
 
-        //TODO : mainWindow
         this.mainWindow = mainWindow;
 
         this.setLayout(new GridBagLayout());
@@ -102,6 +99,9 @@ public class CalculatePanel extends JPanel {
                 panel.add(p);
         }
 
+        subtractButton.setEnabled( jPanelArrayList.size() > 1);
+        plusButton.setEnabled(jPanelArrayList.size() < 10);
+
         panel.add(listButtonPanel);
     }
 
@@ -121,7 +121,7 @@ public class CalculatePanel extends JPanel {
             Double tempReduc = null;
             Integer tempNumberPerson = null;
             if(reduc.getReducField() != null && !reduc.getReducField().trim().isEmpty()) tempReduc = Double.parseDouble(reduc.getReducField());
-            if(reduc.getReducField() != null && !reduc.getNumberPersonField().trim().isEmpty()) tempNumberPerson = Integer.parseInt(reduc.getNumberPersonField());
+            if(reduc.getNumberPersonField() != null && !reduc.getNumberPersonField().trim().isEmpty()) tempNumberPerson = Integer.parseInt(reduc.getNumberPersonField());
             testArrayList.add(new ReductionModel(tempNumberPerson, tempReduc ));
         }
         return  testArrayList;

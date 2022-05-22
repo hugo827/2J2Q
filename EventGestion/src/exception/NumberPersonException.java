@@ -10,6 +10,6 @@ public class NumberPersonException extends Exception {
     }
 
     public String getMessage() {
-        return  totalPersonHavePromotion + " persons obtained a reduction, this number is higher than total person participant at the event : " + totalPerson;
+        return  totalPersonHavePromotion + " persons obtained a reduction, this number is higher than total participant at the event : " + totalPerson;
     }
 }

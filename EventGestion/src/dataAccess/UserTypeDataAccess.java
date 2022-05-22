@@ -18,12 +18,12 @@ public class UserTypeDataAccess implements IUserType {
 
         try {
             Connection connectionDB = ConnectionDB.getInstance();
-            String query = "SELECT * FROM `userType`";
+            String query = "SELECT * FROM userType ut ORDER BY ut.iduserType";
             PreparedStatement statement = connectionDB.prepareStatement(query);
             ResultSet data = statement.executeQuery();
 
             while (data.next()){
-                int id = data.getInt(1);
+                Integer id = data.getInt(1);
                 String userTypeName = data.getString(2);
                 userType.add(new UserTypeModel(id, userTypeName));
             }

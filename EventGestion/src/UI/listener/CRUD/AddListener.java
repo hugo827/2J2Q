@@ -103,7 +103,6 @@ public class AddListener implements ActionListener {
                 eventModel = new EventModel(title, description, additionalInformation, isImportant, startDate, endDate, price, nbParticipant, isPrivate, creator.getIduser(), eventType.getIdEventType(), address.getIdAddress());
                 mainWindow.getEventsManagementController().addEvent(eventModel);
 
-                //TODO: mainWindow
                 mainWindow.getFrameContainer().removeAll();
                 mainWindow.getFrameContainer().add(new EventListingPanel(mainWindow), BorderLayout.CENTER);
                 mainWindow.repaint();

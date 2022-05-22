@@ -18,12 +18,12 @@ public class UserDataAccess implements IUser {
 
         try {
             Connection connectionDB = ConnectionDB.getInstance();
-            String query = "SELECT * FROM `user`";
+            String query = "SELECT * FROM `user` ORDER BY user.iduser";
             PreparedStatement statement = connectionDB.prepareStatement(query);
             ResultSet data = statement.executeQuery();
 
             while (data.next()){
-                int id = data.getInt(1);
+                Integer id = data.getInt(1);
                 String firstname = data.getString(2);
                 String lastname = data.getString(3);
                 UserList.add(new UserModel(id,firstname, lastname));

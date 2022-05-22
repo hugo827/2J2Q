@@ -30,8 +30,8 @@ public class SearchByUserTypeDataAccess implements ISearchUserType {
                 String title = data.getString(1);
                 Date startDate = data.getTimestamp(2);
                 Date endDate = data.getTimestamp(3);
-                double reduction = data.getDouble(4);
-                double finalPrice = data.getDouble(5);
+                Double reduction = data.getDouble(4);
+                Double finalPrice = data.getDouble(5);
                 String eventType = data.getString(6);
                 searchPromotionList.add(new SearchPromotionModel(reduction, title, startDate, endDate, finalPrice, eventType ));
             }

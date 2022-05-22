@@ -7,6 +7,7 @@ import exception.EventException;
 import exception.UpdateEventException;
 import model.EventModel;
 
+
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -65,19 +66,19 @@ public class EventDataAccess implements IEvent {
             ResultSet data = statement.executeQuery();
 
             while (data.next()){
-                int id = data.getInt(1);
+                Integer id = data.getInt(1);
                 String title = data.getString(2);
                 String description = data.getString(3);
                 String additionalInformation = data.getString(4);
                 Boolean  isImportant = data.getBoolean(5);
                 Date startDate = data.getTimestamp(6);
                 Date endDate = data.getTimestamp(7);
-                double price = data.getDouble(8);
-                int participantNbMax = data.getInt(9);
+                Double price = data.getDouble(8);
+                Integer participantNbMax = data.getInt(9);
                 Boolean isPrivate = data.getBoolean(10);
-                int fk_creator = data.getInt(11);
-                int fk_eventtype = data.getInt(12);
-                int fk_address = data.getInt(13);
+                Integer fk_creator = data.getInt(11);
+                Integer fk_eventtype = data.getInt(12);
+                Integer fk_address = data.getInt(13);
                 String eventType = data.getString(14);
                 String address = data.getString(15);
                 String creator = data.getString(16);
@@ -110,7 +111,11 @@ public class EventDataAccess implements IEvent {
 
             statement.setString(1, event.getTitle());
             statement.setString(2, event.getDescription());
-            statement.setString(3, event.getAdditionalInformation());
+            if (event.getAdditionalInformation() == null) {
+                statement.setNull(3, Types.VARCHAR);
+            } else {
+                statement.setString(3, event.getAdditionalInformation());
+            }
             statement.setBoolean(4, event.getImportant());
             statement.setTimestamp(5, startDate);
             formattedDate = simpleDateFormat.format(event.getEndDate());
@@ -143,19 +148,19 @@ public class EventDataAccess implements IEvent {
 
 
             while (data.next()) {
-                int id = data.getInt(1);
+                Integer id = data.getInt(1);
                 String title = data.getString(2);
                 String description = data.getString(3);
                 String additionalInformation = data.getString(4);
                 Boolean isImportant = data.getBoolean(5);
                 Date startDate = data.getTimestamp(6);
                 Date endDate = data.getTimestamp(7);
-                double price = data.getDouble(8);
-                int participantNbMax = data.getInt(9);
+                Double price = data.getDouble(8);
+                Integer participantNbMax = data.getInt(9);
                 Boolean isPrivate = data.getBoolean(10);
-                int fk_creator = data.getInt(11);
-                int fk_eventtype = data.getInt(12);
-                int fk_address = data.getInt(13);
+                Integer fk_creator = data.getInt(11);
+                Integer fk_eventtype = data.getInt(12);
+                Integer fk_address = data.getInt(13);
                 event = new EventModel(id, title, description, additionalInformation, isImportant, startDate, endDate, price, participantNbMax, isPrivate, fk_creator, fk_eventtype, fk_address);
             }
 
@@ -215,19 +220,19 @@ public class EventDataAccess implements IEvent {
             ResultSet data = statement.executeQuery();
 
             while (data.next()){
-                int id = data.getInt(1);
+                Integer id = data.getInt(1);
                 String title = data.getString(2);
                 String description = data.getString(3);
                 String additionalInformation = data.getString(4);
                 Boolean  isImportant = data.getBoolean(5);
                 Date startDate = data.getTimestamp(6);
                 Date endDate = data.getTimestamp(7);
-                double price = data.getDouble(8);
-                int participantNbMax = data.getInt(9);
+                Double price = data.getDouble(8);
+                Integer participantNbMax = data.getInt(9);
                 Boolean isPrivate = data.getBoolean(10);
-                int fk_creator = data.getInt(11);
-                int fk_eventtype = data.getInt(12);
-                int fk_address = data.getInt(13);
+                Integer fk_creator = data.getInt(11);
+                Integer fk_eventtype = data.getInt(12);
+                Integer fk_address = data.getInt(13);
                 String eventType = data.getString(14);
                 String address = data.getString(15);
                 String creator = data.getString(16);
