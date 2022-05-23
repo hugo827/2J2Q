@@ -1,0 +1,13 @@
+Groupe : 
+	- Weber Wangi : etu44721@henallux.be
+	- Janssens Hugo : etu32299@henallux.be
+
+
+
+Login et mot de passe pour l'application : 
+	- scripts-user.sql contient un script donnant les droits à un utilisateur sur le schéma de notre base de données.
+	  L'application utilise l'utilisateur créé.
+
+
+
+Lien Github : https://github.com/hugo827/2J2Q
