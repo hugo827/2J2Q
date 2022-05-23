@@ -21,12 +21,7 @@ public class ConnectionDB {
         if(connection == null) {
             new ConnectionDB();
         }
-        else {
-            //on test la connection si elle est valide, sinon on en refait une, timer a 0
-            if (!connection.isValid(0)) {
-                new ConnectionDB();
-            }
-        }
+
         return connection;
     }
 
