@@ -27,7 +27,7 @@ public class BusinessTaskDataAccess implements IBusinessTask {
                     "INNER JOIN participation p ON e.idEvent = p.fk_event " +
                     "INNER JOIN user u ON p.fk_user = u.idUser " +
                     "INNER JOIN usertype ut ON u.fk_usertype = ut.idUserType " +
-                    "WHERE e.idEvent = ? ;");
+                    "WHERE e.idEvent = ? ");
 
             PreparedStatement statement = connectionDB.prepareStatement(query);
             statement.setInt(1, idEvent);
@@ -43,7 +43,7 @@ public class BusinessTaskDataAccess implements IBusinessTask {
                     "INNER JOIN participation p ON p.fk_user = u.idUser " +
                     "INNER JOIN usertype ut ON ut.idUserType = u.fk_usertype " +
                     "INNER JOIN promotion pr ON  pr.fk_usertype = u.fk_usertype AND pr.fk_event = p.fk_event " +
-                    "WHERE p.fk_event = ?");
+                    "WHERE p.fk_event = ? ");
 
             statement = connectionDB.prepareStatement(query);
             statement.setDouble(1, price);
