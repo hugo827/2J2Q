@@ -5,8 +5,8 @@ Groupe :
 
 
 Login et mot de passe pour l'application : 
-	- scripts-user.sql contient un script donnant les droits à un utilisateur sur le schéma de notre base de données.
-	  L'application utilise l'utilisateur créé.
+	- scripts-user.sql (dossier : .\EventGestion\scripts\ ) contient un script donnant les droits à un utilisateur sur le schéma de notre base de données.
+	  L'application utilise l'utilisateur créé dans ce script.
 
 
 
