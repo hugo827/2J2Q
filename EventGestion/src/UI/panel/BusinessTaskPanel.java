@@ -11,7 +11,6 @@ import UI.window.MainWindow;
 
 import javax.swing.*;
 import java.awt.*;
-import java.sql.SQLException;
 
 public class BusinessTaskPanel extends JPanel {
 
