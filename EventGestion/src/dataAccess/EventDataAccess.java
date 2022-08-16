@@ -27,7 +27,6 @@ public class EventDataAccess implements IEvent {
             String formattedDate = simpleDateFormat.format(event.getStartDate());
             Timestamp startDate = Timestamp.valueOf(formattedDate);
 
-
             statement.setString(1, event.getTitle());
             statement.setString(2, event.getDescription());
             statement.setString(3, event.getAdditionalInformation());

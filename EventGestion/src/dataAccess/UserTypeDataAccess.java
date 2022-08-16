@@ -31,8 +31,6 @@ public class UserTypeDataAccess implements IUserType {
         } catch(SQLException throwable) {
             throw new DataAccessException(throwable.getMessage());
         }
-
-
         return userType;
     }
 }
