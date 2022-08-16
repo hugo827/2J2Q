@@ -5,8 +5,6 @@ import dataAccess.Interfaces.*;
 import exception.*;
 import model.*;
 
-
-import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,6 +20,7 @@ public class EventsManagementBusiness {
     private ISearchDates searchByDatesDataAccess;
     private ISearchEventType searchEventTypeDataAccess;
     private ISearchUserType searchByUserTypeDataAccess;
+    private ISearchEndDates searchEndDatesDataAccess;
     private IUserType userTypeDataAccess;
 
 
@@ -38,7 +37,7 @@ public class EventsManagementBusiness {
         businessTaskDataAccess = new BusinessTaskDataAccess();
 
         searchEventTypeDataAccess = new SearchByEventTypeDataAccess();
-
+        searchEndDatesDataAccess= new SearchByEndDatesDataAccess();
     }
 
     /* ---------------------- CRUD ----------------------*/
@@ -77,6 +76,13 @@ public class EventsManagementBusiness {
            throw new DataAccessException("The object event can't be null");
         } else {
             eventDataAccess.addEvent(event);
+        }
+    }
+    public void addUser(UserModel user) throws AddUserException, DataAccessException {
+        if(user == null){
+            throw new DataAccessException("The object event can't be null");
+        } else {
+            userDataAccess.addUser(user);
         }
     }
 
@@ -173,4 +179,12 @@ public class EventsManagementBusiness {
 
         return businessTaskModel;
     }
+
+    public ArrayList<SearchEndDatesModel> getSearchEndDates(Date endDate) throws  DataAccessException {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            String formattedEndDate = simpleDateFormat.format(endDate);
+            java.sql.Date endDateConvert = java.sql.Date.valueOf(formattedEndDate);
+            return  searchEndDatesDataAccess.getSearchEndDates(endDateConvert);
+    }
+
 }
