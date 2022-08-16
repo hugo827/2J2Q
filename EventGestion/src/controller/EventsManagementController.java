@@ -25,6 +25,9 @@ public class EventsManagementController {
     public void addEvent(EventModel event) throws AddEventException, DataAccessException {
         eventsManagementBusiness.addEvent(event);
     }
+    public void addUser(UserModel user) throws AddUserException, DataAccessException {
+        eventsManagementBusiness.addUser(user);
+    }
     public void deleteEvent(int idEvent) throws  DataAccessException {
         eventsManagementBusiness.deleteEvent(idEvent);
     }
@@ -51,6 +54,9 @@ public class EventsManagementController {
         return eventsManagementBusiness.getSearchByDates(startDate, endDate);
     }
 
+    public ArrayList<SearchEndDatesModel> getSearchByEndDates(Date endDate) throws DataAccessException {
+        return eventsManagementBusiness.getSearchEndDates(endDate);
+    }
 
     /* ------------------------SEARCH promotion------------------------ */
 
