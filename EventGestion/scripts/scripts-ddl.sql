@@ -45,6 +45,10 @@ CREATE TABLE `user` (
     `iduser` int NOT NULL AUTO_INCREMENT,
     `firstName` varchar(45) NOT NULL,
     `lastName` varchar(45) NOT NULL,
+    `birthDate` TIMESTAMP NOT NULL,
+    `isPMR` tinyint DEFAULT 0,
+    `profession` text DEFAULT NULL,
+    `nbChildren` int DEFAULT NULL,
     `fk_userType` int NOT NULL,
     PRIMARY KEY (`iduser`),
     CONSTRAINT `fk_userType` FOREIGN KEY (`fk_userType`) REFERENCES `usertype` (`idusertype`)

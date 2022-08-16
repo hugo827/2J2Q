@@ -32,11 +32,11 @@ INSERT INTO eventmanagmentdb.address(libelle, numberStreet, additionalInformatio
 INSERT INTO eventmanagmentdb.address(libelle, numberStreet, additionalInformation, fk_locality) VALUES("Liege", "40, rue de liege", "additional information", 4);
 INSERT INTO eventmanagmentdb.address(libelle, numberStreet, additionalInformation, fk_locality) VALUES("Louvain la neuve", "13, rue de lln", "additional information", 5);
 
-INSERT INTO eventmanagmentdb.user(firstname, lastname, fk_userType) VALUES ("Wangi", "Weber", 4);
-INSERT INTO eventmanagmentdb.user(firstname, lastname, fk_userType) VALUES ("Hugo", "Janssens", 4);
-INSERT INTO eventmanagmentdb.user(firstname, lastname, fk_userType) VALUES ("Alexandre", "Lambert", 3);
-INSERT INTO eventmanagmentdb.user(firstname, lastname, fk_userType) VALUES ("Lucas", "Pignataro", 2);
-INSERT INTO eventmanagmentdb.user(firstname, lastname, fk_userType) VALUES ("Remy", "Lecrond", 1);
+INSERT INTO eventmanagmentdb.user(firstname, lastname,birthDate, isPMR, profession, nbChildren, fk_userType) VALUES ("Wangi", "Weber",'1998-09-21', false,"pédiatre",null,4);
+INSERT INTO eventmanagmentdb.user(firstname, lastname,birthDate, isPMR, profession, nbChildren, fk_userType) VALUES ("Hugo", "Janssens",'1988-04-02', true,"maçon",null,4);
+INSERT INTO eventmanagmentdb.user(firstname, lastname,birthDate, isPMR, profession, nbChildren, fk_userType) VALUES ("Alexandre", "Lambert",'2000-06-14',false,null,2, 3);
+INSERT INTO eventmanagmentdb.user(firstname, lastname,birthDate, isPMR, profession, nbChildren, fk_userType) VALUES ("Lucas", "Pignataro",'1984-01-30', true,"professeur",null,2);
+INSERT INTO eventmanagmentdb.user(firstname, lastname,birthDate, isPMR, profession, nbChildren, fk_userType) VALUES ("Remy", "Lecrond",'2001-06-16', false,null,5,1);
 
 INSERT INTO eventmanagmentdb.event(title, description, additionalInformation, isImportant, startDate, endDate,
                                    price, participantNbMax, isPrivate, fk_creator, fk_eventType, fk_address)
