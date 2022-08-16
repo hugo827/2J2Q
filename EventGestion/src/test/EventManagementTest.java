@@ -2,14 +2,17 @@ package test;
 
 import businessLogic.EventsManagementBusiness;
 import exception.CalculateReductionException;
-import exception.DataAccessException;
+import exception.EventException;
 import exception.ReductionBetweenException;
 import model.BusinessTaskModel;
 import model.ReductionModel;
+import model.UserModel;
 import org.junit.jupiter.api.*;
 
-import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 
 
 public class EventManagementTest {
@@ -19,6 +22,7 @@ public class EventManagementTest {
     private BusinessTaskModel actual;
 
     private  ArrayList<ReductionModel> reductionModels;
+    private UserModel userModel;
 
 
     @BeforeAll
@@ -70,6 +74,13 @@ public class EventManagementTest {
         Assertions.assertThrows(ReductionBetweenException.class, () -> eventsManagementBusiness.calculateReduction(100,9.99, reductionModels));
     }
 
-
+    @Test
+    @DisplayName("Test setters nbr d'enfants inférieur à 0")
+    public void verifie_setter_bChildren() throws EventException, ParseException {
+        String date = "2000/12/24";
+        Date Date = new SimpleDateFormat("yyyy/MM/dd").parse(date);
+        userModel=new UserModel("Jean","Weber",Date,true,"gendarme",-3,1);
+         Assertions.assertEquals(0,userModel.getNbChildren());
+    }
 
 }
